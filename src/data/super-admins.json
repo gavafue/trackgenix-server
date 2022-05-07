@@ -1,0 +1,36 @@
+[{
+    "id": 1,
+    "firstName": "Lynnett",
+    "email": "lriddick0@illinois.edu",
+    "role": "Super Admin",
+    "password": "D1gLya0wft",
+    "active": false
+  }, {
+    "id": 2,
+    "firstName": "Alyce",
+    "email": "aworsnip1@usda.gov",
+    "role": "Super Admin",
+    "password": "pxh5qD",
+    "active": true
+  }, {
+    "id": 3,
+    "firstName": "Morena",
+    "email": "mkearn2@accuweather.com",
+    "role": "Super Admin",
+    "password": "zuG78lGRY",
+    "active": true
+  }, {
+    "id": 4,
+    "firstName": "Bobine",
+    "email": "bmccully3@nps.gov",
+    "role": "Super Admin",
+    "password": "gCUiLI3TVF",
+    "active": true
+  }, {
+    "id": 5,
+    "firstName": "Gertruda",
+    "email": "gmayze4@skype.com",
+    "role": "Super Admin",
+    "password": "6ENAR1i",
+    "active": false
+  }]
