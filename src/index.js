@@ -4,7 +4,6 @@ import * as timeSheetControllers from './resources/time-sheets';
 
 // use "require" to import JSON files
 const admins = require('./data/admins.json');
-const timeSheets = require('./data/time-sheets.json');
 
 const app = express();
 const port = process.env.PORT || 3000;
