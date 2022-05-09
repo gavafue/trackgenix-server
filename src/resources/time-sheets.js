@@ -22,5 +22,4 @@ export {
     gettimeSheetById
 }
 
-/* EDIT / PUT */
 
