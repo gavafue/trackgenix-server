@@ -9,9 +9,8 @@ const createProject = (req, res) => {
   const newProject = req.body;
   newProject.id = Math.floor(Math.random() * 100000);
   newProject.active = true;
-  // this function validates that every item inside elements is contained in the created project
+
   const validateElements = elements.every((item) => Object.keys(newProject).includes(item));
-  // this functions returns true if the id of the new project already exists
   const foundID = projectsData.some((project) => project.id === newProject.id);
 
   if (validateElements && !foundID) {
@@ -20,7 +19,7 @@ const createProject = (req, res) => {
       if (err) {
         res.send(err);
       } else {
-        res.status(201).json({
+        res.status(200).json({
           msg: 'Project created',
         });
       }
@@ -32,12 +31,36 @@ const createProject = (req, res) => {
   }
 };
 
+// Function that edits one project
+const editProject = (req, res) => {
+  const { id } = req.params;
+  const project = projectsData.find((item) => item.id === parseInt(id, 10));
+
+  if (!project) {
+    res.status(200).json({
+      msg: `The project with ID ${id} does not exist`,
+    });
+  } else {
+    const updProject = req.body;
+    elements.forEach((prop) => {
+      project[prop] = updProject[prop] ? updProject[prop] : project[prop];
+    });
+    fs.writeFile('src/data/projects.json', JSON.stringify(projectsData), (err) => {
+      if (err) {
+        res.send(err);
+      } else {
+        res.status(200).json({
+          msg: 'The project was updated',
+        });
+      }
+    });
+  }
+};
+
 // Function that obtains one project by its id
 const getProjectById = (req, res) => {
-  // eslint-disable-next-line prefer-destructuring
-  const id = req.params.id;
-  // eslint-disable-next-line radix
-  const project = projectsData.find((item) => item.id === parseInt(id));
+  const { id } = req.params;
+  const project = projectsData.find((item) => item.id === parseInt(id, 10));
 
   if (!project) {
     res.status(200).json({
@@ -54,4 +77,5 @@ const getProjectById = (req, res) => {
 export {
   createProject,
   getProjectById,
+  editProject,
 };
