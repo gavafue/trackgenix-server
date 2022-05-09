@@ -2,8 +2,6 @@
 import express from 'express';
 import * as adminsControllers from './resources/admins';
 
-// console.log(adminsControllers);
-
 // use "require" to import JSON files
 // const admins = require('./data/admins.json');
 
@@ -15,8 +13,8 @@ app.use(express.json());
 
 app.get('/admins', adminsControllers.getAllAdmins);
 app.get('/admins/:id', adminsControllers.getAdminById);
-// app.post('/admins', adminsControllers.createAdmin);
-// app.delete('/admins/:id', adminsControllers.deleteAdminById);
+app.post('/admins/add', adminsControllers.addAdmin);
+// app.delete('/admins/delete/:id', adminsControllers.deleteAdminById);
 
 // app.post('/admins', postAdmin);
 // app.put('/admins', updateAdmin);
