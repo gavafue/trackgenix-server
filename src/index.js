@@ -6,6 +6,9 @@ const app = express();
 const port = process.env.PORT || 3000;
 app.use(express.json());
 
+// define the route to create a project
+app.post('/project/add', projectsControllers.createProject);
+
 // define the route to get a project by id
 app.get('/project/:id', projectsControllers.getProjectById);
 
