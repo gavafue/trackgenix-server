@@ -36,14 +36,14 @@ const deleteTimeSheet = async (req, res) => {
 };
 
 const filterTSByName = async (req, res) => {
-    const timeSName = req.params.employeeName;
-    const filteredTS = timeSheets.filter((timeSheet) => timeSheet.employeeName === timeSName);
-    if (filteredTS.length === 0) {
-        res.send(`The employee ${timeSName} does not have a time sheet created.`);
-    } else {
-        res.send(filteredTS);
-    }
-}
+  const timeSName = req.params.employeeName;
+  const filteredTS = timeSheets.filter((timeSheet) => timeSheet.employeeName === timeSName);
+  if (filteredTS.length === 0) {
+    res.send(`The employee ${timeSName} does not have a time sheet created.`);
+  } else {
+    res.send(filteredTS);
+  }
+};
 
 export {
   createTimeSheet,
