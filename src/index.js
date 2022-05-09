@@ -19,7 +19,9 @@ app.get('/admins', (req, res) => {
   });
 });
 
+// Time sheet controllers
 app.post('/timeSheet', timeSheetControllers.createTimeSheet);
+app.delete('/timeSheet/:id', timeSheetControllers.deleteTimeSheet);
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console
