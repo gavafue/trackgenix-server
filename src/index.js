@@ -14,7 +14,7 @@ app.use(express.json());
 app.get('/admins', adminsControllers.getAllAdmins);
 app.get('/admins/:id', adminsControllers.getAdminById);
 app.post('/admins/add', adminsControllers.addAdmin);
-// app.delete('/admins/delete/:id', adminsControllers.deleteAdminById);
+app.delete('/admins/delete/:id', adminsControllers.deleteAdminById);
 
 // app.post('/admins', postAdmin);
 // app.put('/admins', updateAdmin);
