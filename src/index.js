@@ -12,17 +12,13 @@ app.use(express.json());
 // Routes admins
 
 app.get('/admins', adminsControllers.getAllAdmins);
-app.get('/admins/:id', adminsControllers.getAdminById);
 app.post('/admins/add', adminsControllers.addAdmin);
+app.get('/admins/getById/:id', adminsControllers.getAdminById);
 app.delete('/admins/delete/:id', adminsControllers.deleteAdminById);
+app.get('/admins/getByGender', adminsControllers.getAdminByGender);
+app.get('/admins/getByName', adminsControllers.getAdminByName);
 
-// app.post('/admins', postAdmin);
 // app.put('/admins', updateAdmin);
-// app.delete('/admins', deleteAdmin);
-
-// Filters
-// app.get('/admins/getAdminsByName/:name', getAdminByName);
-// app.get('/admins/getAdminsByGender/:gender', getAdminByGender);
 
 // app.get('/admins', (req, res) => {
 //   res.status(200).json({
