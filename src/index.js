@@ -20,7 +20,7 @@ app.get('/admins', (req, res) => {
 });
 
 app.delete('/delete/project/:id', projectsControllers.deleteProjects);
-// app.get('/projects/', projectsControllers.getProjects);
+app.get('/projects/', projectsControllers.getProjects);
 // app.put(), projectsControllers.function);
 
 app.listen(port, () => {

@@ -27,4 +27,14 @@ const deleteProjects = (req, res) => {
   }
 };
 
-export default deleteProjects;
+const getProjects = (req, res) => {
+  // eslint-disable-next-line no-shadow
+  const filterProjects = projects.filter((projects) => projects.active == true);
+  res.status(200).json({
+    data: filterProjects,
+  });
+};
+
+// eslint-disable-next-line import/prefer-default-export
+export { deleteProjects };
+export { getProjects };
