@@ -21,11 +21,11 @@ const createTimeSheet = async (req, res) => {
 
 const deleteTimeSheet = async (req, res) => {
   const timeSId = req.params.id;
-  const filteredTimeSheets = timeSheets.filter((timeSheet) => timeSheet.id !== timeSId);
-  if (timeSheets.length === filteredTimeSheets.length) {
+  const filteredTS = timeSheets.filter((timeSheet) => (timeSheet.id).toString() !== timeSId);
+  if (timeSheets.length === filteredTS.length) {
     res.send(`Time sheet with id ${timeSId} not found.`);
   } else {
-    fs.writeFile('./src/data/time-sheets.json', JSON.stringify(filteredTimeSheets), (err) => {
+    fs.writeFile('./src/data/time-sheets.json', JSON.stringify(filteredTS), (err) => {
       if (err) {
         res.send(`Error!\n${err}`);
       } else {
@@ -35,18 +35,18 @@ const deleteTimeSheet = async (req, res) => {
   }
 };
 
-// const filterByName = async (req, res) => {
-//     const timeSName = req.params.employeeName;
-//     const filteredTimeSheets = timeSheets.filter(timeSheet => {
-// timeSheet.employeeName === timeSName);}
-//     if (filteredTimeSheets.length === 0) {
-//         res.send(`The employee ${timeSName} does not have a time sheet created.`);
-//     } else {
-//         res.send()
-//     }
-// }
+const filterTSByName = async (req, res) => {
+    const timeSName = req.params.employeeName;
+    const filteredTS = timeSheets.filter((timeSheet) => timeSheet.employeeName === timeSName);
+    if (filteredTS.length === 0) {
+        res.send(`The employee ${timeSName} does not have a time sheet created.`);
+    } else {
+        res.send(filteredTS);
+    }
+}
 
 export {
   createTimeSheet,
   deleteTimeSheet,
+  filterTSByName,
 };
