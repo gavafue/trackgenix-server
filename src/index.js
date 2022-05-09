@@ -1,5 +1,6 @@
 // use "import" to import libraries
 import express from 'express';
+import * as projectsControllers from './resources/projects';
 
 // use "require" to import JSON files
 const admins = require('./data/admins.json');
@@ -17,6 +18,10 @@ app.get('/admins', (req, res) => {
     data: admins,
   });
 });
+
+app.delete('/delete/project/:id', projectsControllers.deleteProjects);
+// app.get('/projects/', projectsControllers.getProjects);
+// app.put(), projectsControllers.function);
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console
