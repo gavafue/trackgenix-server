@@ -1,10 +1,90 @@
-[{"id":1,"nameProyect":"Fix San","week":1,"day":"3/23/2022","description":"Observ-mental cond NEC","hours":1},
-    {"id":2,"nameProyect":"Kanlam","week":2,"day":"10/3/2021","description":"Rotation of teeth","hours":2},
-    {"id":3,"nameProyect":"Opela","week":3,"day":"2/9/2022","description":"Schmorls node-thoracic","hours":3},
-    {"id":4,"nameProyect":"Tampflex","week":4,"day":"6/23/2021","description":"Rubella in preg-unspec","hours":4},
-    {"id":5,"nameProyect":"Andalax","week":5,"day":"6/5/2021","description":"Damage to pelvic jt-unsp","hours":5},
-    {"id":6,"nameProyect":"Solarbreeze","week":6,"day":"4/30/2022","description":"Hx of contraception","hours":6},
-    {"id":7,"nameProyect":"Mat Lam Tam","week":7,"day":"1/1/2022","description":"Computer tech NEC","hours":7},
-    {"id":8,"nameProyect":"Alphazap","week":8,"day":"8/21/2021","description":"Brachial plexus lesions","hours":8},
-    {"id":9,"nameProyect":"Voyatouch","week":9,"day":"8/1/2021","description":"Nontraum tendon rupt NOS","hours":9},
-    {"id":10,"nameProyect":"Latlux","week":10,"day":"5/23/2021","description":"Cellulitis of arm","hours":10}]
+[
+    {
+        "id": 1,
+        "nameProject": "Fix San",
+        "week": 1,
+        "day": "3/23/2022",
+        "description": "Observ-mental cond NEC",
+        "hours": 1
+    },
+    {
+        "id": 2,
+        "nameProject": "Kanlam",
+        "week": 2,
+        "day": "10/3/2021",
+        "description": "Rotation of teeth",
+        "hours": 2
+    },
+    {
+        "id": 3,
+        "nameProject": "Opela",
+        "week": 3,
+        "day": "2/9/2022",
+        "description": "Schmorls node-thoracic",
+        "hours": 3
+    },
+    {
+        "id": 4,
+        "nameProject": "Tampflex",
+        "week": 4,
+        "day": "6/23/2021",
+        "description": "Rubella in preg-unspec",
+        "hours": 4
+    },
+    {
+        "id": 5,
+        "nameProject": "Andalax",
+        "week": 5,
+        "day": "6/5/2021",
+        "description": "Damage to pelvic jt-unsp",
+        "hours": 5
+    },
+    {
+        "id": 6,
+        "nameProject": "Solarbreeze",
+        "week": 6,
+        "day": "4/30/2022",
+        "description": "Hx of contraception",
+        "hours": 6
+    },
+    {
+        "id": 7,
+        "nameProject": "Mat Lam Tam",
+        "week": 7,
+        "day": "1/1/2022",
+        "description": "Computer tech NEC",
+        "hours": 7
+    },
+    {
+        "id": 8,
+        "nameProject": "Alphazap",
+        "week": 8,
+        "day": "8/21/2021",
+        "description": "Brachial plexus lesions",
+        "hours": 8
+    },
+    {
+        "id": 9,
+        "nameProject": "Voyatouch",
+        "week": 9,
+        "day": "8/1/2021",
+        "description": "Nontraum tendon rupt NOS",
+        "hours": 9
+    },
+    {
+        "id": 10,
+        "nameProject": "Latlux",
+        "week": 10,
+        "day": "5/23/2021",
+        "description": "Cellulitis of arm",
+        "hours": 10
+    },
+    {
+        "nameProject": "Latlux",
+        "week": 11,
+        "day": "5/23/2021",
+        "description": "Cellulitis of arm",
+        "hours": 11,
+        "id": 2020
+    }
+]
