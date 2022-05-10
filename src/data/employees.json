@@ -1,17 +1,19 @@
-[{
+[
+  {
     "id": 1,
     "firstName": "Jojo",
     "lastName": "Sayward",
     "birthDate": "24-12-2021",
-    "country": "Pakistan",
-    "city": "Kashmor",
+    "country": "Russia",
+    "city": "Moscu",
     "zip": "33001",
     "phone": "8427941972",
     "email": "jsayward0@ocn.ne.jp",
     "password": "VHZKWVVb2Mha",
     "photo": "http://dummyimage.com/100x100.png/5fa2dd/ffffff",
     "active": true
-}, {
+  },
+  {
     "id": 2,
     "firstName": "Dru",
     "lastName": "Bonny",
@@ -24,7 +26,8 @@
     "password": "l1OQnLL9A",
     "photo": "http://dummyimage.com/100x100.png/5fa2dd/ffffff",
     "active": false
-}, {
+  },
+  {
     "id": 3,
     "firstName": "Adiana",
     "lastName": "McCromley",
@@ -37,7 +40,8 @@
     "password": "bRiE5apWXNKQ",
     "photo": "http://dummyimage.com/100x100.png/cc0000/ffffff",
     "active": true
-}, {
+  },
+  {
     "id": 4,
     "firstName": "Akim",
     "lastName": "Gamlyn",
@@ -50,7 +54,8 @@
     "password": "wHwp0HEGC8",
     "photo": "http://dummyimage.com/100x100.png/dddddd/000000",
     "active": false
-}, {
+  },
+  {
     "id": 5,
     "firstName": "Mordy",
     "lastName": "Guy",
@@ -63,7 +68,8 @@
     "password": "NdGGODlZ85o",
     "photo": "http://dummyimage.com/100x100.png/ff4444/ffffff",
     "active": false
-}, {
+  },
+  {
     "id": 6,
     "firstName": "Elladine",
     "lastName": "Tait",
@@ -76,7 +82,8 @@
     "password": "ipWU6S5s0",
     "photo": "http://dummyimage.com/100x100.png/dddddd/000000",
     "active": true
-}, {
+  },
+  {
     "id": 7,
     "firstName": "Martelle",
     "lastName": "Gyenes",
@@ -89,7 +96,8 @@
     "password": "GH07nCu",
     "photo": "http://dummyimage.com/100x100.png/dddddd/000000",
     "active": false
-}, {
+  },
+  {
     "id": 8,
     "firstName": "Viviana",
     "lastName": "Bricksey",
@@ -102,7 +110,8 @@
     "password": "BDzAZL",
     "photo": "http://dummyimage.com/100x100.png/ff4444/ffffff",
     "active": true
-}, {
+  },
+  {
     "id": 9,
     "firstName": "Leda",
     "lastName": "Piscopo",
@@ -115,7 +124,8 @@
     "password": "jNaZCAlT",
     "photo": "http://dummyimage.com/100x100.png/5fa2dd/ffffff",
     "active": false
-}, {
+  },
+  {
     "id": 10,
     "firstName": "Bob",
     "lastName": "Habin",
@@ -128,4 +138,5 @@
     "password": "irwRkK",
     "photo": "http://dummyimage.com/100x100.png/5fa2dd/ffffff",
     "active": true
-}]
+  }
+]
