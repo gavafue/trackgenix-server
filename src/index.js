@@ -27,8 +27,8 @@ app.listen(port, () => {
 
 /* TimeSheet */
 
-// use "require" to import JSON files
-
 app.get('/timeSheet/:id', timeSheetsControllers.gettimeSheetById);
 
 app.put('/timeSheet/:id', timeSheetsControllers.editTimeSheet);
+
+app.get('/timeSheetByProject/:project', timeSheetsControllers.filterTSheetProject);

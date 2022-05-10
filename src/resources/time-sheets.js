@@ -19,14 +19,11 @@ const gettimeSheetById = async (req, res) => {
         data: timeSheetFind
     })
 }
-export {
-    gettimeSheetById
-}
 
 /* EDIT / PUT */
 
 const fs = require('fs');
-const editTimeSheet = (req, res) => {
+const editTimeSheet = async (req, res) => {
     const { id } = req.params;
     const timeSheetFind = timeSheetsData.find((item) => item.id == parseInt(id));
     
@@ -57,6 +54,21 @@ const editTimeSheet = (req, res) => {
         });
     }
 };
+
+/* FILTER PROJECT */
+
+const filterTSheetProject = async (req, res) => {
+    const TSheetProject = req.params.project;
+    const filterProject = timeSheetsData.filter((proyecItem) => proyecItem.project === TSheetProject);
+    if (filterProject.length === 0) {
+        res.send(`This ${TSheetProject} does not have any time sheet created.`)
+    } else {
+        res.send(filterProject)
+    }
+}
+
 export {
+    gettimeSheetById,
     editTimeSheet,
+    filterTSheetProject
 }
