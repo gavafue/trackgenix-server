@@ -27,8 +27,8 @@ const addAdmin = (req, res) => {
 };
 
 const updateAdmin = (req, res) => {
-  const adminId = req.params.id;
-  const admin = admins.find((item) => item.id === parseInt(adminId, 10));
+  const adminId = parseInt(req.params.id, 10);
+  const admin = admins.find((item) => item.id === adminId);
   if (!admin) {
     res.json({ msg: `The admin with ID ${adminId} does not exist` });
   } else {
@@ -47,8 +47,8 @@ const updateAdmin = (req, res) => {
 };
 
 const getAdminById = (req, res) => {
-  const adminId = req.params.id;
-  const admin = admins.find((item) => item.id === parseInt(adminId, 10));
+  const adminId = parseInt(req.params.id, 10);
+  const admin = admins.find((item) => item.id === adminId);
   if (!admin) {
     res.json({ msg: `The admin with ID ${adminId} does not exist` });
   } else {
@@ -57,8 +57,8 @@ const getAdminById = (req, res) => {
 };
 
 const deleteAdminById = (req, res) => {
-  const adminId = req.params.id;
-  const filteredAdmins = admins.filter((item) => item.id !== parseInt(adminId, 10));
+  const adminId = parseInt(req.params.id, 10);
+  const filteredAdmins = admins.filter((item) => item.id !== adminId);
   if (admins.length === filteredAdmins.length) {
     res.json({ msg: `Could not delete admin with ID ${adminId} because it was not found` });
   } else {
