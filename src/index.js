@@ -1,5 +1,6 @@
 // use "import" to import libraries
 import express from 'express';
+import * as superadminControllers from './resources/super-admins';
 import * as adminsControllers from './resources/admins';
 import * as timeSheetControllers from './resources/time-sheets';
 
@@ -24,6 +25,14 @@ app.get('/admins/getById/:id', adminsControllers.getAdminById);
 app.delete('/admins/deleteById/:id', adminsControllers.deleteAdminById);
 app.get('/admins/getByGender', adminsControllers.getAdminByGender);
 app.get('/admins/getByName', adminsControllers.getAdminByName);
+
+// Routes superadmins
+app.get('/superadmins', superadminControllers.getAllSa);
+app.get('/superadmins/getById/:id', superadminControllers.getSaById);
+app.post('/superadmins/add', superadminControllers.createSa);
+app.delete('/superadmins/delete/:id', superadminControllers.deleteSa);
+app.get('/superadmins/getActive', superadminControllers.getActiveSa);
+app.put('/superadmins/edit/:id', superadminControllers.editSa);
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console
