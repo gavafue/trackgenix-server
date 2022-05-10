@@ -1,5 +1,6 @@
-// use "import" to import libraries
 import express from 'express';
+
+import * as projectsControllers from './resources/projects';
 import * as superadminControllers from './resources/super-admins';
 import * as adminsControllers from './resources/admins';
 import * as timeSheetControllers from './resources/time-sheets';
@@ -26,6 +27,10 @@ app.delete('/admins/deleteById/:id', adminsControllers.deleteAdminById);
 app.get('/admins/getByGender', adminsControllers.getAdminByGender);
 app.get('/admins/getByName', adminsControllers.getAdminByName);
 
+// Routes for projects
+app.post('/project/add', projectsControllers.createProject);
+app.put('/project/edit/:id', projectsControllers.editProject);
+app.get('/project/:id', projectsControllers.getProjectById);
 // Routes superadmins
 app.get('/superadmins', superadminControllers.getAllSa);
 app.get('/superadmins/getById/:id', superadminControllers.getSaById);
