@@ -10,6 +10,7 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 
 app.put('/employee/:id', employeesControllers.editEmployeeById);
+app.delete('/employee/:id', employeesControllers.deleteEmployeeById);
 
 app.get('/', async (req, res) => {
   res.send('Hello !');
