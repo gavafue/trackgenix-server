@@ -4,31 +4,27 @@ const employees = require('../data/employees.json');
 
 const editEmployeeById = (req, res) => {
   const { id } = req.params;
-  const employeeFind = employees.find((employee) => employee.id === parseInt(id, 10));
-  if (employeeFind) {
-    console.log(employeeFind);
+  const empFind = employees.find((employee) => employee.id === parseInt(id, 10));
+  if (empFind) {
     const editEmployee = req.body;
-        employeeFind.firstName = editEmployee.firstName ? editEmployee.firstName : employeeFind.firstName;
-        employeeFind.lastName = editEmployee.lastName ? editEmployee.lastName : employeeFind.lastName;
-        employeeFind.birthDate = editEmployee.birthDate ? editEmployee.birthDate : employeeFind.birthDate;
-        employeeFind.country = editEmployee.country ? editEmployee.country : employeeFind.country;
-        employeeFind.city = editEmployee.city ? editEmployee.city : employeeFind.city;
-        employeeFind.zip = editEmployee.zip ? editEmployee.zip : employeeFind.zip;
-        employeeFind.phone = editEmployee.phone ? editEmployee.phone : employeeFind.phone;
-        employeeFind.email = editEmployee.email ? editEmployee.email : employeeFind.email;
-        employeeFind.password = editEmployee.password ? editEmployee.password : employeeFind.password;
-        employeeFind.photo = editEmployee.photo ? editEmployee.photo : employeeFind.photo;
-        employeeFind.active = editEmployee.active ? editEmployee.active : employeeFind.active;
-        console.log(employeeFind);
-        console.log(employeeFind.firstName);
-        fs.writeFile('src/data/employees.json', JSON.stringify(employees), (error) => {
-          if (error) {
-            res.send(error);
-          } else {
-            res.json({ msg: `The employee with ID ${employeeFind.id} was edited` });
-          }
-        });
-        console.log(employees);
+    empFind.firstName = editEmployee.firstName ? editEmployee.firstName : empFind.firstName;
+    empFind.lastName = editEmployee.lastName ? editEmployee.lastName : empFind.lastName;
+    empFind.birthDate = editEmployee.birthDate ? editEmployee.birthDate : empFind.birthDate;
+    empFind.country = editEmployee.country ? editEmployee.country : empFind.country;
+    empFind.city = editEmployee.city ? editEmployee.city : empFind.city;
+    empFind.zip = editEmployee.zip ? editEmployee.zip : empFind.zip;
+    empFind.phone = editEmployee.phone ? editEmployee.phone : empFind.phone;
+    empFind.email = editEmployee.email ? editEmployee.email : empFind.email;
+    empFind.password = editEmployee.password ? editEmployee.password : empFind.password;
+    empFind.photo = editEmployee.photo ? editEmployee.photo : empFind.photo;
+    empFind.active = editEmployee.active ? editEmployee.active : empFind.active;
+    fs.writeFile('src/data/employees.json', JSON.stringify(employees), (error) => {
+      if (error) {
+        res.send(error);
+      } else {
+        res.json({ msg: `The employee with ID ${empFind.id} was edited` });
+      }
+    });
   } else {
     res.json({ msg: `No employee with the id of ${req.params.id}` });
   }
@@ -36,22 +32,34 @@ const editEmployeeById = (req, res) => {
 
 const deleteEmployeeById = (req, res) => {
   const { id } = req.params;
-  const employeesX = employees.filter(employee => employee.id !== parseInt(id, 10));
+  const employeesX = employees.filter((employee) => employee.id !== parseInt(id, 10));
   if (employees.length === employeesX.length) {
     res.json({ msg: `No employee with the id of ${req.params.id}` });
   } else {
-      console.log(employeesX);
-      fs.writeFile('src/data/employees.json', JSON.stringify(employeesX), (error) => {
-        if (error) {
-          res.send(error);
-        } else {
-          res.json({ msg: `The employee with ID ${employeeFind.id} was deleted` });
-        }
-      });
+    fs.writeFile('src/data/employees.json', JSON.stringify(employeesX), (error) => {
+      if (error) {
+        res.send(error);
+      } else {
+        res.json({ msg: `The employee with ID ${req.params.id} was deleted` });
+      }
+    });
+  }
+};
+
+const filterByLastName = (req, res) => {
+  const lastName = req.params.lastName;
+  const employeesX = employees.filter((employee) => employee.lastName === lastName);
+  if (employeesX.length > 0) {
+    res.json({
+      data: employeesX
+    })
+  } else {
+      res.json({ msg: `No employee with the last name ${req.params.lastName}` });
   }
 };
 
 export {
   editEmployeeById,
-  deleteEmployeeById
+  deleteEmployeeById,
+  filterByLastName
 };

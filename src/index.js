@@ -11,6 +11,7 @@ app.use(express.json());
 
 app.put('/employee/:id', employeesControllers.editEmployeeById);
 app.delete('/employee/:id', employeesControllers.deleteEmployeeById);
+app.get('/employee/:lastName', employeesControllers.filterByLastName);
 
 app.get('/', async (req, res) => {
   res.send('Hello !');
