@@ -29,8 +29,8 @@ app.get('/admins/getByName', adminsControllers.getAdminByName);
 // Routes superadmins
 app.get('/superadmins', superadminControllers.getAllSa);
 app.get('/superadmins/getById/:id', superadminControllers.getSaById);
-app.post('/superadmins/add', superadminControllers.putNewSa);
-app.delete('/superadmins/delete/:id', superadminControllers.delSa);
+app.post('/superadmins/add', superadminControllers.createSa);
+app.delete('/superadmins/delete/:id', superadminControllers.deleteSa);
 app.get('/superadmins/getActive', superadminControllers.getActiveSa);
 app.put('/superadmins/edit/:id', superadminControllers.editSa);
 

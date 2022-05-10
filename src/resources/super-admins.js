@@ -1,61 +1,61 @@
 const fs = require('fs');
-const superadminData = require('../data/super-admins.json');
+const superAdminData = require('../data/super-admins.json');
 
 // Getting all Superadmin
 const getAllSa = (req, res) => {
   res.status(200).json({
-    data: superadminData,
+    data: superAdminData,
   });
 };
 
 // Getting a Superadmin with an ID
 const getSaById = (req, res) => {
-  const superadminId = req.params.id;
-  const superadmin = superadminData.find((item) => item.id === parseInt(superadminId, 10));
-  if (!superadmin) {
+  const superAdminId = parseInt(req.params.id, 10);
+  const superAdmin = superAdminData.find((item) => item.id === superAdminId);
+  if (!superAdmin) {
     res.json({
-      msg: 'Superadmin not found',
+      msg: `Super Admin ID: ${superAdminId} not found`,
     });
   } else {
     res.json({
-      data: superadmin,
+      data: superAdmin,
     });
   }
 };
 
 // Add a new Superadmin
-const putNewSa = (req, res) => {
+const createSa = (req, res) => {
   const newSaData = req.body;
-  superadminData.push(newSaData);
-  fs.writeFile('src/data/super-admins.json', JSON.stringify(superadminData), (err) => {
+  superAdminData.push(newSaData);
+  fs.writeFile('src/data/super-admins.json', JSON.stringify(superAdminData), (err) => {
     if (err) {
       res.json({ msg: err });
     } else {
-      res.json({ msg: 'Superadmin was created' });
+      res.json({ msg: 'Super Admin was created' });
     }
   });
   res.json({
-    msg: 'Superadmin account created',
+    msg: 'Super Admin account created',
   });
 };
 
 // Delete a Superadmin
-const delSa = (req, res) => {
-  const delSaId = req.params.id;
-  const filteredSuperadmin = superadminData.filter((item) => item.id !== parseInt(delSaId, 10));
-  if (superadminData.length === filteredSuperadmin.length) {
+const deleteSa = (req, res) => {
+  const superAdminId = parseInt(req.params.id, 10);
+  const filteredSuperAdmin = superAdminData.filter((item) => item.id !== superAdminId);
+  if (superAdminData.length === filteredSuperAdmin.length) {
     res.json({
-      msg: 'Could not delete superadmin because it was not found',
+      msg: `Could not delete Super Admin of ID: ${superAdminId} because it was not found`,
     });
   } else {
-    fs.writeFile('src/data/super-admins.json', JSON.stringify(filteredSuperadmin), (err) => {
+    fs.writeFile('src/data/super-admins.json', JSON.stringify(filteredSuperAdmin), (err) => {
       if (err) {
         res.json({
           msg: err,
         });
       } else {
         res.json({
-          msg: 'Superadmin deleted',
+          msg: `Super Admin of ID: ${superAdminId}, deleted`,
         });
       }
     });
@@ -64,49 +64,49 @@ const delSa = (req, res) => {
 
 // Getting all Superadmin active
 const getActiveSa = (req, res) => {
-  const superadminActive = req.query.active;
+  const superAdminActive = req.query.active;
   let isTrue;
-  if (superadminActive === 'true') {
+  if (superAdminActive === 'true') {
     isTrue = true;
-  } else if (superadminActive === 'false') {
+  } else if (superAdminActive === 'false') {
     isTrue = false;
   } else {
     isTrue = null;
   }
-  const filteredSuperadmin = superadminData.filter((item) => item.active === isTrue);
+  const filteredSuperAdmin = superAdminData.filter((item) => item.active === isTrue);
   if (isTrue === null) {
     res.json({
-      msg: "Superadmin not found. Try with 'true' or 'false'.",
+      msg: "Super Admin not found. Try with 'true' or 'false'.",
     });
   } else {
     res.json({
-      data: filteredSuperadmin,
+      data: filteredSuperAdmin,
     });
   }
 };
 
 // Edit a Superadmin
 const editSa = (req, res) => {
-  const editSaId = req.params.id;
-  const focusSa = superadminData.find((item) => item.id === parseInt(editSaId, 10));
+  const superAdminId = parseInt(req.params.id, 10);
+  const focusSa = superAdminData.find((item) => item.id === superAdminId);
   if (focusSa) {
-    const updSuperadmin = req.body;
-    superadminData.forEach((item) => {
-      if (item.id === parseInt(editSaId, 10)) {
+    const updSuperAdmin = req.body;
+    superAdminData.forEach((item) => {
+      if (item.id === superAdminId) {
         const newSa = item;
-        newSa.firstName = updSuperadmin.firstName ? updSuperadmin.firstName : item.firstName;
-        newSa.email = updSuperadmin.email ? updSuperadmin.email : item.email;
-        newSa.role = updSuperadmin.role ? updSuperadmin.role : item.role;
-        newSa.password = updSuperadmin.password ? updSuperadmin.password : item.password;
-        newSa.active = updSuperadmin.active ? updSuperadmin.active : item.active;
-        fs.writeFile('src/data/super-admins.json', JSON.stringify(superadminData), (err) => {
+        newSa.firstName = updSuperAdmin.firstName ? updSuperAdmin.firstName : item.firstName;
+        newSa.email = updSuperAdmin.email ? updSuperAdmin.email : item.email;
+        newSa.role = updSuperAdmin.role ? updSuperAdmin.role : item.role;
+        newSa.password = updSuperAdmin.password ? updSuperAdmin.password : item.password;
+        newSa.active = updSuperAdmin.active ? updSuperAdmin.active : item.active;
+        fs.writeFile('src/data/super-admins.json', JSON.stringify(superAdminData), (err) => {
           if (err) {
             res.json({
               msg: err,
             });
           } else {
             res.json({
-              msg: 'Superadmin updated sucesfully',
+              msg: 'Super Admin updated sucesfully',
             });
           }
         });
@@ -114,7 +114,7 @@ const editSa = (req, res) => {
     });
   } else {
     res.json({
-      msg: 'Superadmin not found.',
+      msg: `Super Admin ID: ${superAdminId}  not found.`,
     });
   }
 };
@@ -122,8 +122,8 @@ const editSa = (req, res) => {
 export {
   getAllSa,
   getSaById,
-  putNewSa,
-  delSa,
+  createSa,
+  deleteSa,
   getActiveSa,
   editSa,
 };
