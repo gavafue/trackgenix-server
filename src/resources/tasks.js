@@ -68,9 +68,30 @@ const getTaskById = (req, res) => {
     });
   }
 };
+const deleteTask = (req, res) => {
+  const { id } = req.params;
+  const filterTasks = taskData.filter((task) => task.id !== parseInt(id, 10));
+
+  if (taskData.length === filterTasks.length) {
+    res.status(404).json({
+      msg: `${id} not found`,
+    });
+  } else {
+    fs.writeFile('src/data/tasks.json', JSON.stringify(filterTasks), (error) => {
+      if (error) {
+        res.send(error);
+      } else {
+        res.status(200).json({
+          msg: `The tasks ${id} has been deleted`,
+        });
+      }
+    });
+  }
+};
 
 export {
   createTask,
   editTask,
   getTaskById,
+  deleteTask,
 };
