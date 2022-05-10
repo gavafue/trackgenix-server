@@ -7,7 +7,8 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 
 app.get('/superadmins', superadminControllers.getAllSa);
-app.get('/superadmins/:id', superadminControllers.getSaById);
+app.get('/superadmins/getById/:id', superadminControllers.getSaById);
+app.put('/superadmins/add', superadminControllers.putNewSa);
 
 app.get('/', async (req, res) => {
   res.send('Hello World!');
