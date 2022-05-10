@@ -63,9 +63,33 @@ const delSa = (req, res) => {
   }
 };
 
+// Getting all Superadmin active - still not working
+const getActiveSa = (req, res) => {
+  const superadminActive = req.query.active;
+  let isTrue;
+  if (superadminActive === 'true') {
+    isTrue = true;
+  } else if (superadminActive === 'false') {
+    isTrue = false;
+  } else {
+    isTrue = null;
+  }
+  const filteredSuperadmin = superadminData.filter((item) => item.active === isTrue);
+  if (isTrue === null) {
+    res.json({
+      msg: "Superadmin not found. Try with 'true' or 'false'.",
+    });
+  } else {
+    res.json({
+      data: filteredSuperadmin,
+    });
+  }
+};
+
 export {
   getAllSa,
   getSaById,
   putNewSa,
   delSa,
+  getActiveSa,
 };
