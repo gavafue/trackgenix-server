@@ -1,6 +1,7 @@
 // use "import" to import libraries
 import express from 'express';
 import * as adminsControllers from './resources/admins';
+import * as timeSheetControllers from './resources/time-sheets';
 
 // use "require" to import JSON files
 // const admins = require('./data/admins.json');
@@ -19,15 +20,14 @@ app.delete('/admins/deleteById/:id', adminsControllers.deleteAdminById);
 app.get('/admins/getByGender', adminsControllers.getAdminByGender);
 app.get('/admins/getByName', adminsControllers.getAdminByName);
 
-// app.get('/admins', (req, res) => {
-//   res.status(200).json({
-//     data: admins,
-//   });
-// });
-
 app.get('/', async (req, res) => {
   res.send('Hello World!');
 });
+
+// Time sheet controllers
+app.post('/timeSheet', timeSheetControllers.createTimeSheet);
+app.delete('/timeSheet/:id', timeSheetControllers.deleteTimeSheet);
+app.get('/timeSheet/:employeeName', timeSheetControllers.filterTSByName);
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console
