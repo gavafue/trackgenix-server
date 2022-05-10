@@ -88,7 +88,7 @@ const getActiveSa = (req, res) => {
 // Edit a Superadmin
 const editSa = (req, res) => {
   const editSaId = req.params.id;
-  const focusSa = superadminData.some((item) => item.id === parseInt(editSaId, 10));
+  const focusSa = superadminData.find((item) => item.id === parseInt(editSaId, 10));
   if (focusSa) {
     const updSuperadmin = req.body;
     superadminData.forEach((item) => {
@@ -111,6 +111,10 @@ const editSa = (req, res) => {
           }
         });
       }
+    });
+  } else {
+    res.json({
+      msg: 'Superadmin not found.',
     });
   }
 };

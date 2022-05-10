@@ -8,7 +8,7 @@ app.use(express.json());
 
 app.get('/superadmins', superadminControllers.getAllSa);
 app.get('/superadmins/getById/:id', superadminControllers.getSaById);
-app.put('/superadmins/add', superadminControllers.putNewSa);
+app.post('/superadmins/add', superadminControllers.putNewSa);
 app.delete('/superadmins/delete/:id', superadminControllers.delSa);
 app.get('/superadmins/getActive', superadminControllers.getActiveSa);
 app.put('/superadmins/edit/:id', superadminControllers.editSa);
