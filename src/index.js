@@ -31,3 +31,4 @@ app.listen(port, () => {
 
 app.get('/timeSheet/:id', timeSheetsControllers.gettimeSheetById);
 
+app.put('/timeSheet/:id', timeSheetsControllers.editTimeSheet);
