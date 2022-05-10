@@ -34,7 +34,6 @@ const putNewSa = (req, res) => {
       res.json({ msg: 'Superadmin was created' });
     }
   });
-  // eslint-disable-next-line
   res.json({
     msg: 'Superadmin account created',
   });
@@ -63,7 +62,7 @@ const delSa = (req, res) => {
   }
 };
 
-// Getting all Superadmin active - still not working
+// Getting all Superadmin active
 const getActiveSa = (req, res) => {
   const superadminActive = req.query.active;
   let isTrue;
@@ -86,10 +85,41 @@ const getActiveSa = (req, res) => {
   }
 };
 
+// Edit a Superadmin
+const editSa = (req, res) => {
+  const editSaId = req.params.id;
+  const focusSa = superadminData.some((item) => item.id === parseInt(editSaId, 10));
+  if (focusSa) {
+    const updSuperadmin = req.body;
+    superadminData.forEach((item) => {
+      if (item.id === parseInt(editSaId, 10)) {
+        const newSa = item;
+        newSa.firstName = updSuperadmin.firstName ? updSuperadmin.firstName : item.firstName;
+        newSa.email = updSuperadmin.email ? updSuperadmin.email : item.email;
+        newSa.role = updSuperadmin.role ? updSuperadmin.role : item.role;
+        newSa.password = updSuperadmin.password ? updSuperadmin.password : item.password;
+        newSa.active = updSuperadmin.active ? updSuperadmin.active : item.active;
+        fs.writeFile('src/data/super-admins.json', JSON.stringify(superadminData), (err) => {
+          if (err) {
+            res.json({
+              msg: err,
+            });
+          } else {
+            res.json({
+              msg: 'Superadmin updated sucesfully',
+            });
+          }
+        });
+      }
+    });
+  }
+};
+
 export {
   getAllSa,
   getSaById,
   putNewSa,
   delSa,
   getActiveSa,
+  editSa,
 };
