@@ -40,8 +40,32 @@ const putNewSa = (req, res) => {
   });
 };
 
+// Delete a Superadmin
+const delSa = (req, res) => {
+  const delSaId = req.params.id;
+  const filteredSuperadmin = superadminData.filter((item) => item.id !== parseInt(delSaId, 10));
+  if (superadminData.length === filteredSuperadmin.length) {
+    res.json({
+      msg: 'Could not delete superadmin because it was not found',
+    });
+  } else {
+    fs.writeFile('src/data/super-admins.json', JSON.stringify(filteredSuperadmin), (err) => {
+      if (err) {
+        res.json({
+          msg: err,
+        });
+      } else {
+        res.json({
+          msg: 'Superadmin deleted',
+        });
+      }
+    });
+  }
+};
+
 export {
   getAllSa,
   getSaById,
   putNewSa,
+  delSa,
 };

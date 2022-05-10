@@ -9,6 +9,7 @@ app.use(express.json());
 app.get('/superadmins', superadminControllers.getAllSa);
 app.get('/superadmins/getById/:id', superadminControllers.getSaById);
 app.put('/superadmins/add', superadminControllers.putNewSa);
+app.delete('/superadmins/delete/:id', superadminControllers.delSa);
 
 app.get('/', async (req, res) => {
   res.send('Hello World!');
