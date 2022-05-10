@@ -25,17 +25,33 @@ const addAdmin = (req, res) => {
   }
 };
 
+const updateAdmin = (req, res) => {
+  const adminId = req.params.id;
+  const admin = admins.find((item) => item.id === parseInt(adminId, 10));
+  if (!admin) {
+    res.json({ msg: `The admin with ID ${adminId} does not exist` });
+  } else {
+    const adminInfo = req.body;
+    Object.keys(admin).forEach((item) => {
+      admin[item] = adminInfo[item] ? adminInfo[item] : admin[item];
+    });
+    fs.writeFile('src/data/admins.json', JSON.stringify(admins), (error) => {
+      if (error) {
+        res.send(error);
+      } else {
+        res.json({ msg: `The admin with ID ${adminId} was updated` });
+      }
+    });
+  }
+};
+
 const getAdminById = (req, res) => {
   const adminId = req.params.id;
   const admin = admins.find((item) => item.id === parseInt(adminId, 10));
   if (!admin) {
-    res.json({
-      msg: `The admin with ID ${adminId} does not exist`,
-    });
+    res.json({ msg: `The admin with ID ${adminId} does not exist` });
   } else {
-    res.json({
-      data: admin,
-    });
+    res.json({ data: admin });
   }
 };
 
@@ -80,6 +96,7 @@ const getAdminByName = (req, res) => {
 export {
   getAllAdmins,
   addAdmin,
+  updateAdmin,
   getAdminById,
   deleteAdminById,
   getAdminByGender,

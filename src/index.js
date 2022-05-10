@@ -13,12 +13,11 @@ app.use(express.json());
 
 app.get('/admins', adminsControllers.getAllAdmins);
 app.post('/admins/add', adminsControllers.addAdmin);
+app.put('/admins/update/:id', adminsControllers.updateAdmin);
 app.get('/admins/getById/:id', adminsControllers.getAdminById);
-app.delete('/admins/delete/:id', adminsControllers.deleteAdminById);
+app.delete('/admins/deleteById/:id', adminsControllers.deleteAdminById);
 app.get('/admins/getByGender', adminsControllers.getAdminByGender);
 app.get('/admins/getByName', adminsControllers.getAdminByName);
-
-// app.put('/admins', updateAdmin);
 
 // app.get('/admins', (req, res) => {
 //   res.status(200).json({
