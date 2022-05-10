@@ -65,22 +65,15 @@ const deleteSa = (req, res) => {
 // Getting all Superadmin active
 const getActiveSa = (req, res) => {
   const superAdminActive = req.query.active;
-  let isTrue;
-  if (superAdminActive === 'true') {
-    isTrue = true;
-  } else if (superAdminActive === 'false') {
-    isTrue = false;
-  } else {
-    isTrue = null;
-  }
-  const filteredSuperAdmin = superAdminData.filter((item) => item.active === isTrue);
-  if (isTrue === null) {
+  if (superAdminActive === 'true' || superAdminActive === 'false') {
+    // eslint-disable-next-line max-len
+    const filteredSuperAdmin = superAdminData.filter((item) => Boolean(item.active).toString() === superAdminActive);
     res.json({
-      msg: "Super Admin not found. Try with 'true' or 'false'.",
+      data: filteredSuperAdmin,
     });
   } else {
     res.json({
-      data: filteredSuperAdmin,
+      msg: "Received filter value is not correct. Try with 'true' or 'false'.",
     });
   }
 };
