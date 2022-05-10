@@ -1,5 +1,4 @@
 const fs = require('fs');
-// load the projects data
 const projectsData = require('../data/projects.json');
 
 const elements = ['id', 'name', 'members', 'description', 'client', 'active', 'startDate', 'endDate'];
@@ -31,8 +30,8 @@ const createProject = (req, res) => {
 };
 
 const editProject = (req, res) => {
-  const { id } = req.params;
-  const project = projectsData.find((item) => item.id === parseInt(id, 10));
+  const { id } = parseInt(req.params, 10);
+  const project = projectsData.find((item) => item.id === id);
 
   if (!project) {
     res.json({
@@ -56,8 +55,8 @@ const editProject = (req, res) => {
 };
 
 const getProjectById = (req, res) => {
-  const { id } = req.params;
-  const project = projectsData.find((item) => item.id === parseInt(id, 10));
+  const { id } = parseInt(req.params, 10);
+  const project = projectsData.find((item) => item.id === id);
 
   if (!project) {
     res.json({

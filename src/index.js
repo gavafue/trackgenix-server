@@ -8,10 +8,6 @@ const app = express();
 const port = process.env.PORT || 3000;
 app.use(express.json());
 
-// Routes for projects
-app.post('/project/add', projectsControllers.createProject);
-app.put('/project/edit/:id', projectsControllers.editProject);
-app.get('/project/:id', projectsControllers.getProjectById);
 app.get('/', async (req, res) => {
   res.send('Hello World!');
 });
@@ -29,6 +25,11 @@ app.get('/admins/getById/:id', adminsControllers.getAdminById);
 app.delete('/admins/deleteById/:id', adminsControllers.deleteAdminById);
 app.get('/admins/getByGender', adminsControllers.getAdminByGender);
 app.get('/admins/getByName', adminsControllers.getAdminByName);
+
+// Routes for projects
+app.post('/project/add', projectsControllers.createProject);
+app.put('/project/edit/:id', projectsControllers.editProject);
+app.get('/project/:id', projectsControllers.getProjectById);
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console
