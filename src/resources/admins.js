@@ -77,9 +77,9 @@ const getAdminByGender = (req, res) => {
   const adminGender = gender.substring(0, 1).toUpperCase() + gender.substring(1).toLowerCase();
   const filteredAdmins = admins.filter((item) => item.gender === adminGender);
   if (filteredAdmins.length) {
-    res.json({ msg: `There are no admins with gender: ${adminGender}` });
-  } else {
     res.json({ data: filteredAdmins });
+  } else {
+    res.json({ msg: `There are no admins with gender: ${adminGender}` });
   }
 };
 
@@ -88,9 +88,9 @@ const getAdminByName = (req, res) => {
   const adminName = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
   const filteredAdmins = admins.filter((item) => item.name === adminName);
   if (filteredAdmins.length) {
-    res.json({ msg: `There are no admins with the name: ${adminName}` });
-  } else {
     res.json({ data: filteredAdmins });
+  } else {
+    res.json({ msg: `There are no admins with the name: ${adminName}` });
   }
 };
 
