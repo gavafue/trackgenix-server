@@ -9,6 +9,7 @@ app.use(express.json());
 
 app.post('/tasks/add', tasksController.createTask);
 app.put('/tasks/edit/:id', tasksController.editTask);
+app.get('/tasks/:id', tasksController.getTaskById);
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console

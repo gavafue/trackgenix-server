@@ -54,7 +54,23 @@ const editTask = (req, res) => {
   }
 };
 
+const getTaskById = (req, res) => {
+  const { id } = req.params;
+  const task = taskData.find((item) => item.id === parseInt(id, 10));
+
+  if (!task) {
+    res.status(200).json({
+      msg: `The task with ID ${id} does not exist`,
+    });
+  } else {
+    res.status(200).json({
+      data: task,
+    });
+  }
+};
+
 export {
   createTask,
   editTask,
+  getTaskById,
 };
