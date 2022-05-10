@@ -89,9 +89,19 @@ const deleteTask = (req, res) => {
   }
 };
 
+const getTasksByHours = (req, res) => {
+  const { hours } = req.params;
+  const filterTasks = taskData.filter((task) => task.hours >= hours);
+
+  res.status(200).json({
+    data: filterTasks,
+  });
+};
+
 export {
   createTask,
   editTask,
   getTaskById,
   deleteTask,
+  getTasksByHours,
 };

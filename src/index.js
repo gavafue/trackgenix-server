@@ -11,6 +11,7 @@ app.post('/tasks/add', tasksController.createTask);
 app.put('/tasks/edit/:id', tasksController.editTask);
 app.get('/tasks/:id', tasksController.getTaskById);
 app.delete('/delete/task/:id', tasksController.deleteTask);
+app.get('/tasks/hours/:hours', tasksController.getTasksByHours);
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console
