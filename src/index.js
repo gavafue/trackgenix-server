@@ -8,6 +8,7 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 
 app.post('/tasks/add', tasksController.createTask);
+app.put('/tasks/edit/:id', tasksController.editTask);
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console

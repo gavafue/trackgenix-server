@@ -29,4 +29,32 @@ const createTask = (req, res) => {
   }
 };
 
-export default createTask;
+const editTask = (req, res) => {
+  const { id } = req.params;
+  const task = taskData.find((item) => item.id === parseInt(id, 10));
+
+  if (!task) {
+    res.status(200).json({
+      msg: `The task with ID ${id} does not exist`,
+    });
+  } else {
+    const updTask = req.body;
+    elements.forEach((prop) => {
+      task[prop] = updTask[prop] ? updTask[prop] : task[prop];
+    });
+    fs.writeFile('src/data/tasks.json', JSON.stringify(taskData), (err) => {
+      if (err) {
+        res.send(err);
+      } else {
+        res.status(200).json({
+          msg: 'The task was updated',
+        });
+      }
+    });
+  }
+};
+
+export {
+  createTask,
+  editTask,
+};
