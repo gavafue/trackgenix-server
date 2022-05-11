@@ -47,19 +47,19 @@ const deleteEmployeeById = (req, res) => {
 };
 
 const filterByLastName = (req, res) => {
-  const lastName = req.params.lastName;
+  const { lastName } = req.params;
   const employeesX = employees.filter((employee) => employee.lastName === lastName);
   if (employeesX.length > 0) {
     res.json({
-      data: employeesX
-    })
+      data: employeesX,
+    });
   } else {
-      res.json({ msg: `No employee with the last name ${req.params.lastName}` });
+    res.json({ msg: `No employee with the last name ${req.params.lastName}` });
   }
 };
 
 export {
   editEmployeeById,
   deleteEmployeeById,
-  filterByLastName
+  filterByLastName,
 };
