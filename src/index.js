@@ -11,11 +11,12 @@ const app = express();
 const port = process.env.PORT || 3000;
 app.use(express.json());
 
+// Routes employees
 app.put('/employee/:id', employeesControllers.editEmployeeById);
 app.delete('/employee/:id', employeesControllers.deleteEmployeeById);
 app.get('/employee/:lastName', employeesControllers.filterByLastName);
 
-// Time sheet controllers
+// Routes time sheet
 app.post('/timeSheet', timeSheetControllers.createTimeSheet);
 app.delete('/timeSheet/:id', timeSheetControllers.deleteTimeSheet);
 app.get('/timeSheet/:employeeName', timeSheetControllers.filterTSByName);
@@ -29,10 +30,11 @@ app.delete('/admins/deleteById/:id', adminsControllers.deleteAdminById);
 app.get('/admins/getByGender', adminsControllers.getAdminByGender);
 app.get('/admins/getByName', adminsControllers.getAdminByName);
 
-// Routes for projects
+// Routes projects
 app.post('/project/add', projectsControllers.createProject);
 app.put('/project/edit/:id', projectsControllers.editProject);
 app.get('/project/:id', projectsControllers.getProjectById);
+
 // Routes superadmins
 app.get('/superadmins', superadminControllers.getAllSa);
 app.get('/superadmins/getById/:id', superadminControllers.getSaById);
