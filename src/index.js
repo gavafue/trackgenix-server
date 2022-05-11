@@ -8,6 +8,7 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
+// Employees routes
 app.get('/employees', employeesControllers.getAllEmployee);
 app.get('/employees/:id', employeesControllers.getOnlyId);
 app.get('/employees/country/:country', employeesControllers.filterByCountry);

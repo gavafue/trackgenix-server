@@ -1,4 +1,4 @@
-const fs = require('file-system');
+const fs = require('fs');
 const employees = require('../data/employees.json');
 
 const getAllEmployee = (req, res) => {
@@ -34,11 +34,11 @@ const createMember = (req, res) => {
   if (!req.body.id || !req.body.firstName || !req.body.lastName || !req.body.birthDate
         || !req.body.country || !req.body.city || !req.body.zip || !req.body.phone
         || !req.body.email || !req.body.password || !req.body.photo || !req.body.active) {
-    return res.status(400).json({ msg: 'Please fill in the fields correctly', newMember });
+    return res.status(400).json({ msg: 'Please fill in the fields correctly', data: newMember });
   }
   employees.push(newMember);
   fs.writeFile('./src/data/employees.json', JSON.stringify(employees));
-  return res.status(200).json({ msg: 'User created successfully', newMember });
+  return res.status(200).json({ msg: 'User created successfully', data: newMember });
 };
 
 const filterByCountry = (req, res) => {
