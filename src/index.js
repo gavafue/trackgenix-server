@@ -21,7 +21,7 @@ app.get('/admins', (req, res) => {
 
 app.delete('/delete/project/:id', projectsControllers.deleteProjects);
 app.get('/projects/', projectsControllers.getProjects);
-// app.put(), projectsControllers.function);
+app.post('/:projectId/addMember', projectsControllers.assignRP);
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console
