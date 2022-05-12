@@ -1,5 +1,21 @@
 [
     {
+        "name": "Trackgenix",
+        "id": 123456,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit",
+        "client": "Simon Jackson",
+        "active": true,
+        "members": [
+            { "id": 1234, "name": "Thomas", "role": "QA", "rate": 500 },
+            { "id": 1235, "name": "Sophie", "role": "Dev", "rate": 600 },
+            { "id": 1236, "name": "Edward", "role": "PM", "rate": 800 },
+            { "id": 1237, "name": "Irene", "role": "Dev", "rate": 600 },
+            { "id": 1238, "name": "Arthur", "role": "TL", "rate": 700 }
+        ],
+        "startDate": "06/04/2021",
+        "endDate": ""
+    },
+    {
         "name": "SoSA",
         "id": 123457,
         "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit",

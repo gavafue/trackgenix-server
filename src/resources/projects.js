@@ -50,11 +50,8 @@ const assignRP = (req, res) => {
   if (!projectToBoost) {
     res.status(404).send(`Project with ID: ${projectId} not found. Valid IDs: ${validIds}`);
   }
-
   if (neededKeys.every((key) => Object.keys(membersData).includes(key))
-
         && Object.values(membersData).every((value) => value !== '')
-
         && roles.some((key) => membersData.role === key)) {
     projectToBoost.members.push(membersData);
     fileSystem.writeFile('src/data/projects.json', JSON.stringify(projects), (err) => {
@@ -70,9 +67,81 @@ const assignRP = (req, res) => {
     res.status(400).send('Complete all fields with valid inputs');
   }
 };
+const projectsData = require('../data/projects.json');
+
+const elements = ['id', 'name', 'members', 'description', 'client', 'active', 'startDate', 'endDate'];
+
+const createProject = (req, res) => {
+  const newProject = req.body;
+  newProject.id = Math.floor(Math.random() * 100000);
+  newProject.active = true;
+
+  const validateElements = elements.every((item) => Object.keys(newProject).includes(item));
+  const foundID = projectsData.some((project) => project.id === newProject.id);
+
+  if (validateElements && !foundID) {
+    projectsData.push(newProject);
+    fileSystem.writeFile('src/data/projects.json', JSON.stringify(projectsData), (err) => {
+      if (err) {
+        res.send(err);
+      } else {
+        res.json({
+          msg: 'Project created',
+        });
+      }
+    });
+  } else {
+    res.json({
+      msg: 'Project could not be created',
+    });
+  }
+};
+
+const editProject = (req, res) => {
+  const { id } = parseInt(req.params, 10);
+  const project = projectsData.find((item) => item.id === id);
+
+  if (!project) {
+    res.json({
+      msg: `The project with ID ${id} does not exist`,
+    });
+  } else {
+    const updProject = req.body;
+    elements.forEach((prop) => {
+      project[prop] = updProject[prop] ? updProject[prop] : project[prop];
+    });
+    fileSystem.writeFile('src/data/projects.json', JSON.stringify(projectsData), (err) => {
+      if (err) {
+        res.send(err);
+      } else {
+        res.json({
+          msg: 'The project was updated',
+        });
+      }
+    });
+  }
+};
+
+const getProjectById = (req, res) => {
+  const { id } = parseInt(req.params, 10);
+  const project = projectsData.find((item) => item.id === id);
+
+  if (!project) {
+    res.json({
+      msg: `The project with ID ${id} does not exist`,
+    });
+  } else {
+    res.json({
+      data: project,
+    });
+  }
+};
 
 export {
   deleteProjects,
   getProjects,
   assignRP,
+  createProject,
+  getProjectById,
+  editProject,
 };
