@@ -39,6 +39,9 @@ app.get('/admins/getByName', adminsControllers.getAdminByName);
 app.post('/project/add', projectsControllers.createProject);
 app.put('/project/edit/:id', projectsControllers.editProject);
 app.get('/project/:id', projectsControllers.getProjectById);
+app.delete('/delete/project/:id', projectsControllers.deleteProjects);
+app.get('/projects/', projectsControllers.getProjects);
+app.post('/:projectId/addMember', projectsControllers.assignRP);
 
 // Routes superadmins
 app.get('/superadmins', superadminControllers.getAllSa);
@@ -47,10 +50,6 @@ app.post('/superadmins/add', superadminControllers.createSa);
 app.delete('/superadmins/delete/:id', superadminControllers.deleteSa);
 app.get('/superadmins/getActive', superadminControllers.getActiveSa);
 app.put('/superadmins/edit/:id', superadminControllers.editSa);
-
-app.delete('/delete/project/:id', projectsControllers.deleteProjects);
-app.get('/projects/', projectsControllers.getProjects);
-app.post('/:projectId/addMember', projectsControllers.assignRP);
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console
