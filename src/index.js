@@ -23,9 +23,9 @@ app.get('/employee/:lastName', employeesControllers.filterByLastName);
 app.post('/timeSheet', timeSheetControllers.createTimeSheet);
 app.delete('/timeSheet/:id', timeSheetControllers.deleteTimeSheet);
 app.get('/timeSheet/:employeeName', timeSheetControllers.filterTSByName);
-app.get('/timeSheet/:id', timeSheetsControllers.gettimeSheetById);
-app.put('/timeSheet/:id', timeSheetsControllers.editTimeSheet);
-app.get('/timeSheetByProject/:project', timeSheetsControllers.filterTSheetProject);
+app.get('/timeSheet/:id', timeSheetControllers.gettimeSheetById);
+app.put('/timeSheet/:id', timeSheetControllers.editTimeSheet);
+app.get('/timeSheetByProject/:project', timeSheetControllers.filterTSheetProject);
 
 // Routes admins
 app.get('/admins', adminsControllers.getAllAdmins);
@@ -53,6 +53,6 @@ app.get('/superadmins/getActive', superadminControllers.getActiveSa);
 app.put('/superadmins/edit/:id', superadminControllers.editSa);
 
 app.listen(port, () => {
-    // eslint-disable-next-line no-console
-    console.log(`Example app listening on port ${port}`);
+  // eslint-disable-next-line no-console
+  console.log(`Example app listening on port ${port}`);
 });
