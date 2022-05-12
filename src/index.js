@@ -1,6 +1,8 @@
 import express from 'express';
-import * as employeesControllers from './resources/employees';
 import * as projectsControllers from './resources/projects';
+import * as employeesControllers from './resources/employees';
+
+// use "require" to import JSON files
 import * as superadminControllers from './resources/super-admins';
 import * as adminsControllers from './resources/admins';
 import * as timeSheetControllers from './resources/time-sheets';
@@ -37,6 +39,9 @@ app.get('/admins/getByName', adminsControllers.getAdminByName);
 app.post('/project/add', projectsControllers.createProject);
 app.put('/project/edit/:id', projectsControllers.editProject);
 app.get('/project/:id', projectsControllers.getProjectById);
+app.delete('/delete/project/:id', projectsControllers.deleteProjects);
+app.get('/projects/', projectsControllers.getProjects);
+app.post('/:projectId/addMember', projectsControllers.assignRP);
 
 // Routes superadmins
 app.get('/superadmins', superadminControllers.getAllSa);
