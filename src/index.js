@@ -9,9 +9,14 @@ import * as timeSheetControllers from './resources/time-sheets';
 
 const app = express();
 const port = process.env.PORT || 3000;
+
 app.use(express.json());
 
 // Routes employees
+app.get('/employees', employeesControllers.getAllEmployee);
+app.get('/employees/:id', employeesControllers.getOnlyId);
+app.get('/employees/country/:country', employeesControllers.filterByCountry);
+app.post('/employees', employeesControllers.createMember);
 app.put('/employee/:id', employeesControllers.editEmployeeById);
 app.delete('/employee/:id', employeesControllers.deleteEmployeeById);
 app.get('/employee/:lastName', employeesControllers.filterByLastName);
