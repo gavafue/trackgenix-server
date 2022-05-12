@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "project": "Babolat",
+        "project": "Trackgenix",
         "employeeName": "Martín Martina",
         "employeeId": 12376,
         "weekSprint": 2,
@@ -12,7 +12,7 @@
     },
     {
         "id": 2,
-        "project": "Babolat",
+        "project": "Trackgenix",
         "employeeName": "Gonzalo Gonzales",
         "employeeId": 19876,
         "weekSprint": 1,
@@ -23,7 +23,7 @@
     },
     {
         "id": 3,
-        "project": "Babolat",
+        "project": "Wanderlust",
         "employeeName": "Candela Candela",
         "employeeId": 16742,
         "weekSprint": 4,
