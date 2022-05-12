@@ -1,8 +1,4 @@
-/* GET */
-
-/* import { Router } from 'express'; */
-
-
+const fs = require('fs');
 const timeSheetsData = require('../data/time-sheets.json');
 
 const gettimeSheetById = async (req, res) => {
@@ -20,9 +16,6 @@ const gettimeSheetById = async (req, res) => {
     })
 }
 
-/* EDIT / PUT */
-
-const fs = require('fs');
 const editTimeSheet = async (req, res) => {
     const { id } = req.params;
     const timeSheetFind = timeSheetsData.find((item) => item.id == parseInt(id));
@@ -55,8 +48,6 @@ const editTimeSheet = async (req, res) => {
     }
 };
 
-/* FILTER PROJECT */
-
 const filterTSheetProject = async (req, res) => {
     const TSheetProject = req.params.project;
     const filterProject = timeSheetsData.filter((proyecItem) => proyecItem.project === TSheetProject);
@@ -66,7 +57,6 @@ const filterTSheetProject = async (req, res) => {
         res.send(filterProject)
     }
 }
-
 
 const createTimeSheet = async (req, res) => {
   const timeSData = req.body;

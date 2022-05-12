@@ -1,8 +1,6 @@
 import express from 'express';
 import * as projectsControllers from './resources/projects';
 import * as employeesControllers from './resources/employees';
-
-// use "require" to import JSON files
 import * as superadminControllers from './resources/super-admins';
 import * as adminsControllers from './resources/admins';
 import * as timeSheetControllers from './resources/time-sheets';
@@ -25,6 +23,9 @@ app.get('/employee/:lastName', employeesControllers.filterByLastName);
 app.post('/timeSheet', timeSheetControllers.createTimeSheet);
 app.delete('/timeSheet/:id', timeSheetControllers.deleteTimeSheet);
 app.get('/timeSheet/:employeeName', timeSheetControllers.filterTSByName);
+app.get('/timeSheet/:id', timeSheetsControllers.gettimeSheetById);
+app.put('/timeSheet/:id', timeSheetsControllers.editTimeSheet);
+app.get('/timeSheetByProject/:project', timeSheetsControllers.filterTSheetProject);
 
 // Routes admins
 app.get('/admins', adminsControllers.getAllAdmins);
@@ -55,11 +56,3 @@ app.listen(port, () => {
     // eslint-disable-next-line no-console
     console.log(`Example app listening on port ${port}`);
 });
-
-/* TimeSheet */
-
-app.get('/timeSheet/:id', timeSheetsControllers.gettimeSheetById);
-
-app.put('/timeSheet/:id', timeSheetsControllers.editTimeSheet);
-
-app.get('/timeSheetByProject/:project', timeSheetsControllers.filterTSheetProject);
