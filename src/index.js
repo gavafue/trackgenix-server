@@ -1,4 +1,5 @@
 import express from 'express';
+import mongoose from 'mongoose';
 import * as tasksController from './controllers/tasks';
 import * as timeSheetControllers from './controllers/time-sheets';
 import * as projectsControllers from './controllers/projects';
@@ -8,6 +9,17 @@ import * as adminsControllers from './controllers/admins';
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+
+const mongoDb = 'mongodb+srv://radiumRocket:8dll6U2hMKSETFAK@trackgenix.0a7hs.mongodb.net/Trackgenix?retryWrites=true&w=majority';
+
+mongoose.connect(
+  mongoDb,
+  () => {
+    console.log("Connected to database");
+  },
+  (error) => console.log("Fail to connect")
+);
 
 app.use(express.json());
 
