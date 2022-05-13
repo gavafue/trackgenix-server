@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const employeeSchema = new mongoose.Schema({
   firstName: {
@@ -48,4 +48,4 @@ const employeeSchema = new mongoose.Schema({
 });
 
 const Employees = mongoose.model('Employee', employeeSchema);
-module.exports = Employees;
+export default Employees;
