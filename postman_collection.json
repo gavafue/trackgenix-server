@@ -1,0 +1,33 @@
+{
+	"info": {
+		"_postman_id": "a15f733f-4e6e-4a1f-9010-b6f56672c9b8",
+		"name": "Trackgenix-samuel-doc",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Employee",
+			"item": []
+		},
+		{
+			"name": "Admin",
+			"item": []
+		},
+		{
+			"name": "Project",
+			"item": []
+		},
+		{
+			"name": "Task",
+			"item": []
+		},
+		{
+			"name": "SuperAdmin",
+			"item": []
+		},
+		{
+			"name": "TimeSheet",
+			"item": []
+		}
+	]
+}
