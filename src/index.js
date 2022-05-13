@@ -1,14 +1,22 @@
 import express from 'express';
+import * as tasksController from './resources/tasks';
+import * as timeSheetControllers from './resources/time-sheets';
 import * as projectsControllers from './resources/projects';
 import * as employeesControllers from './resources/employees';
 import * as superadminControllers from './resources/super-admins';
 import * as adminsControllers from './resources/admins';
-import * as timeSheetControllers from './resources/time-sheets';
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
+
+// Routes tasks
+app.post('/tasks/add', tasksController.createTask);
+app.put('/tasks/edit/:id', tasksController.editTask);
+app.get('/tasks/:id', tasksController.getTaskById);
+app.delete('/delete/task/:id', tasksController.deleteTask);
+app.get('/tasks/hours/:hours', tasksController.getTasksByHours);
 
 // Routes employees
 app.get('/employees', employeesControllers.getAllEmployee);
