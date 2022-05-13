@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-const { Schema } = mongoose;
+const { Schema } = mongoose.Schema;
 
 const timeSheetSchema = new Schema({
   project: {
@@ -36,5 +36,5 @@ const timeSheetSchema = new Schema({
     required: true,
   },
 });
-const TimeSheets = mongoose.model('TimeSheet', timeSheetSchema);
-module.exports = TimeSheets;
+
+export default mongoose.model('TimeSheet', timeSheetSchema);
