@@ -63,15 +63,16 @@ app.delete('/superadmins/delete/:id', superadminControllers.deleteSa);
 app.get('/superadmins/getActive', superadminControllers.getActiveSa);
 app.put('/superadmins/edit/:id', superadminControllers.editSa);
 
-app.listen(port, () => {
-  // eslint-disable-next-line no-console
-  console.log(`Example app listening on port ${port}`);
-});
-
 mongoose.connect(
   MONGO_URL,
-  () => {
-    console.log('Connected to database');
+  (error) => {
+    if (error) {
+      console.log('Fail connection to database', error);
+    } else {
+      console.log('Connected to database');
+      app.listen(port, () => {
+        console.log(`Server ready on port ${port}`);
+      });
+    }
   },
-  (error) => console.log('Fail to connect', error),
 );
