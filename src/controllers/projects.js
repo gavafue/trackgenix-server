@@ -98,8 +98,8 @@ const createProject = (req, res) => {
 };
 
 const editProject = (req, res) => {
-  const { id } = parseInt(req.params, 10);
-  const project = projectsData.find((item) => item.id === id);
+  const { id } = req.params;
+  const project = projectsData.find((item) => item.id === parseInt(id, 10));
 
   if (!project) {
     res.json({
@@ -123,8 +123,8 @@ const editProject = (req, res) => {
 };
 
 const getProjectById = (req, res) => {
-  const { id } = parseInt(req.params, 10);
-  const project = projectsData.find((item) => item.id === id);
+  const { id } = req.params;
+  const project = projectsData.find((item) => item.id === parseInt(id, 10));
 
   if (!project) {
     res.json({
