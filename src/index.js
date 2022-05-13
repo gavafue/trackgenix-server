@@ -9,17 +9,8 @@ import * as adminsControllers from './controllers/admins';
 
 const app = express();
 const port = process.env.PORT || 3000;
-
-
-const mongoDb = 'mongodb+srv://radiumRocket:8dll6U2hMKSETFAK@trackgenix.0a7hs.mongodb.net/Trackgenix?retryWrites=true&w=majority';
-
-mongoose.connect(
-  mongoDb,
-  () => {
-    console.log("Connected to database");
-  },
-  (error) => console.log("Fail to connect")
-);
+// eslint-disable-next-line max-len
+const MONGO_URL = 'mongodb+srv://radiumRocket:8dll6U2hMKSETFAK@trackgenix.0a7hs.mongodb.net/Trackgenix?retryWrites=true&w=majority';
 
 app.use(express.json());
 
@@ -76,3 +67,11 @@ app.listen(port, () => {
   // eslint-disable-next-line no-console
   console.log(`Example app listening on port ${port}`);
 });
+
+mongoose.connect(
+  MONGO_URL,
+  () => {
+    console.log('Connected to database');
+  },
+  (error) => console.log('Fail to connect', error),
+);
