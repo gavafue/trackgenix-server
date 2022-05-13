@@ -1,10 +1,10 @@
 import express from 'express';
-import * as tasksController from './resources/tasks';
-import * as timeSheetControllers from './resources/time-sheets';
-import * as projectsControllers from './resources/projects';
-import * as employeesControllers from './resources/employees';
-import * as superadminControllers from './resources/super-admins';
-import * as adminsControllers from './resources/admins';
+import * as tasksController from './controllers/tasks';
+import * as timeSheetControllers from './controllers/time-sheets';
+import * as projectsControllers from './controllers/projects';
+import * as employeesControllers from './controllers/employees';
+import * as superadminControllers from './controllers/super-admins';
+import * as adminsControllers from './controllers/admins';
 
 const app = express();
 const port = process.env.PORT || 3000;
