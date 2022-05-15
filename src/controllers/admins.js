@@ -37,6 +37,36 @@ const addAdmin = async (req, res) => {
   }
 };
 
+const getAllAdmins = async (req, res) => {
+  try {
+    let allAdmins;
+    if (req.query) {
+      allAdmins = await AdminModel.find(req.query);
+      if (allAdmins.length === 0) {
+        return res.status(200).json({
+          message: 'Admins not found',
+          data: undefined,
+          error: false,
+        });
+      }
+    } else {
+      allAdmins = await AdminModel.find({});
+    }
+    return res.status(200).json({
+      message: 'The request was successful',
+      data: allAdmins,
+      error: false,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: `There was an error: ${error}`,
+      data: undefined,
+      error: true,
+    });
+  }
+};
+
 export default {
   addAdmin,
+  getAllAdmins,
 };
