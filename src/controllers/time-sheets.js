@@ -1,112 +1,68 @@
-const fs = require('fs');
-const timeSheetsData = require('../data/time-sheets.json');
+import TimeSheetModel from '../models/Time-sheets';
 
-const gettimeSheetById = async (req, res) => {
-  const { id } = req.params;
-  const timeSheetFind = timeSheetsData.find((item) => item.id === parseInt(id, 10));
-
-  if (!timeSheetFind) {
-    res.json({
-      msg: `This time Sheet with ID ${id} does not exist`,
-    });
-  } res.json({
-    data: timeSheetFind,
-  });
-};
-
-const editTimeSheet = async (req, res) => {
-  const { id } = req.params;
-  const timeSheetFind = timeSheetsData.find((item) => item.id === parseInt(id, 10));
-
-  if (!timeSheetFind) {
-    res.json({
-      msg: `This time Sheet with ID ${id} does not exist`,
-    });
-  } else {
-    const bodyTSheet = req.body;
-    timeSheetFind.id = bodyTSheet.id ? bodyTSheet.id : timeSheetFind.id;
-    timeSheetFind.project = bodyTSheet.project ? bodyTSheet.project : timeSheetFind.project;
-    timeSheetFind.employeeName = bodyTSheet.employeeName ? bodyTSheet.employeeName : timeSheetFind.employeeName;
-    timeSheetFind.employeeId = bodyTSheet.employeeId ? bodyTSheet.employeeId : timeSheetFind.employeeId;
-    timeSheetFind.weekSprint = bodyTSheet.weekSprint ? bodyTSheet.weekSprint : timeSheetFind.weekSprint;
-    timeSheetFind.date = bodyTSheet.date ? bodyTSheet.date : timeSheetFind.date;
-    timeSheetFind.hoursWorked = bodyTSheet.hoursWorked ? bodyTSheet.hoursWorked : timeSheetFind.hoursWorked;
-    timeSheetFind.hoursProject = bodyTSheet.hoursProject ? bodyTSheet.hoursProject : timeSheetFind.hoursProject;
-    timeSheetFind.workDescription = bodyTSheet.workDescription
-      ? bodyTSheet.workDescription
-      : timeSheetFind.workDescription;
-
-    fs.writeFile('src/data/time-sheets.json', JSON.stringify(timeSheetsData), (err) => {
-      if (err) {
-        res.send(err);
-      } else {
-        res.send({
-          msg: `This Time Sheet ${id} was updated.`,
+const getTimeSheetById = async (req, res) => {
+  try {
+    if (req.params.id) {
+      const timeSheet = await TimeSheetModel.findById(req.params.id);
+      if (!timeSheet) {
+        return res.status(404).json({
+          msg: `The id ${req.params.id} does not exist`,
+          data: undefined,
+          error: true,
         });
       }
+      return res.status(200).json({
+        msg: 'The request was successful',
+        data: timeSheet,
+        error: false,
+      });
+    }
+    return res.status(400).json({
+      msg: 'Missing id parameter',
+      data: undefined,
+      error: true,
+    });
+  } catch (error) {
+    return res.json({
+      msg: `There was an error: ${error}`,
+      data: undefined,
+      error: true,
     });
   }
 };
 
-const filterTSheetProject = async (req, res) => {
-  const TSheetProject = req.params.project;
-  const filterProject = timeSheetsData.filter((proyecItem) => proyecItem.project === TSheetProject);
-  if (filterProject.length === 0) {
-    res.send(`This ${TSheetProject} does not have any time sheet created.`);
-  } else {
-    res.send(filterProject);
-  }
-};
+// const deleteTimeSheet = async (req, res) => {
+//   try {
+//     if (!req.params.id) {
+//       return res.status(400).json({
+//         msg: 'Missing id parameter',
+//         data: undefined,
+//         error: true,
+//       });
+//     }
+//     const result = await TimeSheetModel.findByIdAndDelete(req.params.id);
+//     if (!result) {
+//       return res.status(404).json({
+//         msg: `The time sheet with id ${req.params.id} has not been found`,
+//         data: undefined,
+//         error: true,
+//       });
+//     }
+//     return res.status(200).json({
+//       msg: `The time sheet with ${req.params.id} has been successfully deleted`,
+//       data: result,
+//       error: false,
+//     });
+//   } catch (error) {
+//     return res.json({
+//       msg: `There was an error: ${error}`,
+//       data: undefined,
+//       error: true,
+//     });
+//   }
+// };
 
-const createTimeSheet = async (req, res) => {
-  const timeSData = req.body;
-  if (timeSData.id && timeSData.project && timeSData.employeeName && timeSData.employeeId
-    && timeSData.weekSprint && timeSData.date && timeSData.hoursWorked
-    && timeSData.hoursProject && timeSData.workDescription) {
-    timeSheetsData.push(timeSData);
-    fs.writeFile('./src/data/time-sheets.json', JSON.stringify(timeSheetsData), (err) => {
-      if (err) {
-        res.send(`Error!\n${err}`);
-      } else {
-        res.send('New time sheet created.');
-      }
-    });
-  } else {
-    res.send('Missing data to create time sheet.');
-  }
-};
-
-const deleteTimeSheet = async (req, res) => {
-  const timeSId = req.params.id;
-  const filteredTS = timeSheetsData.filter((timeSheet) => (timeSheet.id).toString() !== timeSId);
-  if (timeSheetsData.length === filteredTS.length) {
-    res.send(`Time sheet with id ${timeSId} not found.`);
-  } else {
-    fs.writeFile('./src/data/time-sheets.json', JSON.stringify(filteredTS), (err) => {
-      if (err) {
-        res.send(`Error!\n${err}`);
-      } else {
-        res.send(`Time sheet with id ${timeSId} deleted.`);
-      }
-    });
-  }
-};
-
-const filterTSByName = async (req, res) => {
-  const timeSName = req.params.employeeName;
-  const filteredTS = timeSheetsData.filter((timeSheet) => timeSheet.employeeName === timeSName);
-  if (filteredTS.length === 0) {
-    res.send(`The employee ${timeSName} does not have a time sheet created.`);
-  } else {
-    res.send(filteredTS);
-  }
-};
-
-export {
-  createTimeSheet,
-  deleteTimeSheet,
-  filterTSByName,
-  gettimeSheetById,
-  editTimeSheet,
-  filterTSheetProject,
+export default {
+  getTimeSheetById,
+//   deleteTimeSheet,
 };
