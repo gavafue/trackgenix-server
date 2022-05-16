@@ -6,6 +6,7 @@ const router = express.Router();
 
 router
   .post('/', adminsValidation.validateCreation, adminsControllers.addAdmin)
-  .get('/', adminsControllers.getAllAdmins);
+  .get('/', adminsControllers.getAllAdmins)
+  .get('/:id', adminsControllers.getAdminById);
 
 export default router;

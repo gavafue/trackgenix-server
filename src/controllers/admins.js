@@ -1,10 +1,11 @@
+import mongoose from 'mongoose';
 import AdminModel from '../models/Admins';
 
 const addAdmin = async (req, res) => {
   try {
     const existAdmin = await AdminModel.findOne({ email: req.body.email });
     if (existAdmin) {
-      return res.status(200).json({
+      return res.status(400).json({
         message: 'An admin with this email already exists',
         data: undefined,
         error: true,
@@ -43,10 +44,10 @@ const getAllAdmins = async (req, res) => {
     if (req.query) {
       allAdmins = await AdminModel.find(req.query);
       if (allAdmins.length === 0) {
-        return res.status(200).json({
+        return res.status(404).json({
           message: 'Admins not found',
           data: undefined,
-          error: false,
+          error: true,
         });
       }
     } else {
@@ -66,7 +67,40 @@ const getAllAdmins = async (req, res) => {
   }
 };
 
+const getAdminById = async (req, res) => {
+  try {
+    if (!req.params.id) {
+      return res.status(400).json({
+        message: 'Missing id parameter',
+        data: undefined,
+        error: true,
+      });
+    }
+    const isValid = mongoose.Types.ObjectId.isValid(req.params.id);
+    if (!isValid) {
+      return res.status(404).json({
+        message: `The admin with id: ${req.params.id} was not found`,
+        data: undefined,
+        error: true,
+      });
+    }
+    const adminById = await AdminModel.findById(req.params.id);
+    return res.status(200).json({
+      message: 'The request was successful',
+      data: adminById,
+      error: false,
+    });
+  } catch (error) {
+    return res.status(404).json({
+      message: `There was an error: ${error}`,
+      data: undefined,
+      error: true,
+    });
+  }
+};
+
 export default {
   addAdmin,
   getAllAdmins,
+  getAdminById,
 };
