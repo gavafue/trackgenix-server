@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import express from 'express';
 import mongoose from 'mongoose';
-// import * as controllers from './routes/index';
+import routes from './routes';
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -10,7 +10,7 @@ const MONGO_URL = 'mongodb+srv://radiumRocket:8dll6U2hMKSETFAK@trackgenix.0a7hs.
 
 app.use(express.json());
 
-// app.use('/', controllers);
+app.use(routes);
 
 mongoose.connect(
   MONGO_URL,

@@ -1,4 +1,4 @@
-import * as EmployeeModel from '../models/Employees';
+import EmployeeModel from '../models/Employees';
 import { employeeCreateSchema, employeeUpdateSchema } from '../validations/employees';
 
 const createEmployee = async (req, res) => {
@@ -50,28 +50,28 @@ const createEmployee = async (req, res) => {
 const updateEmployee = async (req, res) => {
   try {
     const authEmp = await employeeUpdateSchema.validateAsync(req.body);
-    const employeeEmail = authEmp.email;
-    const focusEmployee = await EmployeeModel.findOne(employeeEmail);
-    if (focusEmployee) {
+    const employeeId = req.params.id;
+    const focusEmployee = await EmployeeModel.findOne(employeeId);
+    if (focusEmployee && authEmp) {
       const updEmployee = req.body;
       Object.keys(focusEmployee).forEach((item) => {
         focusEmployee[item] = updEmployee[item] ? updEmployee[item] : focusEmployee[item];
       });
       const succes = await focusEmployee.save();
-      return res.status(202).json({
+      return res.status(200).json({
         message: 'Employee updated succesfully',
         data: succes,
         error: false,
       });
     }
-    return res.status(404).json({
-      message: `Employee with email ${employeeEmail} not found`,
+    return res.status(200).json({
+      message: `Employee with ID ${employeeId} not found`,
       data: undefined,
       error: true,
     });
   } catch (error) {
     if (error.isJoi === true) {
-      return res.status(422).json({
+      return res.status(400).json({
         message: `An error has ocurred: ${error}`,
         data: undefined,
         error: true,
