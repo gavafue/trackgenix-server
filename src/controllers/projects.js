@@ -14,9 +14,9 @@ const createProject = async (req, res) => {
 
     const result = await project.save();
     return res.status(201).json({
-        msg: 'The request was successful',
-        data: result,
-        error: false,
+      msg: 'The request was successful',
+      data: result,
+      error: false,
     });
   } catch (error) {
     return res.status(400).json({
@@ -44,7 +44,7 @@ const deleteProject = async (req, res) => {
         error: true,
       });
     }
-    return res.status(204).json({
+    return res.status(200).json({
       msg: `Project with id ${req.params.id} deleted.`,
       data: undefined,
       error: false,
