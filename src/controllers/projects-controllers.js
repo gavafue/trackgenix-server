@@ -1,50 +1,64 @@
-import models from '../models/Projects';
+import ProjectsModels from '../models/Projects';
 
 const createProject = async (req, res) => {
-    try {
-        const project = new models.Project({
-            members: req.body.members,
-            startDate: req.body.startDate,
-            finishDate: req.body.finishDate,
-            description: req.body.description,
-            status: req.body.status,
-            client: req.body.client,
-        });
+  try {
+    const project = new ProjectsModels({
+      members: req.body.members,
+      name: req.body.name,
+      startDate: req.body.startDate,
+      endDate: req.body.endDate,
+      description: req.body.description,
+      active: req.body.active,
+      client: req.body.client,
+    });
 
-        const result = await project.save();
-        return res.status(201).json(result);
-    } catch (error) {
-        return res.json({
-            msg: 'An error has ocurred',
-            error: error.details[0].message,
-        });
-    }
+    const result = await project.save();
+    return res.status(201).json({
+        msg: 'The request was successful',
+        data: result,
+        error: false,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      msg: `There was an error: ${error}`,
+      data: undefined,
+      error: true,
+    });
+  }
 };
 
 const deleteProject = async (req, res) => {
-    try {
-        if (!req.params.id) {
-            return res.status(400).json({
-                msg: 'Missing id parameter in request.',
-            });
-        }
-        const result = models.Project.findByIdAndDelete(req.params.id);
-        if (!result) {
-            return res.status(404).json({
-                msg: `The project with id ${req.params.id} can't be found.`,
-            });
-        }
-        return res.status(204).json({
-            msg: `Project with id ${req.params.id} deleted.`,
-        });
-    } catch (error) {
-        return res.json({
-            msg: 'An error has ocurred.',
-        });
+  try {
+    if (!req.params.id) {
+      return res.status(400).json({
+        msg: 'Missing id parameter in request.',
+        data: undefined,
+        error: true,
+      });
     }
+    const result = await ProjectsModels.findByIdAndDelete(req.params.id);
+    if (!result) {
+      return res.status(404).json({
+        msg: `The project with id ${req.params.id} can't be found.`,
+        data: undefined,
+        error: true,
+      });
+    }
+    return res.status(204).json({
+      msg: `Project with id ${req.params.id} deleted.`,
+      data: undefined,
+      error: false,
+    });
+  } catch (error) {
+    return res.json({
+      msg: `There was an error: ${error}`,
+      data: undefined,
+      error: true,
+    });
+  }
 };
 
 export default {
-    createProject,
-    deleteProject,
+  createProject,
+  deleteProject,
 };

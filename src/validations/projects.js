@@ -1,46 +1,51 @@
 import Joi from 'joi';
+import mongoose from 'mongoose';
 
 const validateCreation = (req, res, next) => {
-    const membersJoiSch = Joi.object({
-        id: Joi.string().alphanum().min(3).required(),
-        name: Joi.string().min(3).required(),
-        role: Joi.string().uppercase().valid('DEV', 'QA', 'PM', 'TL').required(),
-        rate: Joi.number().required(),
+  const membersJoiSch = Joi.object({
+    id: Joi.string().alphanum().min(3).required(),
+    name: Joi.string().min(3).max(30).required(),
+    role: Joi.string().uppercase().valid('DEV', 'QA', 'PM', 'TL').required(),
+    rate: Joi.number().required(),
+  });
+
+  const projectJoiSch = Joi.object({
+    members: Joi.array().items(membersJoiSch).required(),
+    name: Joi.string().min(3).required(),
+    startDate: Joi.date().required(),
+    endDate: Joi.date().greater(Joi.ref('startDate')).required(),
+    description: Joi.string().min(6).required(),
+    active: Joi.boolean().required(),
+    client: Joi.string().min(3).required(),
+  });
+
+  const validation = projectJoiSch.validate(req.body);
+
+  if (validation.error) {
+    return res.status(400).json({
+      msg: `Error validating a field. Error: ${validation.error.details[0].message}`,
+      data: undefined,
+      error: true,
     });
+  }
 
-    const projectJoiSch = Joi.object({
-        members: Joi.array().items(membersJoiSch).required(),
-        startDate: Joi.date().required(),
-        finishDate: Joi.date().greater(Joi.ref('startDate')).required(),
-        description: Joi.string().required(),
-        status: Joi.boolean().required(),
-        client: Joi.string().required(),
-    });
-
-    const validation = projectJoiSch.validate(req.body);
-
-    if (validation.error) {
-        return res.status(400).json({
-            msg: 'Error validating a field in the request',
-            error: validation.error.datails[0].message,
-        });
-    }
-
-    return next();
+  return next();
 };
 
 const validateId = (req, res, next) => {
-    const validation = req.param.id.isValid();
-    if (!validation) {
-        return res.status(400).json({
-            msg: `The value ${req.param.id} is not a valid id.`,
-        });
-    }
+  const validation = mongoose.isValidObjectId(req.params.id);
+  if (!validation) {
+    return res.status(400).json({
+      msg: `The value ${req.param.id} is not a valid id.`,
+      data: undefined,
+      error: true,
+    });
+  }
 
-    return next();
+  return next();
 };
 
 export default {
-    validateCreation,
-    validateId,
+  validateCreation,
+  validateId,
 };

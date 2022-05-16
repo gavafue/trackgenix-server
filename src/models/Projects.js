@@ -12,10 +12,11 @@ const projectSchema = new Schema(
         rate: { type: Number, required: true },
       },
     ],
+    name: { type: String, required: true },
     startDate: { type: Date, required: true },
-    finishDate: { type: Date, required: true },
+    endDate: { type: Date, required: true },
     description: { type: String, required: true },
-    status: { type: Boolean, required: true },
+    active: { type: Boolean, required: true },
     client: { type: String, required: true },
   },
 );
