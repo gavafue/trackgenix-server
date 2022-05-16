@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+// import mongoose from 'mongoose';
 import AdminModel from '../models/Admins';
 
 const addAdmin = async (req, res) => {
@@ -69,24 +69,40 @@ const getAllAdmins = async (req, res) => {
 
 const getAdminById = async (req, res) => {
   try {
-    if (!req.params.id) {
-      return res.status(400).json({
-        message: 'Missing id parameter',
-        data: undefined,
-        error: true,
-      });
-    }
-    const isValid = mongoose.Types.ObjectId.isValid(req.params.id);
-    if (!isValid) {
+    const adminById = await AdminModel.findById(req.params.id);
+    if (!adminById) {
       return res.status(404).json({
         message: `The admin with id: ${req.params.id} was not found`,
         data: undefined,
         error: true,
       });
     }
-    const adminById = await AdminModel.findById(req.params.id);
     return res.status(200).json({
       message: 'The request was successful',
+      data: adminById,
+      error: false,
+    });
+  } catch (error) {
+    return res.status(404).json({
+      message: `There was an error: ${error}`,
+      data: undefined,
+      error: true,
+    });
+  }
+};
+
+const deleteAdmin = async (req, res) => {
+  try {
+    const adminById = await AdminModel.findByIdAndDelete(req.params.id);
+    if (!adminById) {
+      return res.status(404).json({
+        message: `The admin with id: ${req.params.id} was not found`,
+        data: undefined,
+        error: true,
+      });
+    }
+    return res.status(200).json({
+      message: `The admin with id: ${req.params.id} was deleted`,
       data: adminById,
       error: false,
     });
@@ -103,4 +119,5 @@ export default {
   addAdmin,
   getAllAdmins,
   getAdminById,
+  deleteAdmin,
 };
