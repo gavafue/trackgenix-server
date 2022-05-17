@@ -4,6 +4,6 @@ import employeesRoutes from './employees';
 const router = express.Router();
 
 router
-  .use('/', employeesRoutes);
+  .use('/employees', employeesRoutes);
 
 export default router;

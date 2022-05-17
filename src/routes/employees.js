@@ -4,7 +4,7 @@ import * as Employees from '../controllers/employees';
 const router = express.Router();
 
 router
-  .post('/employees/', Employees.createEmployee)
-  .put('/employees/', Employees.updateEmployee);
+  .post('/', Employees.createEmployee)
+  .put('/:id', Employees.updateEmployee);
 
 export default router;

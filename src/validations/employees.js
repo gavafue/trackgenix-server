@@ -83,9 +83,6 @@ const employeeCreateSchema = Joi.object({
     .required(),
 
   active: Joi.boolean()
-    // .message({
-    //   boolean: 'Invalid input, try with "true" or "false".',
-    // })
     .required(),
 });
 
@@ -162,7 +159,6 @@ const employeeUpdateSchema = Joi.object({
   photo: Joi.string(),
 
   active: Joi.boolean(),
-  // .message('Invalid input, try with "true" or "false".'),
 });
 
 export {

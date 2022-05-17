@@ -51,21 +51,34 @@ const updateEmployee = async (req, res) => {
   try {
     const authEmp = await employeeUpdateSchema.validateAsync(req.body);
     const employeeId = req.params.id;
-    const focusEmployee = await EmployeeModel.findOne(employeeId);
-    if (focusEmployee && authEmp) {
-      const updEmployee = req.body;
-      Object.keys(focusEmployee).forEach((item) => {
-        focusEmployee[item] = updEmployee[item] ? updEmployee[item] : focusEmployee[item];
+    if (!req.params) {
+      return res.status(400).json({
+        msg: 'Missing id parameter in request.',
+        data: undefined,
+        error: true,
       });
-      const succes = await focusEmployee.save();
+    }
+    if (authEmp) {
+      const succes = await EmployeeModel.findByIdAndUpdate(
+        employeeId,
+        req.body,
+        { new: true },
+      );
+      if (!succes) {
+        return res.status(404).json({
+          msg: `Employee account with this id "${req.params.id}" can't be found.`,
+          data: undefined,
+          error: true,
+        });
+      }
       return res.status(200).json({
-        message: 'Employee updated succesfully',
-        data: succes,
+        msg: `Employee account with this id "${req.params.id}" edited.`,
+        data: undefined,
         error: false,
       });
     }
-    return res.status(200).json({
-      message: `Employee with ID ${employeeId} not found`,
+    return res.status(400).json({
+      message: `An error has ocurred, check the params in body: ${req.body}`,
       data: undefined,
       error: true,
     });
@@ -77,8 +90,8 @@ const updateEmployee = async (req, res) => {
         error: true,
       });
     }
-    return res.status(400).json({
-      message: `An error has occurred: ${error}`,
+    return res.json({
+      msg: `There was an error: ${error}`,
       data: undefined,
       error: true,
     });
