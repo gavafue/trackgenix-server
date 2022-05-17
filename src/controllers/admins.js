@@ -1,4 +1,3 @@
-// import mongoose from 'mongoose';
 import AdminModel from '../models/Admins';
 
 const addAdmin = async (req, res) => {
@@ -40,18 +39,13 @@ const addAdmin = async (req, res) => {
 
 const getAllAdmins = async (req, res) => {
   try {
-    let allAdmins;
-    if (req.query) {
-      allAdmins = await AdminModel.find(req.query);
-      if (allAdmins.length === 0) {
-        return res.status(404).json({
-          message: 'Admins not found',
-          data: undefined,
-          error: true,
-        });
-      }
-    } else {
-      allAdmins = await AdminModel.find({});
+    const allAdmins = await AdminModel.find(req.query || {});
+    if (!allAdmins.length) {
+      return res.status(404).json({
+        message: 'Admins not found',
+        data: undefined,
+        error: true,
+      });
     }
     return res.status(200).json({
       message: 'The request was successful',
