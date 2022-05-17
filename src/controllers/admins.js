@@ -16,7 +16,7 @@ const addAdmin = async (req, res) => {
       lastName: req.body.lastName,
       email: req.body.email,
       password: req.body.password,
-      gender: req.body.gender.toLowerCase(),
+      gender: req.body.gender,
       phone: req.body.phone,
       dateBirth: req.body.dateBirth,
       city: req.body.city,
@@ -115,9 +115,35 @@ const deleteAdmin = async (req, res) => {
   }
 };
 
+const updateAdmin = async (req, res) => {
+  try {
+    const adminById = await AdminModel.findByIdAndUpdate(req.params.id, req.body);
+    if (!adminById) {
+      return res.status(404).json({
+        message: `The admin with id: ${req.params.id} was not found`,
+        data: undefined,
+        error: true,
+      });
+    }
+    const adminUpdated = await AdminModel.findById(req.params.id);
+    return res.status(200).json({
+      message: `The admin with id: ${req.params.id} was updated`,
+      data: adminUpdated,
+      error: false,
+    });
+  } catch (error) {
+    return res.status(404).json({
+      message: `There was an error: ${error}`,
+      data: undefined,
+      error: true,
+    });
+  }
+};
+
 export default {
   addAdmin,
   getAllAdmins,
   getAdminById,
   deleteAdmin,
+  updateAdmin,
 };
