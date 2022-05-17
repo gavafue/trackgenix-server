@@ -14,7 +14,7 @@ const createProject = async (req, res) => {
 
     const result = await project.save();
     return res.status(201).json({
-      msg: 'The request was successful',
+      msg: 'Project created successfully.',
       data: result,
       error: false,
     });

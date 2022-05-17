@@ -3,7 +3,6 @@ import mongoose from 'mongoose';
 
 const validateCreation = (req, res, next) => {
   const membersJoiSch = Joi.object({
-    id: Joi.string().alphanum().min(3).required(),
     name: Joi.string().min(3).max(30).required(),
     role: Joi.string().uppercase().valid('DEV', 'QA', 'PM', 'TL').required(),
     rate: Joi.number().required(),
@@ -13,7 +12,7 @@ const validateCreation = (req, res, next) => {
     members: Joi.array().items(membersJoiSch).required(),
     name: Joi.string().min(3).required(),
     startDate: Joi.date().required(),
-    endDate: Joi.date().greater(Joi.ref('startDate')).required(),
+    endDate: Joi.date().greater(Joi.ref('startDate')),
     description: Joi.string().min(6).required(),
     active: Joi.boolean().required(),
     client: Joi.string().min(3).required(),
