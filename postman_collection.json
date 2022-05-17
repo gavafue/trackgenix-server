@@ -23,7 +23,16 @@
 		},
 		{
 			"name": "SuperAdmin",
-			"item": []
+			"item": [{"id":{"$oid":"6282e3e9fc13ae3f69000000"},"first_name":"Missie","last_name":"MacClay","password":"Uu1wAT","role":"Construction Expeditor","email":"mmacclay0@smugmug.com","active":false},
+                {"id":{"$oid":"6282e3e9fc13ae3f69000001"},"first_name":"Johnette","last_name":"Lorenzin","password":"oNsHZlw","role":"Subcontractor","email":"jlorenzin1@seesaa.net","active":false},
+                {"id":{"$oid":"6282e3e9fc13ae3f69000002"},"first_name":"Hube","last_name":"Littlefield","password":"Jcv1s7fTXIa","role":"Architect","email":"hlittlefield2@bbb.org","active":true},
+                {"id":{"$oid":"6282e3e9fc13ae3f69000003"},"first_name":"Edan","last_name":"Gready","password":"Mizh2JCZvy","role":"Construction Manager","email":"egready3@storify.com","active":true},
+                {"id":{"$oid":"6282e3e9fc13ae3f69000004"},"first_name":"Hilda","last_name":"Carik","password":"N12XsYWoQX6Q","role":"Estimator","email":"hcarik4@posterous.com","active":true},
+                {"id":{"$oid":"6282e3e9fc13ae3f69000005"},"first_name":"Nita","last_name":"Garshore","password":"6UWC4Hue1","role":"Electrician","email":"ngarshore5@yellowpages.com","active":true},
+                {"id":{"$oid":"6282e3e9fc13ae3f69000006"},"first_name":"Amie","last_name":"Birrel","password":"Orlo6Da87","role":"Engineer","email":"abirrel6@umich.edu","active":false},
+                {"id":{"$oid":"6282e3e9fc13ae3f69000007"},"first_name":"Laetitia","last_name":"Klimkiewich","password":"Kv65wgpSL","role":"Construction Expeditor","email":"lklimkiewich7@webmd.com","active":false},
+                {"id":{"$oid":"6282e3e9fc13ae3f69000008"},"first_name":"Virgie","last_name":"Gayler","password":"fGA8PU","role":"Subcontractor","email":"vgayler8@mediafire.com","active":true},
+                {"id":{"$oid":"6282e3e9fc13ae3f69000009"},"first_name":"Robin","last_name":"Gabbitis","password":"qrGl78DQxwNc","role":"Subcontractor","email":"rgabbitis9@domainmarket.com","active":false}]
 		},
 		{
 			"name": "TimeSheet",
