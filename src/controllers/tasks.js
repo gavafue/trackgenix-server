@@ -1,103 +1,144 @@
-import models from '../models/Tasks';
+import Models from '../models/Tasks';
 
-const createTask = async(req, res) => {
-    try {
-        const task = new models.Task({
-            nameProject: req.body.nameProject,
-            week: req.body.week,
-            day: req.body.day,
-            description: req.body.description,
-            hours: req.body.hours,
-        });
-        const result = await task.save();
-        return res.status(200).json({
-            message: 'Task created successfully',
-            result,
-        });
-    } catch (error) {
-        return res.status(500).json({
-            message: 'Task could not be created',
-            error,
-        });
+const createTask = async (req, res) => {
+  try {
+    const task = new Models({
+      nameProject: req.body.nameProject,
+      week: req.body.week,
+      day: req.body.day,
+      description: req.body.description,
+      hours: req.body.hours,
+    });
+    const result = await task.save();
+    return res.status(200).json({
+      msg: 'The request was successful',
+      data: result,
+      error: false,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      msg: `There was an error: ${error}`,
+      data: undefined,
+      error: true,
+    });
+  }
+};
+
+const editTask = async (req, res) => {
+  try {
+    if (!req.params.id) {
+      return res.status(404).json({
+        msg: 'The id parameter is missing in the request.',
+        data: undefined,
+        error: true,
+      });
     }
-}
+    const result = await Models.findByIdAndUpdate(req.params.id, req.body);
+    if (!result) {
+      return res.status(404).json({
+        msg: `The task with ID ${req.params.id} does not exist`,
+        data: undefined,
+        error: true,
+      });
+    }
+    const resultEdited = await Models.findById(req.params.id);
+    return res.status(200).json({
+      msg: `Task with ID ${req.params.id} edited.`,
+      data: resultEdited,
+      error: true,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      msg: `There was an error: ${error}`,
+      data: undefined,
+      error: true,
+    });
+  }
+};
 
-// const editTask = (req, res) => {
-//   const { id } = req.params;
-//   const task = taskData.find((item) => item.id === parseInt(id, 10));
+const getTaskById = async (req, res) => {
+  const result = await Models.findById(req.params.id);
+  try {
+    if (!result) {
+      return res.status(404).json({
+        msg: `The task with ID ${req.params.id} does not exist`,
+        data: undefined,
+        error: true,
+      });
+    }
+    return res.status(200).json({
+      data: result,
+      error: false,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: `There was an error: ${error}`,
+      data: undefined,
+      error: true,
+    });
+  }
+};
 
-//   if (!task) {
-//     res.status(200).json({
-//       msg: `The task with ID ${id} does not exist`,
-//     });
-//   } else {
-//     const updTask = req.body;
-//     elements.forEach((prop) => {
-//       task[prop] = updTask[prop] ? updTask[prop] : task[prop];
-//     });
-//     fs.writeFile('src/data/tasks.json', JSON.stringify(taskData), (err) => {
-//       if (err) {
-//         res.send(err);
-//       } else {
-//         res.status(200).json({
-//           msg: 'The task was updated',
-//         });
-//       }
-//     });
-//   }
-// };
+const deleteTask = async (req, res) => {
+  try {
+    if (!req.params.id) {
+      return res.status(404).json({
+        msg: 'Missing ID parameter in request.',
+        data: undefined,
+        error: true,
+      });
+    }
+    const result = await Models.findByIdAndDelete(req.params.id);
+    if (!result) {
+      return res.status(404).json({
+        msg: `The task with ID ${req.params.id} can't be found.`,
+        data: undefined,
+        error: true,
+      });
+    }
+    const resultDeleted = await Models.find(req.query || {});
+    return res.status(200).json({
+      msg: `Task with ID ${req.params.id} deleted.`,
+      data: resultDeleted,
+      error: false,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      msg: `There was an error: ${error}`,
+      data: undefined,
+      error: true,
+    });
+  }
+};
 
-// const getTaskById = (req, res) => {
-//   const { id } = req.params;
-//   const task = taskData.find((item) => item.id === parseInt(id, 10));
+const getAllTask = async (req, res) => {
+  try {
+    const result = await Models.find(req.query || {});
+    if (!result.length) {
+      return res.status(404).json({
+        message: 'Tasks not found',
+        data: undefined,
+        error: true,
+      });
+    }
+    return res.status(200).json({
+      message: 'Tasks lists fetched successfully',
+      data: result,
+      error: false,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      msg: `There was an error: ${error}`,
+      data: undefined,
+      error: true,
+    });
+  }
+};
 
-//   if (!task) {
-//     res.status(200).json({
-//       msg: `The task with ID ${id} does not exist`,
-//     });
-//   } else {
-//     res.status(200).json({
-//       data: task,
-//     });
-//   }
-// };
-
-// const deleteTask = (req, res) => {
-//   const { id } = req.params;
-//   const filterTasks = taskData.filter((task) => task.id !== parseInt(id, 10));
-
-//   if (taskData.length === filterTasks.length) {
-//     res.status(404).json({
-//       msg: `${id} not found`,
-//     });
-//   } else {
-//     fs.writeFile('src/data/tasks.json', JSON.stringify(filterTasks), (error) => {
-//       if (error) {
-//         res.send(error);
-//       } else {
-//         res.status(200).json({
-//           msg: `The tasks ${id} has been deleted`,
-//         });
-//       }
-//     });
-//   }
-// };
-
-// const getTasksByHours = (req, res) => {
-//   const { hours } = req.params;
-//   const filterTasks = taskData.filter((task) => task.hours >= hours);
-
-//   res.status(200).json({
-//     data: filterTasks,
-//   });
-// };
-
-export default createTask;
-
-// export {
-//   createTask,
-//   editTask,
-//   getTaskById,
-//   deleteTask,
-//   getTasksByHours,
-// };
+export default {
+  createTask,
+  editTask,
+  getTaskById,
+  deleteTask,
+  getAllTask,
+};
