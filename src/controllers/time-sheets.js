@@ -6,7 +6,7 @@ const createTimeSheet = async (req, res) => {
     const findTimeSheet = await TimeSheetModel.findOne({ project: req.body.project });
     if (findTimeSheet) {
       return res.status(200).json({
-        message: 'An time-sheet with this project name already exists',
+        message: 'A time-sheet with this project name already exists',
         data: undefined,
         error: true,
       });
@@ -31,7 +31,7 @@ const createTimeSheet = async (req, res) => {
     return res.status(400).json({
       message: `There was an error: ${error}`,
       data: undefined,
-      error: false,
+      error: true,
     });
   }
 };
@@ -43,20 +43,20 @@ const getTimeSheets = async (req, res) => {
       getAllTS = await TimeSheetModel.find(req.query);
       if (getAllTS === 0) {
         return res.status(404).json({
-          message: 'No exist',
+          message: 'Time-sheet was not found',
           data: undefined,
           error: true,
         });
       }
     } else { getAllTS = TimeSheetModel.find({}); }
     return res.status(200).json({
-      message: 'The time-sheet a was found',
+      message: 'The time-sheet was found',
       data: getAllTS,
       error: false,
     });
   } catch (error) {
     return res.status(400).json({
-      message: 'Not is valid',
+      message: `There was an error: ${error}`,
       data: undefined,
       error: true,
     });
@@ -84,8 +84,8 @@ const updateTimesheet = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      message: 'An error ocurred',
-      data: error.message,
+      message: `There was an error: ${error}`,
+      data: undefined,
       error: true,
     });
   }
