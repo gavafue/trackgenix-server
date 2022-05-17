@@ -5,6 +5,7 @@ import timeSheetsValidation from '../validations/time-sheets';
 const router = express.Router();
 
 router
-  .post('/', timeSheetsValidation.validateAddTS, timeSheetsController.createTimeSheet);
+  .post('/', timeSheetsValidation.validateAddTS, timeSheetsController.createTimeSheet)
+  .get('/', timeSheetsController.getTimeSheets);
 
 export default router;

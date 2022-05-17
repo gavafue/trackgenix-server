@@ -36,6 +36,34 @@ const createTimeSheet = async (req, res) => {
   }
 };
 
+const getTimeSheets = async (req, res) => {
+  try {
+    let getAllTS = 0;
+    if (req.query) {
+      getAllTS = await TimeSheetModel.find(req.query);
+      if (getAllTS === 0) {
+        return res.status(404).json({
+          msg: 'No exist',
+          data: undefined,
+          error: true,
+        });
+      }
+    } else { getAllTS = TimeSheetModel.find({}); }
+    return res.status(200).json({
+      msg: 'The time-sheet a was found',
+      data: getAllTS,
+      error: false,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      msg: 'Not is valid',
+      data: undefined,
+      error: true,
+    });
+  }
+};
+
 export default {
   createTimeSheet,
+  getTimeSheets,
 };
