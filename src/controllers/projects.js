@@ -1,22 +1,33 @@
 import models from '../models/Projects';
 
 const getAllProjects = async (req, res) => {
-  try {
-    const allProjects = await models.find(req.query);
-    // agregar if-else;
-    return res.status(200).json({
-      msg: allProjects,
-      data: undefined,
-      error: false,
-    });
-  } catch (error) {
-    return res.status(500).json({
-      msg: 'Projects not found',
-      data: undefined,
-      error: true,
-    });
-  }
-};
+    try {
+      let projects = 0;
+      if (req.query) {
+        projects = await models.find(req.query);
+        if (projects === 0) {
+          return res.status(404).json({
+            message: 'Projects not found',
+            data: undefined,
+            error: true,
+          });
+        }
+      } else {
+        projects = await models.find({});
+      }
+      return res.status(200).json({
+        message: 'Project found',
+        data: projects,
+        error: false,
+      });
+    } catch (error) {
+      return res.status(400).json({
+        message: 'An error occurred',
+        data: undefined,
+        error: true,
+      });
+    }
+  };
 
 const getProjectById = async (req, res) => {
   try {
