@@ -23,6 +23,30 @@ const validateAddTS = (req, res, next) => {
   return next();
 };
 
+const validateUpdate = (req, res, next) => {
+  const timesheetValidation = Joi.object({
+    project: Joi.string().min(3).required(),
+    employeeName: Joi.string().min(3).required(),
+    weekSprint: Joi.number().min(2).required(),
+    date: Joi.date().required(),
+    workDescription: Joi.string().min(20)
+      .max(2000)
+      .required(),
+    hoursProject: Joi.number().required(),
+  });
+
+  const validate = timesheetValidation.validate(req.body);
+  if (validate.error) {
+    return res.status(400).json({
+      msg: `${validate.error.details[0].message}There was an error`,
+      data: undefined,
+      error: true,
+    });
+  }
+  return next();
+};
+
 export default {
   validateAddTS,
+  validateUpdate,
 };
