@@ -36,13 +36,13 @@ const getProjectById = async (req, res) => {
       if (!project) {
         return res.status(404).json({
           msg: 'The id is not valid',
-          data: project,
+          data: undefined,
           error: true,
         });
       }
       return res.status(200).json({
-        msg: project,
-        data: undefined,
+        msg: undefined,
+        data: project,
         error: false,
       });
     }
