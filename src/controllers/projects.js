@@ -1,147 +1,64 @@
-/* eslint-disable eqeqeq */
-const fileSystem = require('fs');
+import ProjectsModels from '../models/Projects';
 
-const projects = require('../data/projects.json');
-
-// Delete Projects
-
-const deleteProjects = (req, res) => {
-  const projectID = req.params.id;
-
-  const filterProjects = projects.filter((project) => project.id != projectID);
-
-  if (projects.length === filterProjects.length) {
-    res.status(404).json({
-      msg: `The project ${projectID} not found`,
+const createProject = async (req, res) => {
+  try {
+    const project = new ProjectsModels({
+      members: req.body.members,
+      name: req.body.name,
+      startDate: req.body.startDate,
+      endDate: req.body.endDate,
+      description: req.body.description,
+      active: req.body.active,
+      client: req.body.client,
     });
-  } else {
-    fileSystem.writeFile('src/data/projects.json', JSON.stringify(filterProjects), (error) => {
-      if (error) {
-        res.send(error);
-      } else {
-        res.status(200).json({
-          msg: `The project ${projectID} has been deleted`,
-        });
-      }
+
+    const result = await project.save();
+    return res.status(201).json({
+      msg: 'Project created successfully.',
+      data: result,
+      error: false,
     });
-  }
-};
-
-// Obtain project with filter
-
-const getProjects = (req, res) => {
-  // eslint-disable-next-line no-shadow
-  const filterProjects = projects.filter((projects) => projects.active == true);
-  res.status(200).json({
-    data: filterProjects,
-  });
-};
-
-// Assignation role a member on project
-
-const assignRP = (req, res) => {
-  const membersData = req.body;
-  const { projectId } = req.params;
-  const projectToBoost = projects.find((item) => item.id === parseInt(projectId, 10));
-  const validIds = projects.map((pro) => pro.id);
-  const neededKeys = ['id', 'role'];
-  const roles = ['QA', 'PM', 'DEV', 'TL'];
-  // Check if project exists
-  if (!projectToBoost) {
-    res.status(404).send(`Project with ID: ${projectId} not found. Valid IDs: ${validIds}`);
-  }
-  if (neededKeys.every((key) => Object.keys(membersData).includes(key))
-        && Object.values(membersData).every((value) => value !== '')
-        && roles.some((key) => membersData.role === key)) {
-    projectToBoost.members.push(membersData);
-    fileSystem.writeFile('src/data/projects.json', JSON.stringify(projects), (err) => {
-      if (err) {
-        res.status(400).send(err);
-      } else {
-        res.status(201).send('Employee added');
-      }
-    });
-  } else if (roles.every((key) => membersData.role !== key)) {
-    res.status(406).send('Role not acceptable. Use QA, PM, DEV or TL');
-  } else {
-    res.status(400).send('Complete all fields with valid inputs');
-  }
-};
-const projectsData = require('../data/projects.json');
-
-const elements = ['id', 'name', 'members', 'description', 'client', 'active', 'startDate', 'endDate'];
-
-const createProject = (req, res) => {
-  const newProject = req.body;
-  newProject.id = Math.floor(Math.random() * 100000);
-  newProject.active = true;
-
-  const validateElements = elements.every((item) => Object.keys(newProject).includes(item));
-  const foundID = projectsData.some((project) => project.id === newProject.id);
-
-  if (validateElements && !foundID) {
-    projectsData.push(newProject);
-    fileSystem.writeFile('src/data/projects.json', JSON.stringify(projectsData), (err) => {
-      if (err) {
-        res.send(err);
-      } else {
-        res.json({
-          msg: 'Project created',
-        });
-      }
-    });
-  } else {
-    res.json({
-      msg: 'Project could not be created',
+  } catch (error) {
+    return res.status(400).json({
+      msg: `There was an error: ${error}`,
+      data: undefined,
+      error: true,
     });
   }
 };
 
-const editProject = (req, res) => {
-  const { id } = req.params;
-  const project = projectsData.find((item) => item.id === parseInt(id, 10));
-
-  if (!project) {
-    res.json({
-      msg: `The project with ID ${id} does not exist`,
+const deleteProject = async (req, res) => {
+  try {
+    if (!req.params.id) {
+      return res.status(400).json({
+        msg: 'Missing id parameter in request.',
+        data: undefined,
+        error: true,
+      });
+    }
+    const result = await ProjectsModels.findByIdAndDelete(req.params.id);
+    if (!result) {
+      return res.status(404).json({
+        msg: `The project with id ${req.params.id} can't be found.`,
+        data: undefined,
+        error: true,
+      });
+    }
+    return res.status(200).json({
+      msg: `Project with id ${req.params.id} deleted.`,
+      data: undefined,
+      error: false,
     });
-  } else {
-    const updProject = req.body;
-    elements.forEach((prop) => {
-      project[prop] = updProject[prop] ? updProject[prop] : project[prop];
-    });
-    fileSystem.writeFile('src/data/projects.json', JSON.stringify(projectsData), (err) => {
-      if (err) {
-        res.send(err);
-      } else {
-        res.json({
-          msg: 'The project was updated',
-        });
-      }
-    });
-  }
-};
-
-const getProjectById = (req, res) => {
-  const { id } = req.params;
-  const project = projectsData.find((item) => item.id === parseInt(id, 10));
-
-  if (!project) {
-    res.json({
-      msg: `The project with ID ${id} does not exist`,
-    });
-  } else {
-    res.json({
-      data: project,
+  } catch (error) {
+    return res.json({
+      msg: `There was an error: ${error}`,
+      data: undefined,
+      error: true,
     });
   }
 };
 
-export {
-  deleteProjects,
-  getProjects,
-  assignRP,
+export default {
   createProject,
-  getProjectById,
-  editProject,
+  deleteProject,
 };
