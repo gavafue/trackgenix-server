@@ -35,7 +35,7 @@ const getProjectById = async (req, res) => {
       const project = await ProjectsModels.findById(req.params.id);
       if (!project) {
         return res.status(404).json({
-          msg: 'The id is not valid',
+          msg: `The ${req.params.id} is not valid`,
           data: undefined,
           error: true,
         });
@@ -47,13 +47,13 @@ const getProjectById = async (req, res) => {
       });
     }
     return res.status(400).json({
-      msg: 'The id is not valid',
+      msg: `The ${req.params.id} is not valid`,
       data: undefined,
       error: true,
     });
   } catch (error) {
     return res.json({
-      msg: 'The id is not valid',
+      msg: `The ${req.params.id} is not valid`,
       data: undefined,
       error: true,
     });
