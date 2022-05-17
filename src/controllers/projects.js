@@ -14,7 +14,7 @@ const createProject = async (req, res) => {
 
     const result = await project.save();
     return res.status(201).json({
-      msg: 'The request was successful',
+      msg: 'Project created successfully.',
       data: result,
       error: false,
     });
@@ -83,7 +83,7 @@ const editProject = async (req, res) => {
     }
     return res.status(200).json({
       msg: `Project with id ${req.params.id} edited.`,
-      data: undefined,
+      data: result,
       error: false,
     });
   } catch (error) {
