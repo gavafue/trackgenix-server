@@ -55,12 +55,10 @@ const employeeCreateSchema = Joi.object({
     })
     .required(),
 
-  phone: Joi.number().integer()
-    .min(1000000000)
-    .max(99999999999)
+  phone: Joi.string()
+    .pattern(/^[0-9]{10}$/)
     .message({
-      'string.min': 'Invalid phone, it must not contain less than 10 numbers',
-      'string.max': 'Invalid phone, it must not contain more than 10 numbers',
+      'string.pattern': 'Phonenomber must contain 10 numbers, only integers',
     })
     .required(),
 
@@ -73,7 +71,7 @@ const employeeCreateSchema = Joi.object({
     .required(),
 
   password: Joi.string()
-    .pattern(/^[a-zA-Z0-9]{8,30}$/)
+    .pattern(/^(?=.[a-zA-Z])(?=.[0-9])$/)
     .message({
       'string.pattern': 'Password must contain more than 8 char, at least 1 letter and 1 number. Without any symbols.',
     })
@@ -135,13 +133,12 @@ const employeeUpdateSchema = Joi.object({
       'string.max': 'Invalid phone, it must not contain more than 5 numbers',
     }),
 
-  phone: Joi.number().integer()
-    .min(1000000000)
-    .max(99999999999)
+  phone: Joi.string()
+    .pattern(/^[0-9]{10}$/)
     .message({
-      'string.min': 'Invalid phone, it must not contain less than 10 numbers',
-      'string.max': 'Invalid phone, it must not contain more than 10 numbers',
-    }),
+      'string.pattern': 'Phonenomber must contain 10 numbers, only integers',
+    })
+    .required(),
 
   email: Joi.string()
     .email()
@@ -151,10 +148,11 @@ const employeeUpdateSchema = Joi.object({
     }),
 
   password: Joi.string()
-    .pattern(/^[a-zA-Z0-9]{6,30}$/)
+    .pattern(/^(?=.[a-zA-Z])(?=.[0-9])$/)
     .message({
-      'string.pattern': 'Password must contain more than 6 char, at least 1 letter and 1 number. Without any symbols.',
-    }),
+      'string.pattern': 'Password must contain more than 8 char, at least 1 letter and 1 number. Without any symbols.',
+    })
+    .required(),
 
   photo: Joi.string(),
 
