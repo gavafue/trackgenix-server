@@ -27,5 +27,7 @@ const superAdminsSchema = new mongoose.Schema({
   },
 });
 
-const SuperAdmins = mongoose.model('SuperAdmins', superAdminsSchema);
-export default SuperAdmins;
+export default mongoose.model('SuperAdmins', superAdminsSchema);
+// const SuperAdmins = mongoose.model('SuperAdmins', superAdminsSchema);
+
+// export default SuperAdmins;
