@@ -7,7 +7,7 @@ const getAllEmployee = async (req, res) => {
             employeeAll = await EmployeeSchema.find(req.query)
             if (employeeAll === 0) {
                 return res.status(404).json({
-                    msg: 'no hay nada',
+                    msg: 'You must enter a correct query',
                     data: undefined,
                     error: true,
                 });
@@ -46,7 +46,7 @@ const getEmployeeById = async (req, res) => {
         });
     } catch (error) {
         return res.json({
-            msg: 'error',
+            msg: 'Error',
             data: undefined,
             error: true,
         });
@@ -64,13 +64,13 @@ const deleteEmployee = async (req, res) => {
             });
         }
         return res.status(404).json({
-            msg: 'this id no se borro',
+            msg: `This employee with ID ${req.params.id} was not deleted`,
             data: undefined,
             error: true,
         });
     } catch (error) {
         return res.json({
-            msg: 'error',
+            msg: 'Error',
             data: undefined,
             error: true,
         });
