@@ -1,5 +1,65 @@
 import ProjectsModels from '../models/Projects';
 
+const getAllProjects = async (req, res) => {
+  try {
+    let projects = 0;
+    if (req.query) {
+      projects = await ProjectsModels.find(req.query);
+      if (projects.length === 0) {
+        return res.status(404).json({
+          message: 'Projects not found',
+          data: undefined,
+          error: true,
+        });
+      }
+    } else {
+      projects = await ProjectsModels.find({});
+    }
+    return res.status(200).json({
+      message: 'Project found',
+      data: projects,
+      error: false,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      message: 'An error occurred',
+      data: undefined,
+      error: true,
+    });
+  }
+};
+
+const getProjectById = async (req, res) => {
+  try {
+    if (req.params.id) {
+      const project = await ProjectsModels.findById(req.params.id);
+      if (!project) {
+        return res.status(404).json({
+          msg: `The ${req.params.id} is not valid`,
+          data: undefined,
+          error: true,
+        });
+      }
+      return res.status(200).json({
+        msg: undefined,
+        data: project,
+        error: false,
+      });
+    }
+    return res.status(400).json({
+      msg: `The ${req.params.id} is not valid`,
+      data: undefined,
+      error: true,
+    });
+  } catch (error) {
+    return res.json({
+      msg: `The ${req.params.id} is not valid`,
+      data: undefined,
+      error: true,
+    });
+  }
+};
+
 const createProject = async (req, res) => {
   try {
     const project = new ProjectsModels({
@@ -99,4 +159,6 @@ export default {
   createProject,
   deleteProject,
   editProject,
+  getAllProjects,
+  getProjectById,
 };
