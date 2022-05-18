@@ -1,10 +1,8 @@
 import EmployeeModel from '../models/Employees';
-import { employeeCreateSchema, employeeUpdateSchema } from '../validations/employees';
 
 const createEmployee = async (req, res) => {
   try {
-    const authEmp = await employeeCreateSchema.validateAsync(req.body);
-    const itExist = await EmployeeModel.findOne({ email: authEmp.email });
+    const itExist = await EmployeeModel.findOne({ email: req.body.email });
     if (itExist) {
       return res.status(200).json({
         message: 'Employee account with this email already exists',
@@ -32,13 +30,6 @@ const createEmployee = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    if (error.isJoi === true) {
-      return res.status(400).json({
-        message: `An error has ocurred: ${error}`,
-        data: undefined,
-        error: true,
-      });
-    }
     return res.status(400).json({
       message: `An error has occurred: ${error}`,
       data: undefined,
@@ -49,7 +40,6 @@ const createEmployee = async (req, res) => {
 
 const updateEmployee = async (req, res) => {
   try {
-    const authEmp = await employeeUpdateSchema.validateAsync(req.body);
     const employeeId = req.params.id;
     if (!req.params) {
       return res.status(400).json({
@@ -58,40 +48,26 @@ const updateEmployee = async (req, res) => {
         error: true,
       });
     }
-    if (authEmp) {
-      const succes = await EmployeeModel.findByIdAndUpdate(
-        employeeId,
-        req.body,
-        { new: true },
-      );
-      if (!succes) {
-        return res.status(404).json({
-          msg: `Employee account with this id "${req.params.id}" can't be found.`,
-          data: undefined,
-          error: true,
-        });
-      }
-      return res.status(200).json({
-        msg: `Employee account with this id "${req.params.id}" edited.`,
-        data: undefined,
-        error: false,
-      });
-    }
-    return res.status(400).json({
-      message: `An error has ocurred, check the params in body: ${req.body}`,
-      data: undefined,
-      error: true,
-    });
-  } catch (error) {
-    if (error.isJoi === true) {
-      return res.status(400).json({
-        message: `An error has ocurred: ${error}`,
+    const succes = await EmployeeModel.findByIdAndUpdate(
+      employeeId,
+      req.body,
+      { new: true },
+    );
+    if (!succes) {
+      return res.status(404).json({
+        msg: `Employee account with this id "${req.params.id}" can't be found.`,
         data: undefined,
         error: true,
       });
     }
-    return res.json({
-      msg: `There was an error: ${error}`,
+    return res.status(200).json({
+      msg: `Employee account with this id "${req.params.id}" edited with next info:`,
+      data: req.body,
+      error: false,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      msg: `An error has ocurred: ${error}`,
       data: undefined,
       error: true,
     });
