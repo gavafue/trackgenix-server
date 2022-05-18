@@ -1,11 +1,14 @@
 import express from 'express';
-import employeesControllers from '../controllers/employees';
-import employeeValidation from '../validations/employees'
+import employeeControllers from '../controllers/employees';
+import employeeValidations from '../validations/employees';
 
 const router = express.Router();
 
 router
-  .get('/', employeesControllers.getAllEmployee)
-  .get('/:id', employeeValidation.idValidation, employeesControllers.getEmployeeById)
-  .delete('/:id', employeeValidation.idValidation, employeesControllers.deleteEmployee);
+  .get('/', employeeControllers.getAllEmployee)
+  .get('/:id', employeeValidations.idValidation, employeeControllers.getEmployeeById)
+  .delete('/:id', employeeValidations.idValidation, employeeControllers.deleteEmployee)
+  .post('/', employeeValidations.validateCreateEmp, employeeControllers.createEmployee)
+  .put('/:id', employeeValidations.validateUpdateEmp, employeeControllers.updateEmployee);
+
 export default router;
