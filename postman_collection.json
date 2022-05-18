@@ -1,33 +1,871 @@
 {
 	"info": {
-		"_postman_id": "a15f733f-4e6e-4a1f-9010-b6f56672c9b8",
+		"_postman_id": "52e2c749-287d-4fb2-9f03-2d1925391ca8",
 		"name": "Trackgenix-samuel-doc",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "Employee",
-			"item": []
+			"item": [
+				{
+					"name": "Create employee",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Korry\",\r\n    \"lastName\": \"Franks\",\r\n    \"birthDate\": \"01/16/1941\",\r\n    \"country\": \"Azerbaijan\",\r\n    \"city\": \"Shamkhor\",\r\n    \"zip\": 98758,\r\n    \"phone\": \"2584225915\",\r\n    \"email\": \"kfranksh@earthlink.net\",\r\n    \"password\": \"ioXquEz0\",\r\n    \"photo\": \"http://dummyimage.com/100x100.png/cc0000/ffffff\",\r\n    \"active\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/employees/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"employees",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update employee",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Carlos\",\r\n    \"lastName\": \"Menem\",\r\n    \"city\": \"Tucuman\",\r\n    \"zip\": \"98768\",\r\n    \"email\": \"diositoGMAN@com.as\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/employees/628436dfd10f7c91c56a2335",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"employees",
+								"628436dfd10f7c91c56a2335"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Employee",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/employees/6282cbdaf9ae0f95595c6a74",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"employees",
+								"6282cbdaf9ae0f95595c6a74"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Id Employee",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/employees/6282cb88f9ae0f95595c6a6e",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"employees",
+								"6282cb88f9ae0f95595c6a6e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Employee",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/employees/?active=true",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"employees",
+								""
+							],
+							"query": [
+								{
+									"key": "active",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "Admin",
-			"item": []
+			"item": [
+				{
+					"name": "Get a complete or filtered list of admins",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/admins",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admins"
+							],
+							"query": [
+								{
+									"key": "active",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "gender",
+									"value": "female",
+									"disabled": true
+								},
+								{
+									"key": "gender",
+									"value": "male",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a specific admin",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/admins/62812b64640999a5ff4d0f4c",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admins",
+								"62812b64640999a5ff4d0f4c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an admin",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/admins/6281284eeb407b2218dbf1e7",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admins",
+								"6281284eeb407b2218dbf1e7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update an admin",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"phone\": \"1234567890\",\r\n    \"active\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/admins/62812b7d640999a5ff4d0f4e",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admins",
+								"62812b7d640999a5ff4d0f4e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create an admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Thomas\",\r\n    \"lastName\": \"Shelby\",\r\n    \"email\": \"wpawellek3@pagesperso-orange.fr\",\r\n    \"password\": \"8gaJFdFJ2QT\",\r\n    \"gender\": \"female\",\r\n    \"phone\": 1253575388,\r\n    \"dateBirth\": \"1977-07-15T03:00:00.000Z\",\r\n    \"city\": \"Kuantan\",\r\n    \"zip\": 25556,\r\n    \"active\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/admins",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admins"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "Project",
-			"item": []
+			"item": [
+				{
+					"name": "Get All Projects",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/projects",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/projects/6283dc7f1ff907209f34df98",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects",
+								"6283dc7f1ff907209f34df98"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all projects (method filter)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/projects?name=Trello",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Trello"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a project",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n    \"name\": \"Trackgenix\",\r\n    \"description\": \"Lorem ipsum dolor sit amet, consectetur adipisicing elit\",\r\n    \"client\": \"Simon Jackson\",\r\n    \"active\": true,\r\n    \"members\": [\r\n        { \"name\": \"Thomas\", \"role\": \"QA\", \"rate\": 500 },\r\n        { \"name\": \"Sophie\", \"role\": \"DEV\", \"rate\": 600 },\r\n        { \"name\": \"Edward\", \"role\": \"PM\", \"rate\": 800 },\r\n        { \"name\": \"Irene\", \"role\": \"DEV\", \"rate\": 600 },\r\n        { \"name\": \"Arthur\", \"role\": \"TL\", \"rate\": 700 }\r\n    ],\r\n    \"startDate\": \"06/04/2021\",\r\n    \"endDate\": \"06/04/2022\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/projects/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a project",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/projects/6283dc7f1ff907209f34df98",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects",
+								"6283dc7f1ff907209f34df98"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit a project",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n    \"name\": \"Trello\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/projects/6283dc7f1ff907209f34df98",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects",
+								"6283dc7f1ff907209f34df98"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "Task",
-			"item": []
+			"item": [
+				{
+					"name": "Get All Tasks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/tasks/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tasks",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/tasks/62842fbe1ea17de7d044ed40",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tasks",
+								"62842fbe1ea17de7d044ed40"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Tasks (method filter)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/tasks/?day=7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tasks",
+								""
+							],
+							"query": [
+								{
+									"key": "day",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a Task",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nameProject\": \"new project\",\r\n    \"week\": \"4\",\r\n    \"day\": \"8\",\r\n    \"description\": \"aaaaaaaaaaaaa\",\r\n    \"hours\": \"9\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/tasks/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tasks",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Task",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/tasks/628447d78bfaf5107c91c8b2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tasks",
+								"628447d78bfaf5107c91c8b2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit a Task",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nameProject\": \"project edited\",\r\n    \"week\": \"3\",\r\n    \"day\": \"6\",\r\n    \"description\": \"edited edited edited\",\r\n    \"hours\": \"11\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/tasks/6284486c8bfaf5107c91c8be",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"tasks",
+								"6284486c8bfaf5107c91c8be"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "SuperAdmin",
-			"item":[]
+			"item": [
+				{
+					"name": "Get By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/super-admin/62857471fab6161bdd0df2ec",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"super-admin",
+								"62857471fab6161bdd0df2ec"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Superadmins",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/super-admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"super-admin"
+							],
+							"query": [
+								{
+									"key": "active",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "active",
+									"value": "false",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Superadmin",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/super-admin/62857471fab6161bdd0df2ec",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"super-admin",
+								"62857471fab6161bdd0df2ec"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a Superadmin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Morena\",\r\n    \"lastName\": \"Mozi\",\r\n    \"email\": \"mkearn2@accuweather.com\",\r\n    \"role\": \"SA\",\r\n    \"password\": \"zuG78lGRY\",\r\n    \"active\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/super-admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"super-admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit a Superadmin",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Carlos\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/super-admin/62857471fab6161bdd0df2ec",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"super-admin",
+								"62857471fab6161bdd0df2ec"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "TimeSheet",
-			"item": []
+			"item": [
+				{
+					"name": "Get a specific time sheet",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/timeSheets/6283b51d7e159c105b6697ec",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"timeSheets",
+								"6283b51d7e159c105b6697ec"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a time sheet",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/timeSheets/6283b4c37e159c105b6697eb",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"timeSheets",
+								"6283b4c37e159c105b6697eb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET: All time-sheets",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/timeSheets/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"timeSheets",
+								""
+							],
+							"query": [
+								{
+									"key": "project",
+									"value": "Wanderlust",
+									"disabled": true
+								},
+								{
+									"key": "employeeName",
+									"value": "Williams Orlando",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST: Create a time-sheet",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"project\": \"Rufus Du Sol\",\r\n    \"employeeName\": \"Candela Candela\",\r\n    \"weekSprint\": 4,\r\n    \"date\": \"08/22/2021\",\r\n    \"hoursWorked\": 1,\r\n    \"hoursProject\": 7,\r\n    \"workDescription\": \"Created webpage prototype in Figma\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/timeSheets/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"timeSheets",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT: Update a time-sheet",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"employeeName\":\"Iara\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/timeSheets/6283e1304092cf384d1b48f9",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"timeSheets",
+								"6283e1304092cf384d1b48f9"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
