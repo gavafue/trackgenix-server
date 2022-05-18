@@ -3,16 +3,41 @@ import mongoose from 'mongoose';
 
 const validateCreation = (req, res, next) => {
   const superAdminValidation = Joi.object({
-    name: Joi.string().min(1).max(50).required(),
-    lastName: Joi.string().min(1).max(50).required(),
-    password: Joi.string().min(8).max(10).required(),
-    email: Joi.string().min(13).max(50).required(),
+    firstName: Joi.string().min(3).max(50).required(),
+    lastName: Joi.string().min(3).max(50).required(),
+    email: Joi.string().email().required(),
+    password: Joi.string().min(8).required().regex(/^(?=.*?[a-zA-Z])(?=.*?[0-9])/)
+      .message('Invalid password, it must contain letters and numbers'),
+    role: Joi.string().uppercase().valid('SA').required(),
+    active: Joi.boolean().required(),
   });
-
   const validation = superAdminValidation.validate(req.body);
+  req.body = validation.value;
   if (validation.error) {
     return res.status(400).json({
-      msg: 'There was an error during the validation of the request',
+      msg: `There was an error: ${validation.error.details[0].message}`,
+      data: undefined,
+      error: true,
+    });
+  }
+  return next();
+};
+
+const validateUpdate = (req, res, next) => {
+  const superAdminValidation = Joi.object({
+    firstName: Joi.string().min(3).max(50),
+    lastName: Joi.string().min(3).max(50),
+    email: Joi.string().email(),
+    password: Joi.string().min(8).regex(/^(?=.*?[a-zA-Z])(?=.*?[0-9])/)
+      .message('Invalid password, it must contain letters and numbers'),
+    role: Joi.string().uppercase().valid('SA'),
+    active: Joi.boolean(),
+  });
+  const validation = superAdminValidation.validate(req.body);
+  req.body = validation.value;
+  if (validation.error) {
+    return res.status(400).json({
+      msg: `There was an error: ${validation.error.details[0].message}`,
       data: undefined,
       error: true,
     });
@@ -25,26 +50,6 @@ const validateId = (req, res, next) => {
   if (!validation) {
     return res.status(400).json({
       msg: `The value ${req.param.id} is not a valid id.`,
-      data: undefined,
-      error: true,
-    });
-  }
-
-  return next();
-};
-
-const validateUpdate = (req, res, next) => {
-  const projectValidation = Joi.object({
-    name: Joi.string().min(1).max(50).required(),
-    lastName: Joi.string().min(1).max(50).required(),
-    password: Joi.string().min(8).max(10).required(),
-    email: Joi.string().min(13).max(50).required(),
-  });
-
-  const validation = projectValidation.validate(req.body);
-  if (validation.error) {
-    return res.status(400).json({
-      msg: 'There was an error during the validation of the request',
       data: undefined,
       error: true,
     });
