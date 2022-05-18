@@ -38,7 +38,7 @@ const employeeSchema = new mongoose.Schema({
     required: true,
   },
   photo: {
-    type: URL,
+    type: String,
     required: true,
   },
   active: {
