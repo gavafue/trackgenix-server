@@ -1,14 +1,14 @@
 import express from 'express';
-import superAdminsControllers from '../controllers/super-admins';
-import superAdminsValidations from '../validations/super-admins';
+import saControllers from '../controllers/super-admins';
+import saValidations from '../validations/super-admins';
 
 const router = express.Router();
 
 router
-  .get('/', superAdminsControllers.getAllSa)
-  .get('/:id', superAdminsValidations.validateId, superAdminsControllers.getSaById)
-  .post('/', superAdminsValidations.validateCreation, superAdminsControllers.createSa)
-  .delete('/:id', superAdminsValidations.validateId, superAdminsControllers.deleteSa)
-  .put('/:id', superAdminsValidations.validateUpdate, superAdminsControllers.updateSa);
+  .get('/', saControllers.getAllSAdmins)
+  .get('/:id', saValidations.validateId, saControllers.getSAdminsById)
+  .post('/', saValidations.validateCreation, saControllers.createSAdmin)
+  .delete('/:id', saValidations.validateId, saControllers.deleteSa)
+  .put('/:id', saValidations.validateId, saValidations.validateUpdate, saControllers.updateSa);
 
 export default router;

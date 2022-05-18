@@ -16,7 +16,7 @@ const getAllSAdmins = async (req, res) => {
       getAll = await SuperAdminModels.find({});
     }
     return res.status(200).json({
-      message: 'The Super admin was found',
+      message: 'The request was made successfully',
       data: getAll,
       error: false,
     });
@@ -35,7 +35,7 @@ const getSAdminsById = async (req, res) => {
       const superfindAdmin = await SuperAdminModels.findById(req.params.id);
       if (!superfindAdmin) {
         return res.status(404).json({
-          message: `The time sheet with id ${req.params.id} has not been found`,
+          message: `The superadmin with id ${req.params.id} has not been found`,
           data: undefined,
           error: true,
         });
@@ -62,16 +62,16 @@ const getSAdminsById = async (req, res) => {
 
 const createSAdmin = async (req, res) => {
   try {
-    const adminss = await SuperAdminModels.findOne({ project: req.body.project });
-    if (adminss) {
+    const superA = await SuperAdminModels.findOne({ email: req.body.email });
+    if (superA) {
       return res.status(200).json({
-        message: 'Super admin with this name already exists',
+        message: 'Super admin with this email already exists',
         data: undefined,
         error: true,
       });
     }
     const superAdmin = new SuperAdminModels({
-      firstName: req.body.name,
+      firstName: req.body.firstName,
       lastName: req.body.lastName,
       password: req.body.password,
       email: req.body.email,
@@ -102,25 +102,28 @@ const updateSa = async (req, res) => {
         error: true,
       });
     }
-
     const result = await SuperAdminModels.findByIdAndUpdate(
       req.params.id,
       req.body,
       { new: true },
     );
     if (!result) {
-      return res.status(400).json({
-        message: 'There was an error',
+      return res.status(404).json({
+        message: 'The Super admin has not been found',
         data: undefined,
         error: true,
       });
     }
-    return res.status(201).json(result);
-  } catch (error) {
     return res.status(200).json({
-      message: 'The Super admin updated successfully',
-      data: undefined,
+      message: 'Super admin updated successfully',
+      data: result,
       error: false,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      message: `There was an error: ${error}`,
+      data: undefined,
+      error: true,
     });
   }
 };
@@ -136,7 +139,7 @@ const deleteSa = async (req, res) => {
     }
     const result = await SuperAdminModels.findByIdAndDelete(req.params.id);
     if (!result) {
-      return res.status(400).json({
+      return res.status(404).json({
         message: 'The Super admin has not been found',
         data: undefined,
         error: true,
@@ -149,8 +152,8 @@ const deleteSa = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      msg: 'An error has occurred',
-      data: error.details().message,
+      message: `There was an error: ${error}`,
+      data: undefined,
       error: true,
     });
   }

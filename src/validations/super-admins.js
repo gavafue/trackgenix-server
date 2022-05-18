@@ -15,7 +15,7 @@ const validateCreation = (req, res, next) => {
   req.body = validation.value;
   if (validation.error) {
     return res.status(400).json({
-      msg: `There was an error: ${validation.error.details[0].message}`,
+      message: `There was an error: ${validation.error.details[0].message}`,
       data: undefined,
       error: true,
     });
@@ -37,7 +37,7 @@ const validateUpdate = (req, res, next) => {
   req.body = validation.value;
   if (validation.error) {
     return res.status(400).json({
-      msg: `There was an error: ${validation.error.details[0].message}`,
+      message: `There was an error: ${validation.error.details[0].message}`,
       data: undefined,
       error: true,
     });
@@ -49,7 +49,7 @@ const validateId = (req, res, next) => {
   const validation = mongoose.isValidObjectId(req.params.id);
   if (!validation) {
     return res.status(400).json({
-      msg: `The value ${req.param.id} is not a valid id.`,
+      message: `The value ${req.params.id} is not a valid id.`,
       data: undefined,
       error: true,
     });
