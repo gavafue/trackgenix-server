@@ -15,8 +15,5 @@ router
     .use('/super-admin', superAdminsRoutes)
     .use('/tasks', tasksRoutes)
     .use('/timeSheets', timeSheetRoutes)
-    .use('/employees', employeesRoutes)
-    .use('/admins', adminRoutes)
-    .use('/projects', projectsRoutes);
 
 export default router;
