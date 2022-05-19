@@ -25,11 +25,11 @@ const validateCreate = (req, res, next) => {
 
 const validateEdit = (req, res, next) => {
   const taskJoiSchema = Joi.object({
-    nameProject: Joi.string().required(),
-    week: Joi.number().required(),
-    day: Joi.number().required(),
-    description: Joi.string().required(),
-    hours: Joi.number().required(),
+    nameProject: Joi.string(),
+    week: Joi.number(),
+    day: Joi.number(),
+    description: Joi.string(),
+    hours: Joi.number(),
   });
 
   const validation = taskJoiSchema.validate(req.body);
