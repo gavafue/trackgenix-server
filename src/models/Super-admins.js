@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
 
-const superAdminsSchema = new mongoose.Schema({
+const { Schema } = mongoose;
+
+const superAdminSchema = new Schema({
   firstName: {
     type: String,
     required: true,
@@ -27,5 +29,4 @@ const superAdminsSchema = new mongoose.Schema({
   },
 });
 
-const SuperAdmins = mongoose.model('SuperAdmins', superAdminsSchema);
-export default SuperAdmins;
+export default mongoose.model('SuperAdmin', superAdminSchema);
