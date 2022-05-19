@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const tasksSchema = new mongoose.Schema({
   nameProject: {
-    type: Text,
+    type: String,
     require: true,
   },
   week: {
@@ -14,7 +14,7 @@ const tasksSchema = new mongoose.Schema({
     require: true,
   },
   description: {
-    type: Text,
+    type: String,
     require: true,
   },
   hours: {
