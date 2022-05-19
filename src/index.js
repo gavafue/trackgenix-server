@@ -9,7 +9,6 @@ const port = process.env.PORT || 3000;
 const MONGO_URL = 'mongodb+srv://radiumRocket:8dll6U2hMKSETFAK@trackgenix.0a7hs.mongodb.net/Trackgenix?retryWrites=true&w=majority';
 
 app.use(express.json());
-
 app.use(routes);
 
 mongoose.connect(
