@@ -12,7 +12,7 @@ const timeSheetSchema = new Schema({
     required: true,
   },
   employeeId: {
-    type: Number,
+    type: Object,
     required: true,
   },
   weekSprint: {
