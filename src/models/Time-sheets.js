@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const { Schema } = mongoose.Schema;
+const { Schema } = mongoose;
 
 const timeSheetSchema = new Schema({
   project: {
@@ -12,7 +12,7 @@ const timeSheetSchema = new Schema({
     required: true,
   },
   employeeId: {
-    type: Number,
+    type: Object,
     required: true,
   },
   weekSprint: {

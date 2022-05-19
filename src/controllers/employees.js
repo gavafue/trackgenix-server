@@ -5,7 +5,7 @@ const getAllEmployee = async (req, res) => {
         let employeeAll = 0;
         if (req.query) {
             employeeAll = await EmployeeModel.find(req.query)
-            if (employeeAll === 0) {
+            if (employeeAll.length === 0) {
                 return res.status(404).json({
                     msg: 'You must enter a correct query',
                     data: undefined,
