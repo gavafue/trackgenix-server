@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+
 const Joi = require('joi');
 
 const idValidation = (req, res, next) => {
@@ -195,7 +196,7 @@ const validateUpdateEmp = (req, res, next) => {
 };
 
 export default {
-    idValidation,
-    validateCreateEmp,
-    validateUpdateEmp,
+  idValidation,
+  validateCreateEmp,
+  validateUpdateEmp,
 };
