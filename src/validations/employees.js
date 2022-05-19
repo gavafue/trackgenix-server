@@ -1,4 +1,17 @@
+import mongoose from 'mongoose';
 const Joi = require('joi');
+
+const idValidation = (req, res, next) => {
+  const isValid = mongoose.Types.ObjectId.isValid(req.params.id);
+  if (!isValid) {
+    return res.status(400).json({
+      msg: `${req.params.id} is not a valid id`,
+      data: undefined,
+      error: true,
+    });
+  }
+  return next();
+};
 
 const validateCreateEmp = (req, res, next) => {
   const employeeCreateSchema = Joi.object({
@@ -181,7 +194,8 @@ const validateUpdateEmp = (req, res, next) => {
   return next();
 };
 
-export {
-  validateCreateEmp,
-  validateUpdateEmp,
+export default {
+    idValidation,
+    validateCreateEmp,
+    validateUpdateEmp,
 };

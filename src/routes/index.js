@@ -9,11 +9,11 @@ import projectsRoutes from './projects';
 const router = express.Router();
 
 router
-  .use('/super-admin', superAdminsRoutes)
-  .use('/tasks', tasksRoutes)
-  .use('/timeSheets', timeSheetRoutes)
-  .use('/employees', employeesRoutes)
-  .use('/admins', adminRoutes)
-  .use('/projects', projectsRoutes);
+    .use('/employees', employeesRoutes)
+    .use('/admins', adminRoutes)
+    .use('/projects', projectsRoutes)
+    .use('/super-admin', superAdminsRoutes)
+    .use('/tasks', tasksRoutes)
+    .use('/timeSheets', timeSheetRoutes)
 
 export default router;

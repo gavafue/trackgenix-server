@@ -1,5 +1,82 @@
 import EmployeeModel from '../models/Employees';
 
+const getAllEmployee = async (req, res) => {
+    try {
+        let employeeAll = 0;
+        if (req.query) {
+            employeeAll = await EmployeeModel.find(req.query)
+            if (employeeAll.length === 0) {
+                return res.status(404).json({
+                    msg: 'You must enter a correct query',
+                    data: undefined,
+                    error: true,
+                });
+            }
+        }
+        else { employeeAll = EmployeeModel.find({}); }
+        return res.status(200).json({
+            msg: 'The list has been successfully retrieved',
+            data: employeeAll,
+            error: false,
+        });
+    }
+    catch (error) {
+        return res.status(400).json({
+            msg: 'Error',
+            data: undefined,
+            error: true,
+        });
+    }
+};
+
+const getEmployeeById = async (req, res) => {
+    try {
+        if (req.params.id) {
+            const employeesId = await EmployeeModel.findById(req.params.id);
+            return res.status(200).json({
+                msg: `This employee with ID ${req.params.id} has been found`,
+                data: employeesId,
+                error: false,
+            });
+        }
+        return res.status(404).json({
+            msg: `This time Sheet with ID ${req.params.id} does not exist`,
+            data: undefined,
+            error: true,
+        });
+    } catch (error) {
+        return res.json({
+            msg: 'Error',
+            data: undefined,
+            error: true,
+        });
+    }
+};
+
+const deleteEmployee = async (req, res) => {
+    try {
+        if (req.params.id) {
+            const employeeDelete = await EmployeeModel.findByIdAndDelete(req.params.id);
+            return res.status(200).json({
+                msg: `This employee with ID ${req.params.id} has been eliminated`,
+                data: employeeDelete,
+                error: false,
+            });
+        }
+        return res.status(404).json({
+            msg: `This employee with ID ${req.params.id} was not deleted`,
+            data: undefined,
+            error: true,
+        });
+    } catch (error) {
+        return res.json({
+            msg: 'Error',
+            data: undefined,
+            error: true,
+        });
+    }
+};
+
 const createEmployee = async (req, res) => {
   try {
     const itExist = await EmployeeModel.findOne({ email: req.body.email });
@@ -74,7 +151,10 @@ const updateEmployee = async (req, res) => {
   }
 };
 
-export {
-  createEmployee,
-  updateEmployee,
+export default {
+    getAllEmployee,
+    getEmployeeById,
+    deleteEmployee,
+    createEmployee,
+    updateEmployee,
 };
