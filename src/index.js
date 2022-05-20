@@ -2,11 +2,12 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import routes from './routes';
+import 'dotenv/config';
 
 const app = express();
 const port = process.env.PORT || 3000;
 // eslint-disable-next-line max-len
-const MONGO_URL = 'mongodb+srv://radiumRocket:8dll6U2hMKSETFAK@trackgenix.0a7hs.mongodb.net/Trackgenix?retryWrites=true&w=majority';
+const MONGO_URL = process.env.URL_MONGO;
 
 app.use(express.json());
 app.use(routes);
