@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
-import app from './app'
 import mongoose from 'mongoose';
+import app from './app';
 import 'dotenv/config';
 
 const port = process.env.PORT || 3000;
