@@ -4,15 +4,13 @@ const { Schema } = mongoose;
 
 const timeSheetSchema = new Schema({
   project: {
-    type: String,
+    type: Schema.Types.ObjectId,
+    ref: 'Project',
     required: true,
   },
-  employeeName: {
-    type: String,
-    required: true,
-  },
-  employeeId: {
-    type: Object,
+  employee: {
+    type: Schema.Types.ObjectId,
+    ref: 'Employee',
     required: true,
   },
   weekSprint: {
