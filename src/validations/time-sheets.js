@@ -34,7 +34,6 @@ const validateUpdate = (req, res, next) => {
     workDescription: Joi.string().min(20)
       .max(2000),
     hoursProject: Joi.number(),
-    hoursWorked: Joi.number().required(),
   });
 
   const validate = timesheetValidation.validate(req.body);

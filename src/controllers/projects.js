@@ -1,6 +1,4 @@
 import ProjectsModels from '../models/Projects';
-// import ModelsProjects from '../models/Employees';
-// const mongoose = require('mongoose');
 
 const getAllProjects = async (req, res) => {
   try {
