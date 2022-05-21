@@ -9,10 +9,10 @@ const validateCreation = (req, res, next) => {
     password: Joi.string().min(8).required().regex(/^(?=.*?[a-zA-Z])(?=.*?[0-9])/)
       .message('Invalid password, it must contain letters and numbers'),
     gender: Joi.string().lowercase().required().valid('female', 'male', 'other'),
-    phone: Joi.string().length(10),
+    phone: Joi.string().length(10).required(),
     dateBirth: Joi.date().less('now').required(),
     city: Joi.string().min(3).required(),
-    zip: Joi.string().min(4).max(5),
+    zip: Joi.string().min(4).max(5).required(),
     active: Joi.boolean().required(),
   });
   const validation = adminValidation.validate(req.body);
@@ -36,6 +36,7 @@ const validateUpdate = (req, res, next) => {
       .message('Invalid password, it must contain letters and numbers'),
     gender: Joi.string().lowercase({ convert: true }).valid('female', 'male', 'other'),
     phone: Joi.string().length(10),
+    dateBirth: Joi.date().less('now'),
     city: Joi.string().min(3),
     zip: Joi.string().min(4).max(5),
     active: Joi.boolean(),
