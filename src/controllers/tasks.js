@@ -1,4 +1,5 @@
 import Models from '../models/Tasks';
+import ModelsProjects from '../models/Projects';
 
 const createTask = async (req, res) => {
   try {
@@ -9,6 +10,14 @@ const createTask = async (req, res) => {
       description: req.body.description,
       hours: req.body.hours,
     });
+    const resultProjectId = await ModelsProjects.findById(req.body.nameProject);
+    if (!resultProjectId) {
+      return res.status(404).json({
+        message: `There is no project with the id: ${req.body.nameProject}`,
+        data: undefined,
+        error: true,
+      });
+    }
     const result = await task.save();
     return res.status(200).json({
       message: 'The request was successful',
@@ -33,7 +42,10 @@ const editTask = async (req, res) => {
         error: true,
       });
     }
-    const result = await Models.findByIdAndUpdate(req.params.id, req.body);
+    const result = await Models.findByIdAndUpdate(req.params.id, req.body).populate({
+      path: 'nameProject',
+      select: 'name',
+    });
     if (!result) {
       return res.status(404).json({
         message: `The task with ID ${req.params.id} does not exist`,
@@ -57,7 +69,7 @@ const editTask = async (req, res) => {
 };
 
 const getTaskById = async (req, res) => {
-  const result = await Models.findById(req.params.id);
+  const result = await Models.findById(req.params.id).populate({ path: 'nameProject', select: 'name' });
   try {
     if (!result) {
       return res.status(404).json({
@@ -114,7 +126,7 @@ const deleteTask = async (req, res) => {
 
 const getAllTask = async (req, res) => {
   try {
-    const result = await Models.find(req.query || {});
+    const result = await Models.find(req.query || {}).populate({ path: 'nameProject', select: 'name' });
     if (!result.length) {
       return res.status(404).json({
         message: 'Tasks not found',

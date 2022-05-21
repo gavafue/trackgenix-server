@@ -2,8 +2,9 @@ import mongoose from 'mongoose';
 
 const tasksSchema = new mongoose.Schema({
   nameProject: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
     require: true,
+    ref: 'Project',
   },
   week: {
     type: Number,

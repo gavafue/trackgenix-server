@@ -14,7 +14,7 @@ const validateCreate = (req, res, next) => {
 
   if (validation.error) {
     return res.status(400).json({
-      message: `Error validating a field. Error: ${validation.error.details[0].message}`,
+      message: `Error validating a field. Error: ${validation.error.message}`,
       data: undefined,
       error: true,
     });
@@ -36,7 +36,7 @@ const validateEdit = (req, res, next) => {
 
   if (validation.error) {
     return res.status(400).json({
-      message: `Error validating a field. Error: ${validation.error.details[0].message}`,
+      message: `Error validating a field. Error: ${validation.error.message}`,
       data: undefined,
       error: true,
     });
