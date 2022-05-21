@@ -1,9 +1,9 @@
-import Models from '../models/Tasks';
+import ModelsTasks from '../models/Tasks';
 import ModelsProjects from '../models/Projects';
 
 const createTask = async (req, res) => {
   try {
-    const task = new Models({
+    const task = new ModelsTasks({
       nameProject: req.body.nameProject,
       week: req.body.week,
       day: req.body.day,
@@ -42,7 +42,7 @@ const editTask = async (req, res) => {
         error: true,
       });
     }
-    const result = await Models.findByIdAndUpdate(req.params.id, req.body).populate({
+    const result = await ModelsTasks.findByIdAndUpdate(req.params.id, req.body).populate({
       path: 'nameProject',
       select: 'name',
     });
@@ -53,7 +53,7 @@ const editTask = async (req, res) => {
         error: true,
       });
     }
-    const resultEdited = await Models.findById(req.params.id);
+    const resultEdited = await ModelsTasks.findById(req.params.id);
     return res.status(200).json({
       message: `Task with ID ${req.params.id} edited.`,
       data: resultEdited,
@@ -69,7 +69,7 @@ const editTask = async (req, res) => {
 };
 
 const getTaskById = async (req, res) => {
-  const result = await Models.findById(req.params.id).populate({ path: 'nameProject', select: 'name' });
+  const result = await ModelsTasks.findById(req.params.id).populate({ path: 'nameProject', select: 'name' });
   try {
     if (!result) {
       return res.status(404).json({
@@ -94,14 +94,7 @@ const getTaskById = async (req, res) => {
 
 const deleteTask = async (req, res) => {
   try {
-    if (!req.params.id) {
-      return res.status(404).json({
-        message: 'Missing ID parameter in request.',
-        data: undefined,
-        error: true,
-      });
-    }
-    const result = await Models.findByIdAndDelete(req.params.id);
+    const result = await ModelsTasks.findByIdAndDelete(req.params.id);
     if (!result) {
       return res.status(404).json({
         message: `The task with ID ${req.params.id} can't be found.`,
@@ -109,7 +102,7 @@ const deleteTask = async (req, res) => {
         error: true,
       });
     }
-    const resultDeleted = await Models.find(req.query || {});
+    const resultDeleted = await ModelsTasks.find(req.query || {});
     return res.status(200).json({
       message: `Task with ID ${req.params.id} deleted.`,
       data: resultDeleted,
@@ -126,10 +119,10 @@ const deleteTask = async (req, res) => {
 
 const getAllTask = async (req, res) => {
   try {
-    const result = await Models.find(req.query || {}).populate({ path: 'nameProject', select: 'name' });
+    const result = await ModelsTasks.find(req.query).populate({ path: 'nameProject', select: 'name' });
     if (!result.length) {
       return res.status(404).json({
-        message: 'Tasks not found',
+        message: 'Tasks was not found',
         data: undefined,
         error: true,
       });
