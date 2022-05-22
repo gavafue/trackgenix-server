@@ -4,7 +4,8 @@ const getAllProjects = async (req, res) => {
   try {
     let projects = 0;
     if (req.query) {
-      projects = await ProjectsModels.find(req.query);
+      projects = await ProjectsModels.find(req.query).populate('members.name', ['firstName',
+        'lastName', 'email']);
       if (projects.length === 0) {
         return res.status(404).json({
           message: 'Projects not found',
@@ -32,7 +33,8 @@ const getAllProjects = async (req, res) => {
 const getProjectById = async (req, res) => {
   try {
     if (req.params.id) {
-      const project = await ProjectsModels.findById(req.params.id);
+      const project = await ProjectsModels.findById(req.params.id).populate('members.name', ['firstName',
+        'lastName', 'email']);
       if (!project) {
         return res.status(404).json({
           msg: `The ${req.params.id} is not valid`,
@@ -96,7 +98,8 @@ const deleteProject = async (req, res) => {
         error: true,
       });
     }
-    const result = await ProjectsModels.findByIdAndDelete(req.params.id);
+    const result = await ProjectsModels.findByIdAndDelete(req.params.id).populate('members.name', ['firstName',
+      'lastName', 'email']);
     if (!result) {
       return res.status(404).json({
         msg: `The project with id ${req.params.id} can't be found.`,
@@ -132,7 +135,7 @@ const editProject = async (req, res) => {
       req.params.id,
       req.body,
       { new: true },
-    );
+    ).populate('members.name');
 
     if (!result) {
       return res.status(404).json({

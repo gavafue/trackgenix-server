@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 
 const validateCreation = (req, res, next) => {
   const membersJoiSch = Joi.object({
-    name: Joi.string().min(3).max(30).required(),
+    name: Joi.string().required(),
     role: Joi.string().uppercase().valid('DEV', 'QA', 'PM', 'TL').required(),
     rate: Joi.number().required(),
   });
