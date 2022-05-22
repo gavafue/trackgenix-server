@@ -123,7 +123,7 @@ const updateEmployee = async (req, res) => {
     );
     if (!succes) {
       return res.status(404).json({
-        message: `Employee account with ID "${req.params.id}" can't be found.`,
+        message: `Employee account with ID "${req.params.id}" can not be found.`,
         data: undefined,
         error: true,
       });
