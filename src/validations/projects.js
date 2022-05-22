@@ -22,7 +22,7 @@ const validateCreation = (req, res, next) => {
 
   if (validation.error) {
     return res.status(400).json({
-      msg: `Error validating a field. Error: ${validation.error.details[0].message}`,
+      message: `Error validating a field. Error: ${validation.error.details[0].message}`,
       data: undefined,
       error: true,
     });
@@ -35,7 +35,7 @@ const validateId = (req, res, next) => {
   const validation = mongoose.isValidObjectId(req.params.id);
   if (!validation) {
     return res.status(400).json({
-      msg: `The value ${req.param.id} is not a valid id.`,
+      message: `The value ${req.param.id} is not a valid id.`,
       data: undefined,
       error: true,
     });
@@ -64,7 +64,7 @@ const validateEdit = (req, res, next) => {
   const validationId = mongoose.isValidObjectId(req.params.id);
   if (!validationId) {
     return res.status(400).json({
-      msg: `The value ${req.param.id} is not a valid id.`,
+      message: `The value ${req.param.id} is not a valid id.`,
       data: undefined,
       error: true,
     });
@@ -74,7 +74,7 @@ const validateEdit = (req, res, next) => {
 
   if (validation.error) {
     return res.status(400).json({
-      msg: `Error validating a field. Error: ${validation.error.details[0].message}`,
+      message: `Error validating a field. Error: ${validation.error.details[0].message}`,
       data: undefined,
       error: true,
     });
