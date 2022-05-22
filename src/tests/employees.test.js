@@ -42,6 +42,35 @@ describe('POST /employees', () => {
     expect(response.body.message).toEqual('Employee created succesfully');
   });
 
+  test('Should show the data of the Employee created when is created', async () => {
+    const response = await request(app).post('/employees').send({
+      firstName: 'Tadeo',
+      lastName: 'Cherry',
+      birthDate: '06/04/1942',
+      country: 'Poland',
+      city: 'Zaklików',
+      zip: '37470',
+      phone: '4152354251',
+      email: 'acordeau5s@jigsy.com',
+      password: 'U0y8aLihaW',
+      photo: 'http://dummyimage.com/100x100.png/dddddd/000000',
+      active: true,
+    });
+    expect(response.body.data).toMatchObject({
+      firstName: 'Tadeo',
+      lastName: 'Cherry',
+      birthDate: '1942-06-04T03:00:00.000Z',
+      country: 'Poland',
+      city: 'Zaklików',
+      zip: 37470,
+      phone: 4152354251,
+      email: 'acordeau5s@jigsy.com',
+      password: 'U0y8aLihaW',
+      photo: 'http://dummyimage.com/100x100.png/dddddd/000000',
+      active: true,
+    });
+  });
+
   test('Should return false error when a employee is created succesfully', async () => {
     const response = await request(app).post('/employees').send({
       firstName: 'Tadeo',
