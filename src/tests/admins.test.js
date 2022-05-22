@@ -8,6 +8,8 @@ beforeAll(async () => {
 });
 
 let newAdmin;
+let adminID;
+let randomID;
 
 describe('GET /admins', () => {
   test('response should return a 200 status', async () => {
@@ -88,6 +90,8 @@ describe('POST /admins', () => {
   test('response should return a 201 status', async () => {
     const response = await request(app).post('/admins').send(newAdmin);
     expect(response.status).toBe(201);
+    // eslint-disable-next-line no-underscore-dangle
+    adminID = response.body.data._id;
   });
 
   test('response should return a 400 status', async () => {
@@ -126,5 +130,46 @@ describe('POST /admins', () => {
     newAdmin.email = 'newEmail-3@gmail.com';
     const response = await request(app).post('/admins').send(newAdmin);
     expect(response.body.data).toBeDefined();
+  });
+});
+
+describe('GET /admins/:id', () => {
+  describe('when the admin with id entered is found', () => {
+    test('response should return a 200 status', async () => {
+      const response = await request(app).get(`/admins/${adminID}`).send();
+      expect(response.status).toBe(200);
+    });
+    test('response should return false error', async () => {
+      const response = await request(app).get(`/admins/${adminID}`).send();
+      expect(response.body.error).toBeFalsy();
+    });
+    test('response should return a successful message', async () => {
+      const response = await request(app).get(`/admins/${adminID}`).send();
+      expect(response.body.message).toEqual('The request was successful');
+    });
+    test('response should return at least one admin', async () => {
+      const response = await request(app).get(`/admins/${adminID}`).send();
+      expect(response.body.data).toBeDefined();
+    });
+  });
+
+  describe('when the admin with id entered is not found', () => {
+    test('response should return a 404 status', async () => {
+      randomID = '62892220fc13ae316700009e';
+      const response = await request(app).get(`/admins/${randomID}`).send();
+      expect(response.status).toBe(404);
+    });
+    test('response should return true error', async () => {
+      const response = await request(app).get(`/admins/${randomID}`).send();
+      expect(response.body.error).toBeTruthy();
+    });
+    test('response should return a not found message', async () => {
+      const response = await request(app).get(`/admins/${randomID}`).send();
+      expect(response.body.message).toEqual(`The admin with id: ${randomID} was not found`);
+    });
+    test('response should return an undefined data', async () => {
+      const response = await request(app).get(`/admins/${randomID}`).send();
+      expect(response.body.data).toBeUndefined();
+    });
   });
 });
