@@ -6,7 +6,11 @@ const projectSchema = new Schema(
   {
     members: [
       {
-        name: { type: String, required: true },
+        name: {
+          type: mongoose.Schema.Types.ObjectId,
+          required: true,
+          ref: 'Employee',
+        },
         role: { type: String, required: true, enum: ['DEV', 'QA', 'PM', 'TL'] },
         rate: { type: Number, required: true },
       },
