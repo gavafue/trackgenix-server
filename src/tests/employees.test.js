@@ -58,4 +58,21 @@ describe('POST /employees', () => {
     });
     expect(response.body.error).not.toBeTruthy();
   });
+
+  test('Should return a 400 status', async () => {
+    const response = await request(app).post('/employees').send({
+      firstName: 'German',
+      lastName: 'Borges',
+      birthDate: '04/18/1990',
+      country: 'United Kingdom',
+      city: 'East End',
+      zip: '58794',
+      phone: '5876943215',
+      email: 'tcherry6@angelfire.com',
+      password: 'J5JQwOjK',
+      photo: 'http://dummyimage.com/100x100.png/dddddd/000000',
+      active: true,
+    });
+    expect(response.status).toBe(400);
+  });
 });
