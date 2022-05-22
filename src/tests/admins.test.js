@@ -140,7 +140,7 @@ describe('GET /admins/:id', () => {
       const response = await request(app).get(`/admins/${adminID}`).send();
       expect(response.body.message).toEqual('The request was successful');
     });
-    test('response should return at least one admin', async () => {
+    test('response should return one admin', async () => {
       const response = await request(app).get(`/admins/${adminID}`).send();
       expect(response.body.data).toBeDefined();
     });
@@ -162,6 +162,53 @@ describe('GET /admins/:id', () => {
     });
     test('response should return an undefined data', async () => {
       const response = await request(app).get(`/admins/${randomID}`).send();
+      expect(response.body.data).toBeUndefined();
+    });
+  });
+});
+
+describe('DELETE /admins/:id', () => {
+  describe('when the admin with id entered is found and deleted', () => {
+    test('response should return a 200 status', async () => {
+      const response = await request(app).delete(`/admins/${adminID}`).send();
+      expect(response.status).toBe(200);
+    });
+    test('response should return false error', async () => {
+      // eslint-disable-next-line no-underscore-dangle
+      adminID = adminsSeed[0]._id;
+      const response = await request(app).delete(`/admins/${adminID}`).send();
+      expect(response.body.error).toBeFalsy();
+    });
+    test('response should return a successful message', async () => {
+      // eslint-disable-next-line no-underscore-dangle
+      adminID = adminsSeed[1]._id;
+      const response = await request(app).delete(`/admins/${adminID}`).send();
+      expect(response.body.message).toEqual(`The admin with id: ${adminID} was deleted`);
+    });
+    test('response should return the admin deleted', async () => {
+      // eslint-disable-next-line no-underscore-dangle
+      adminID = adminsSeed[2]._id;
+      const response = await request(app).delete(`/admins/${adminID}`).send();
+      expect(response.body.data).toBeDefined();
+    });
+  });
+
+  describe('when the admin with id entered is not found', () => {
+    test('response should return a 404 status', async () => {
+      randomID = '62892220fc13ae316700009e';
+      const response = await request(app).delete(`/admins/${randomID}`).send();
+      expect(response.status).toBe(404);
+    });
+    test('response should return true error', async () => {
+      const response = await request(app).delete(`/admins/${randomID}`).send();
+      expect(response.body.error).toBeTruthy();
+    });
+    test('response should return a not found message', async () => {
+      const response = await request(app).delete(`/admins/${randomID}`).send();
+      expect(response.body.message).toEqual(`The admin with id: ${randomID} was not found`);
+    });
+    test('response should return an undefined data', async () => {
+      const response = await request(app).delete(`/admins/${randomID}`).send();
       expect(response.body.data).toBeUndefined();
     });
   });

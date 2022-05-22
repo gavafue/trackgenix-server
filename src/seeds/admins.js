@@ -1,8 +1,8 @@
+import mongoose from 'mongoose';
+
 export default [
   {
-    _id: {
-      id: '62894a7a5becd3f2c37cc899',
-    },
+    _id: mongoose.Types.ObjectId(),
     name: 'Libbie',
     lastName: 'Blanchet',
     email: 'lblanchet0@deliciousdays.com',
@@ -15,9 +15,7 @@ export default [
     dateBirth: '06/02/1934',
   },
   {
-    _id: {
-      id: '62894070fc13ae316700009e',
-    },
+    _id: mongoose.Types.ObjectId(),
     name: 'Latashia',
     lastName: 'Kless',
     email: 'lkless1@aol.com',
@@ -26,13 +24,11 @@ export default [
     phone: '3760265741',
     zip: '4021',
     city: 'Hairag',
-    active: false,
+    active: true,
     dateBirth: '09/08/1986',
   },
   {
-    _id: {
-      id: '62894070fc13ae316700009f',
-    },
+    _id: mongoose.Types.ObjectId(),
     name: 'Sharlene',
     lastName: 'Moncaster',
     email: 'smoncaster2@umich.edu',
@@ -45,9 +41,7 @@ export default [
     dateBirth: '04/05/1984',
   },
   {
-    _id: {
-      id: '62894070fc13ae31670000a0',
-    },
+    _id: mongoose.Types.ObjectId(),
     name: 'Bradly',
     lastName: 'Wemes',
     email: 'bwemes3@parallels.com',
@@ -60,9 +54,7 @@ export default [
     dateBirth: '03/27/1912',
   },
   {
-    _id: {
-      id: '62894070fc13ae31670000a1',
-    },
+    _id: mongoose.Types.ObjectId(),
     name: 'Dunn',
     lastName: 'Garvagh',
     email: 'dgarvagh4@moonfruit.com',
@@ -75,9 +67,7 @@ export default [
     dateBirth: '04/11/2005',
   },
   {
-    _id: {
-      id: '62894070fc13ae31670000a2',
-    },
+    _id: mongoose.Types.ObjectId(),
     name: 'Carey',
     lastName: 'Lade',
     email: 'clade5@hatena.ne.jp',
@@ -90,9 +80,7 @@ export default [
     dateBirth: '03/03/1927',
   },
   {
-    _id: {
-      id: '62894070fc13ae31670000a3',
-    },
+    _id: mongoose.Types.ObjectId(),
     name: 'Carolynn',
     lastName: 'Nickless',
     email: 'cnickless6@infoseek.co.jp',
@@ -105,9 +93,7 @@ export default [
     dateBirth: '08/17/1968',
   },
   {
-    _id: {
-      id: '62894070fc13ae31670000a4',
-    },
+    _id: mongoose.Types.ObjectId(),
     name: 'Eddie',
     lastName: 'Pllu',
     email: 'epllu7@omniture.com',
@@ -120,9 +106,7 @@ export default [
     dateBirth: '04/05/2002',
   },
   {
-    _id: {
-      id: '62894070fc13ae31670000a5',
-    },
+    _id: mongoose.Types.ObjectId(),
     name: 'Calhoun',
     lastName: 'Kuhndel',
     email: 'ckuhndel8@last.fm',
@@ -135,9 +119,7 @@ export default [
     dateBirth: '09/16/1969',
   },
   {
-    _id: {
-      id: '62894070fc13ae31670000a6',
-    },
+    _id: mongoose.Types.ObjectId(),
     name: 'Erma',
     lastName: 'Banfill',
     email: 'ebanfill9@sohu.com',
@@ -150,9 +132,7 @@ export default [
     dateBirth: '03/10/1978',
   },
   {
-    _id: {
-      id: '62894070fc13ae31670000a7',
-    },
+    _id: mongoose.Types.ObjectId(),
     name: 'Babara',
     lastName: 'Dahlberg',
     email: 'bdahlberga@ftc.gov',
@@ -165,9 +145,7 @@ export default [
     dateBirth: '06/04/1996',
   },
   {
-    _id: {
-      id: '62894070fc13ae31670000a8',
-    },
+    _id: mongoose.Types.ObjectId(),
     name: 'Nita',
     lastName: 'Kynge',
     email: 'nkyngeb@weibo.com',
@@ -180,9 +158,7 @@ export default [
     dateBirth: '01/17/1985',
   },
   {
-    _id: {
-      id: '62894070fc13ae31670000a9',
-    },
+    _id: mongoose.Types.ObjectId(),
     name: 'Neila',
     lastName: 'Kalkofer',
     email: 'nkalkoferc@bizjournals.com',
@@ -195,9 +171,7 @@ export default [
     dateBirth: '05/19/1986',
   },
   {
-    _id: {
-      id: '62894070fc13ae31670000aa',
-    },
+    _id: mongoose.Types.ObjectId(),
     name: 'Barbabra',
     lastName: 'Knaggs',
     email: 'bknaggsd@tamu.edu',
@@ -210,9 +184,7 @@ export default [
     dateBirth: '08/17/1938',
   },
   {
-    _id: {
-      id: '62894070fc13ae31670000ab',
-    },
+    _id: mongoose.Types.ObjectId(),
     name: 'Laraine',
     lastName: 'Covert',
     email: 'lcoverte@slate.com',
@@ -225,9 +197,7 @@ export default [
     dateBirth: '11/11/2013',
   },
   {
-    _id: {
-      id: '62894070fc13ae31670000ac',
-    },
+    _id: mongoose.Types.ObjectId(),
     name: 'Konstantin',
     lastName: 'Caldow',
     email: 'kcaldowf@wired.com',
@@ -240,9 +210,7 @@ export default [
     dateBirth: '10/24/1989',
   },
   {
-    _id: {
-      id: '62894070fc13ae31670000ad',
-    },
+    _id: mongoose.Types.ObjectId(),
     name: 'Jayme',
     lastName: 'Frascone',
     email: 'jfrasconeg@macromedia.com',
@@ -255,9 +223,7 @@ export default [
     dateBirth: '10/23/1917',
   },
   {
-    _id: {
-      id: '62894070fc13ae31670000ae',
-    },
+    _id: mongoose.Types.ObjectId(),
     name: 'Bud',
     lastName: 'Carriage',
     email: 'bcarriageh@woothemes.com',
@@ -270,9 +236,7 @@ export default [
     dateBirth: '03/28/1926',
   },
   {
-    _id: {
-      id: '62894070fc13ae31670000af',
-    },
+    _id: mongoose.Types.ObjectId(),
     name: 'Stefania',
     lastName: 'Tickner',
     email: 'stickneri@about.me',
@@ -285,9 +249,7 @@ export default [
     dateBirth: '12/03/1947',
   },
   {
-    _id: {
-      id: '62894070fc13ae31670000b0',
-    },
+    _id: mongoose.Types.ObjectId(),
     name: 'Pearla',
     lastName: 'Gurg',
     email: 'pgurgj@addtoany.com',
@@ -300,9 +262,7 @@ export default [
     dateBirth: '05/02/2008',
   },
   {
-    _id: {
-      id: '62894070fc13ae31670000b1',
-    },
+    _id: mongoose.Types.ObjectId(),
     name: 'Camel',
     lastName: 'Le Friec',
     email: 'clefrieck@bizjournals.com',
@@ -315,9 +275,7 @@ export default [
     dateBirth: '03/18/1988',
   },
   {
-    _id: {
-      id: '62894070fc13ae31670000b2',
-    },
+    _id: mongoose.Types.ObjectId(),
     name: 'Estrella',
     lastName: 'Caze',
     email: 'ecazel@msu.edu',
@@ -330,9 +288,7 @@ export default [
     dateBirth: '05/06/1929',
   },
   {
-    _id: {
-      id: '62894070fc13ae31670000b3',
-    },
+    _id: mongoose.Types.ObjectId(),
     name: 'Morty',
     lastName: 'Zarfati',
     email: 'mzarfatim@sciencedirect.com',
@@ -345,9 +301,7 @@ export default [
     dateBirth: '04/15/1927',
   },
   {
-    _id: {
-      id: '62894070fc13ae31670000b4',
-    },
+    _id: mongoose.Types.ObjectId(),
     name: 'Jobye',
     lastName: 'MacCathay',
     email: 'jmaccathayn@columbia.edu',
@@ -360,9 +314,7 @@ export default [
     dateBirth: '03/13/2003',
   },
   {
-    _id: {
-      id: '62894070fc13ae31670000b5',
-    },
+    _id: mongoose.Types.ObjectId(),
     name: 'Elvera',
     lastName: 'Bhar',
     email: 'ebharo@scientificamerican.com',
@@ -375,9 +327,7 @@ export default [
     dateBirth: '03/12/1912',
   },
   {
-    _id: {
-      id: '62894070fc13ae31670000b6',
-    },
+    _id: mongoose.Types.ObjectId(),
     name: 'Noby',
     lastName: 'Cammock',
     email: 'ncammockp@sbwire.com',
@@ -390,9 +340,7 @@ export default [
     dateBirth: '06/21/1992',
   },
   {
-    _id: {
-      id: '62894070fc13ae31670000b7',
-    },
+    _id: mongoose.Types.ObjectId(),
     name: 'Basilius',
     lastName: 'Avramovsky',
     email: 'bavramovskyq@vistaprint.com',
@@ -405,9 +353,7 @@ export default [
     dateBirth: '04/29/1900',
   },
   {
-    _id: {
-      id: '62894070fc13ae31670000b8',
-    },
+    _id: mongoose.Types.ObjectId(),
     name: 'Erny',
     lastName: 'Michelet',
     email: 'emicheletr@msn.com',
@@ -420,9 +366,7 @@ export default [
     dateBirth: '08/31/1961',
   },
   {
-    _id: {
-      id: '62894070fc13ae31670000b9',
-    },
+    _id: mongoose.Types.ObjectId(),
     name: 'Nikaniki',
     lastName: 'Terbruggen',
     email: 'nterbruggens@telegraph.co.uk',
@@ -435,9 +379,7 @@ export default [
     dateBirth: '04/17/1906',
   },
   {
-    _id: {
-      id: '62894070fc13ae31670000ba',
-    },
+    _id: mongoose.Types.ObjectId(),
     name: 'Hillary',
     lastName: 'Smithin',
     email: 'hsmithint@merriam-webster.com',
