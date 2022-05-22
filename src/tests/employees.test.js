@@ -110,3 +110,22 @@ describe('POST /employees', () => {
     expect(response.body.error).toBeTruthy();
   });
 });
+
+describe('PUT /employees', () => {
+  test('Should return a 200 status', async () => {
+    const response = await request(app).put('/employees/60d4a32f257e066e8495ce12').send({
+      firstName: 'Giuseppe',
+      lastName: 'Pinocho',
+      birthDate: '04/18/1990',
+      country: 'Italy',
+      city: 'Rome',
+      zip: '87935',
+      phone: '5876943215',
+      email: 'tcherry6@angelfire.com',
+      password: 'J5JQwOjK',
+      photo: 'http://dummyimage.com/100x100.png/dddddd/000000',
+      active: false,
+    });
+    expect(response.status).toBe(200);
+  });
+});
