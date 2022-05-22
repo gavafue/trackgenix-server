@@ -41,4 +41,21 @@ describe('POST /employees', () => {
     });
     expect(response.body.message).toEqual('Employee created succesfully');
   });
+
+  test('Should return false error when a employee is created succesfully', async () => {
+    const response = await request(app).post('/employees').send({
+      firstName: 'Tadeo',
+      lastName: 'Cherry',
+      birthDate: '06/04/1942',
+      country: 'Poland',
+      city: 'Zaklików',
+      zip: '37470',
+      phone: '4152354251',
+      email: 'elmawaso6@quienpregunta.com',
+      password: 'U0y8aLihaW',
+      photo: 'http://dummyimage.com/100x100.png/dddddd/000000',
+      active: false,
+    });
+    expect(response.body.error).not.toBeTruthy();
+  });
 });
