@@ -16,9 +16,9 @@ beforeAll(async () => {
 });
 
 let timeSheetId1;
-// let timeSheetId2;
-// let timeSheetId3;
-// let timeSheetId4;
+let timeSheetId2;
+let timeSheetId3;
+let timeSheetId4;
 
 describe('GET /timeSheets', () => {
   test('response should return a 200 status', async () => {
@@ -68,7 +68,7 @@ describe('POST /timeSheets', () => {
       workDescription: 'Created server',
     });
     expect(response.body.message).toBe('Time-Sheet created successfully');
-    // timeSheetId2 = response.body.data._id;
+    timeSheetId2 = response.body.data._id;
   });
 
   test('response should return the created time sheet', async () => {
@@ -82,7 +82,7 @@ describe('POST /timeSheets', () => {
       workDescription: 'Created server',
     });
     expect(response.body.data).toBeDefined();
-    // timeSheetId3 = response.body.data._id;
+    timeSheetId3 = response.body.data._id;
   });
 
   test('response should return false error', async () => {
@@ -96,7 +96,7 @@ describe('POST /timeSheets', () => {
       workDescription: 'Created server',
     });
     expect(response.error).toBe(false);
-    // timeSheetId4 = response.body.data._id;
+    timeSheetId4 = response.body.data._id;
   });
 });
 
@@ -118,6 +118,28 @@ describe('GET /timeSheets/:id', () => {
 
   test('response should return false error', async () => {
     const response = await request(app).get(`/timeSheets/${timeSheetId1}`).send();
+    expect(response.error).toBe(false);
+  });
+});
+
+describe('DELETE /timeSheets/:id', () => {
+  test('response should return a 200 status', async () => {
+    const response = await request(app).delete(`/timeSheets/${timeSheetId1}`).send();
+    expect(response.status).toBe(200);
+  });
+
+  test('response should return a successful message', async () => {
+    const response = await request(app).delete(`/timeSheets/${timeSheetId2}`).send();
+    expect(response.body.message).toBe(`The time sheet with ${timeSheetId2} has been successfully deleted`);
+  });
+
+  test('response should return the deleted time sheet', async () => {
+    const response = await request(app).delete(`/timeSheets/${timeSheetId3}`).send();
+    expect(response.body.data).toBeDefined();
+  });
+
+  test('response should return false error', async () => {
+    const response = await request(app).delete(`/timeSheets/${timeSheetId4}`).send();
     expect(response.error).toBe(false);
   });
 });
