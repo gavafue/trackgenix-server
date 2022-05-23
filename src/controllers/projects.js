@@ -43,7 +43,7 @@ const getProjectById = async (req, res) => {
         });
       }
       return res.status(200).json({
-        message: "Project found succesfull",
+        message: 'Project found succesfull',
         data: project,
         error: false,
       });
