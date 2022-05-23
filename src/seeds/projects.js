@@ -1,0 +1,43 @@
+import mongoose from 'mongoose';
+
+export default [
+  {
+    _id: mongoose.Types.ObjectId('62812abf640999a5ff4d0f46'),
+    name: 'Silvio',
+    lastName: 'Lodemann',
+    email: 'slodemann6@amazonaws.com',
+    password: 'M2xPnNQt',
+    gender: 'male',
+    phone: '8552149017.0',
+    dateBirth: '119415600000',
+    city: 'Andkhōy',
+    zip: '5655',
+    active: true,
+  },
+  {
+    _id: mongoose.Types.ObjectId('62812abf640999a5ff4d0f48'),
+    name: 'Silvio',
+    lastName: 'Lodemann',
+    email: 'slodemann6@amazonaws.com',
+    password: 'M2xPnNQt',
+    gender: 'male',
+    phone: '8552149017.0',
+    dateBirth: '119415600000',
+    city: 'Andkhōy',
+    zip: '5655',
+    active: true,
+  },
+  {
+    _id: mongoose.Types.ObjectId('62812abf640999a5ff4d0f47'),
+    name: 'Silvio',
+    lastName: 'Lodemann',
+    email: 'slodemann6@amazonaws.com',
+    password: 'M2xPnNQt',
+    gender: 'male',
+    phone: '8552149017.0',
+    dateBirth: '119415600000',
+    city: 'Andkhōy',
+    zip: '5655',
+    active: true,
+  },
+];

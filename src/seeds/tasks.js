@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 export default [
   {
     id: mongoose.Types.ObjectId('628ab5b2fc13ae2a48000064'),
-    nameProject: 'New project',
+    nameProject: '62812abf640999a5ff4d0f48',
     week: 1,
     day: 8,
     description: 'This is a new project for tests',
@@ -11,7 +11,7 @@ export default [
   },
   {
     id: mongoose.Types.ObjectId('628ab5b2fc13ae2a48000065'),
-    nameProject: 'Other new project',
+    nameProject: '62812abf640999a5ff4d0f47',
     week: 3,
     day: 9,
     description: 'This is a new project for tests',
@@ -19,7 +19,7 @@ export default [
   },
   {
     id: mongoose.Types.ObjectId('628ab5b2fc13ae2a48000066'),
-    nameProject: 'Ooooother new project',
+    nameProject: '62812abf640999a5ff4d0f46',
     week: 2,
     day: 7,
     description: 'This is a new project for tests',
@@ -27,7 +27,7 @@ export default [
   },
   {
     id: mongoose.Types.ObjectId('628ab5b2fc13ae2a48000067'),
-    nameProject: 'One more',
+    nameProject: '62812abf640999a5ff4d0f48',
     week: 4,
     day: 6,
     description: 'This is a new project for tests',
@@ -35,7 +35,7 @@ export default [
   },
   {
     id: mongoose.Types.ObjectId('628ab5b2fc13ae2a48000068'),
-    nameProject: 'Ooother project',
+    nameProject: '62812abf640999a5ff4d0f46',
     week: 2,
     day: 4,
     description: 'This is a new project for tests',
