@@ -1,7 +1,13 @@
+/* eslint-disable no-underscore-dangle */
 import request from 'supertest';
 import app from '../app';
 import EmployeeModel from '../models/Employees';
 import employeesSeed from '../seeds/employees';
+
+let employeesId1;
+let employeesId2;
+let employeesId3;
+let employeesId4;
 
 beforeAll(async () => {
   await EmployeeModel.collection.insertMany(employeesSeed);
@@ -23,6 +29,7 @@ describe('POST /employees', () => {
       active: true,
     });
     expect(response.status).toBe(201);
+    employeesId1 = response.body.data._id;
   });
 
   test('Should indicate the creation of an Employee', async () => {
@@ -40,6 +47,7 @@ describe('POST /employees', () => {
       active: false,
     });
     expect(response.body.message).toEqual('Employee created succesfully');
+    employeesId2 = response.body.data._id;
   });
 
   test('Should show the data of the Employee created when is created', async () => {
@@ -69,6 +77,7 @@ describe('POST /employees', () => {
       photo: 'http://dummyimage.com/100x100.png/dddddd/000000',
       active: true,
     });
+    employeesId3 = response.body.data._id;
   });
 
   test('Should return false error when a employee is created succesfully', async () => {
@@ -86,6 +95,7 @@ describe('POST /employees', () => {
       active: false,
     });
     expect(response.body.error).not.toBeTruthy();
+    employeesId4 = response.body.data._id;
   });
 
   test('Should return a 400 status when a account with that email already exists', async () => {
@@ -142,7 +152,7 @@ describe('POST /employees', () => {
 
 describe('PUT /employees', () => {
   test('Should return a 200 status when a employee is updated sucessfully', async () => {
-    const response = await request(app).put('/employees/60d4a32f257e066e8495ce12').send({
+    const response = await request(app).put(`/employees/${employeesId1}`).send({
       firstName: 'Giuseppe',
       lastName: 'Pinocho',
       birthDate: '04/18/1990',
@@ -159,35 +169,48 @@ describe('PUT /employees', () => {
   });
 
   test('Should indicate than an employee was updated', async () => {
-    const response = await request(app).put('/employees/60d4a32f257e066e8495ce12').send({
-      firstName: 'Giuseppe',
-      lastName: 'Pinocho',
-      birthDate: '04/18/1990',
-      country: 'Italy',
-      city: 'Rome',
-      zip: '87935',
-      phone: '5876943215',
-      email: 'tcherry6@angelfire.com',
-      password: 'J5JQwOjK',
-      photo: 'http://dummyimage.com/100x100.png/dddddd/000000',
+    const response = await request(app).put(`/employees/${employeesId2}`).send({
+      firstName: 'Romeo',
+      lastName: 'Garrica',
+      country: 'Chile',
+      city: 'Santiago',
+      zip: '21458',
+      email: 'los33@live.com.ar',
+      active: true,
+    });
+    expect(response.body.message).toEqual(`Employee account with ID "${employeesId2}" updated succesfully`);
+  });
+
+  test('Should show the update data of that Employee', async () => {
+    const response = await request(app).put(`/employees/${employeesId3}`).send({
+      firstName: 'Carlos',
+      lastName: 'Heisenberg',
+      country: 'Argentina',
+      city: 'Rosario',
+      zip: '2005',
+      email: 'tuturrito@hotmail.com',
       active: false,
     });
-    expect(response.body.message).toEqual('Employee account with ID "60d4a32f257e066e8495ce12" edited with next info:');
+    expect(response.body.data).toMatchObject({
+      firstName: 'Carlos',
+      lastName: 'Heisenberg',
+      country: 'Argentina',
+      city: 'Rosario',
+      zip: 2005,
+      email: 'tuturrito@hotmail.com',
+      active: false,
+    });
   });
 
   test('Should return a false error when a employee is updated sucessfully', async () => {
-    const response = await request(app).put('/employees/60d4a32f257e066e8495ce12').send({
-      firstName: 'Giuseppe',
-      lastName: 'Pinocho',
-      birthDate: '04/18/1990',
-      country: 'Italy',
-      city: 'Rome',
-      zip: '87935',
-      phone: '5876943215',
-      email: 'tcherry6@angelfire.com',
-      password: 'J5JQwOjK',
-      photo: 'http://dummyimage.com/100x100.png/dddddd/000000',
-      active: false,
+    const response = await request(app).put(`/employees/${employeesId4}`).send({
+      firstName: 'Daniel',
+      lastName: 'Monzon',
+      country: 'Colombia',
+      city: 'Medellin',
+      zip: '67587',
+      email: 'jmaskelyne5y@drupal.org',
+      active: true,
     });
     expect(response.body.error).not.toBeTruthy();
   });
@@ -196,14 +219,10 @@ describe('PUT /employees', () => {
     const response = await request(app).put('/employees/60d4a32c257e066e6495ce18').send({
       firstName: 'Giuseppe',
       lastName: 'Pinocho',
-      birthDate: '04/18/1990',
       country: 'Italy',
       city: 'Rome',
       zip: '87935',
-      phone: '5876943215',
       email: 'tcherry6@angelfire.com',
-      password: 'J5JQwOjK',
-      photo: 'http://dummyimage.com/100x100.png/dddddd/000000',
       active: false,
     });
     expect(response.status).toBe(404);
@@ -213,14 +232,10 @@ describe('PUT /employees', () => {
     const response = await request(app).put('/employees/60d4a32c257e066e6495ce18').send({
       firstName: 'Giuseppe',
       lastName: 'Pinocho',
-      birthDate: '04/18/1990',
       country: 'Italy',
       city: 'Rome',
       zip: '87935',
-      phone: '5876943215',
       email: 'tcherry6@angelfire.com',
-      password: 'J5JQwOjK',
-      photo: 'http://dummyimage.com/100x100.png/dddddd/000000',
       active: false,
     });
     expect(response.body.message).toEqual('Employee account with ID "60d4a32c257e066e6495ce18" can not be found.');
@@ -230,14 +245,10 @@ describe('PUT /employees', () => {
     const response = await request(app).put('/employees/60d4a32c257e066e6495ce18').send({
       firstName: 'Giuseppe',
       lastName: 'Pinocho',
-      birthDate: '04/18/1990',
       country: 'Italy',
       city: 'Rome',
       zip: '87935',
-      phone: '5876943215',
       email: 'tcherry6@angelfire.com',
-      password: 'J5JQwOjK',
-      photo: 'http://dummyimage.com/100x100.png/dddddd/000000',
       active: false,
     });
     expect(response.body.error).toBeTruthy();

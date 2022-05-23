@@ -129,7 +129,7 @@ const updateEmployee = async (req, res) => {
       });
     }
     return res.status(200).json({
-      message: `Employee account with ID "${req.params.id}" edited with next info:`,
+      message: `Employee account with ID "${req.params.id}" updated succesfully`,
       data: req.body,
       error: false,
     });
