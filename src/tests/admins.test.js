@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import request from 'supertest';
 import app from '../app';
 import Admins from '../models/Admins';
@@ -10,6 +11,7 @@ beforeAll(async () => {
 let newAdmin;
 let adminID;
 let randomID;
+let updateAdmin;
 
 describe('GET /admins', () => {
   describe('when the user wants the full list of admins', () => {
@@ -45,7 +47,9 @@ describe('GET /admins', () => {
     });
     test('response should return at least one admin', async () => {
       const response = await request(app).get('/admins?active=true').send();
-      expect(response.body.data.length).toBeGreaterThan(0);
+      response.body.data.forEach((admin) => {
+        expect(admin.active).toBe(true);
+      });
     });
   });
   describe('when the user wants a filtered list of admins and it is empty', () => {
@@ -86,7 +90,6 @@ describe('POST /admins', () => {
     test('response should return a 201 status', async () => {
       const response = await request(app).post('/admins').send(newAdmin);
       expect(response.status).toBe(201);
-      // eslint-disable-next-line no-underscore-dangle
       adminID = response.body.data._id;
     });
     test('response should return a false error', async () => {
@@ -167,27 +170,70 @@ describe('GET /admins/:id', () => {
   });
 });
 
+describe('PUT /admins/:id', () => {
+  updateAdmin = {
+    phone: '1111111111',
+    active: true,
+  };
+  describe('when the admin with id entered is found and updated', () => {
+    test('response should return a 200 status', async () => {
+      const response = await request(app).put(`/admins/${adminID}`).send(updateAdmin);
+      expect(response.status).toBe(200);
+    });
+    test('response should return false error', async () => {
+      const response = await request(app).put(`/admins/${adminID}`).send(updateAdmin);
+      expect(response.body.error).toBeFalsy();
+    });
+    test('response should return a successful message', async () => {
+      const response = await request(app).put(`/admins/${adminID}`).send(updateAdmin);
+      expect(response.body.message).toEqual(`The admin with id: ${adminID} was updated`);
+    });
+    test('response should return one admin', async () => {
+      const response = await request(app).put(`/admins/${adminID}`).send(updateAdmin);
+      expect(response.body.data).toMatchObject(updateAdmin);
+    });
+  });
+
+  describe('when the admin with id entered is not found', () => {
+    test('response should return a 404 status', async () => {
+      randomID = '62892220fc13ae316700009e';
+      const response = await request(app).put(`/admins/${randomID}`).send();
+      expect(response.status).toBe(404);
+    });
+    test('response should return true error', async () => {
+      const response = await request(app).put(`/admins/${randomID}`).send();
+      expect(response.body.error).toBeTruthy();
+    });
+    test('response should return a not found message', async () => {
+      const response = await request(app).put(`/admins/${randomID}`).send();
+      expect(response.body.message).toEqual(`The admin with id: ${randomID} was not found`);
+    });
+    test('response should return an undefined data', async () => {
+      const response = await request(app).put(`/admins/${randomID}`).send();
+      expect(response.body.data).toBeUndefined();
+    });
+  });
+});
+
 describe('DELETE /admins/:id', () => {
   describe('when the admin with id entered is found and deleted', () => {
     test('response should return a 200 status', async () => {
+      adminID = adminsSeed[0]._id;
       const response = await request(app).delete(`/admins/${adminID}`).send();
       expect(response.status).toBe(200);
     });
     test('response should return false error', async () => {
-      // eslint-disable-next-line no-underscore-dangle
-      adminID = adminsSeed[0]._id;
+      adminID = adminsSeed[1]._id;
       const response = await request(app).delete(`/admins/${adminID}`).send();
       expect(response.body.error).toBeFalsy();
     });
     test('response should return a successful message', async () => {
-      // eslint-disable-next-line no-underscore-dangle
-      adminID = adminsSeed[1]._id;
+      adminID = adminsSeed[2]._id;
       const response = await request(app).delete(`/admins/${adminID}`).send();
       expect(response.body.message).toEqual(`The admin with id: ${adminID} was deleted`);
     });
     test('response should return the admin deleted', async () => {
-      // eslint-disable-next-line no-underscore-dangle
-      adminID = adminsSeed[2]._id;
+      adminID = adminsSeed[3]._id;
       const response = await request(app).delete(`/admins/${adminID}`).send();
       expect(response.body.data).toBeDefined();
     });
