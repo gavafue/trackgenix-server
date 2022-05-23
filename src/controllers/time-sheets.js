@@ -1,4 +1,5 @@
 import TimeSheetModel from '../models/Time-sheets';
+import ProjectModel from '../models/Projects';
 import EmployeeModel from '../models/Employees';
 
 const createTimeSheet = async (req, res) => {
@@ -12,10 +13,11 @@ const createTimeSheet = async (req, res) => {
       hoursProject: req.body.hoursProject,
       workDescription: req.body.workDescription,
     });
+    const resultProject = await ProjectModel.findById(req.body.project);
     const resultEmployee = await EmployeeModel.findById(req.body.employee);
-    if (!resultEmployee) {
+    if (!resultProject || !resultEmployee) {
       return res.status(404).json({
-        message: `There is no employee with the id: ${req.body.employee}`,
+        message: `There is no project with id ${req.body.project} or employee with the id: ${req.body.employee}`,
         data: undefined,
         error: true,
       });

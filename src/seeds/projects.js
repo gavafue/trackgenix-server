@@ -1,0 +1,48 @@
+import mongoose from 'mongoose';
+
+export default [
+  {
+    _id: mongoose.Types.ObjectId('628bb53a8667fb09f64dd9fd'),
+    members: Array,
+    name: 'Trackgenix',
+    startDate: '2021-06-04T03:00:00.000+00:00',
+    endDate: '2022-06-05T03:00:00.000+00:00',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit',
+    active: true,
+    client: 'Diego Armando',
+    __v: 0,
+  },
+  {
+    _id: mongoose.Types.ObjectId('6287f93beee9276577d60c1f'),
+    members: Array,
+    name: 'Frank',
+    startDate: '2021-06-04T03:00:00.000+00:00',
+    endDate: '2022-06-09T03:00:00.000+00:00',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit',
+    active: true,
+    client: 'Simon Jackson',
+    __v: 0,
+  },
+  {
+    _id: mongoose.Types.ObjectId('628bb52bc5505d956f41a108'),
+    members: Array,
+    name: 'Ford',
+    startDate: '2021-05-06T03:00:00.000+00:00',
+    endDate: '2022-06-04T03:00:00.000+00:00',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit',
+    active: true,
+    client: 'Shell',
+    __v: 0,
+  },
+  {
+    _id: mongoose.Types.ObjectId('628bb536f2b799b689f80ef4'),
+    members: Array,
+    name: 'Chevrolet',
+    startDate: '2021-04-04T03:00:00.000+00:00',
+    endDate: '2022-06-04T03:00:00.000+00:00',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit',
+    active: true,
+    client: 'YPF',
+    __v: 0,
+  },
+];
