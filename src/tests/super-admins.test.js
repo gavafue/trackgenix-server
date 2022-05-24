@@ -30,44 +30,44 @@ describe('GET /super-admins', () => {
       expect(response.body.message).toBe('The request was made successfully');
     });
 
-    test('Response should return more than one super admin', async () => {
+    test('Response should return more than one super admin(filter by active super admins)', async () => {
       const response = await request(app).get('/super-admin?active=true').send();
       expect(response.body.data.length).toBeGreaterThan(1);
     });
 
-    test('Response should return more than one super admin', async () => {
+    test('Response should return more than one super admin(filter by inactive super admins)', async () => {
       const response = await request(app).get('/super-admin?active=false').send();
       expect(response.body.data.length).toBeGreaterThan(1);
     });
 
-    test('Response should return the requested employee', async () => {
+    test('Response should return the requested employee(filter by name)', async () => {
       const response = await request(app).get('/super-admin?firstName=Dio').send();
       expect(response.body.data[0].firstName).toBe('Dio');
     });
 
-    test('Response should return the requested employee', async () => {
+    test('Response should return the requested employee(filter by email)', async () => {
       const response = await request(app).get('/super-admin?email=dio.muda@konodda.com').send();
       expect(response.body.data[0].firstName).toBe('Dio');
     });
   });
 
   describe('Failure', () => {
-    test('Response should return a 404 status', async () => {
+    test('Response should return a 404 status(firstName not present in database)', async () => {
       const response = await request(app).get('/super-admin?firstName=Diavolo').send();
       expect(response.status).toBe(404);
     });
 
-    test('Response message should be the same as in controller', async () => {
+    test('Response message should be the same as in controller(firstName not present in database)', async () => {
       const response = await request(app).get('/super-admin?firstName=Diavolo').send();
       expect(response.body.message).toBe('Super admin was not found');
     });
 
-    test('Response should return undefined data', async () => {
+    test('Response should return undefined data(firstName not present in database)', async () => {
       const response = await request(app).get('/super-admin?firstName=Diavolo').send();
       expect(response.body.data).toBe(undefined);
     });
 
-    test('Response should return error true', async () => {
+    test('Response should return error true(firstName not present in database)', async () => {
       const response = await request(app).get('/super-admin?firstName=Diavolo').send();
       expect(response.body.error).toBe(true);
     });
@@ -120,7 +120,7 @@ describe('POST /super-admins', () => {
   });
 
   describe('Failure', () => {
-    test('Response should return error true', async () => {
+    test('Response should return error true(wrong role sent)', async () => {
       const response = await request(app).post('/super-admin').send({
         firstName: 'Risotto',
         lastName: 'Nero',
@@ -132,7 +132,7 @@ describe('POST /super-admins', () => {
       expect(response.body.error).toBe(true);
     });
 
-    test('Response should return a 200 status', async () => {
+    test('Response should return a 200 status(email already in database)', async () => {
       const response = await request(app).post('/super-admin').send({
         firstName: 'Risotto',
         lastName: 'Nero',
@@ -144,7 +144,7 @@ describe('POST /super-admins', () => {
       expect(response.status).toBe(200);
     });
 
-    test('Response should return error true', async () => {
+    test('Response should return error true(email already in database)', async () => {
       const response = await request(app).post('/super-admin').send({
         firstName: 'Risotto',
         lastName: 'Nero',
@@ -156,7 +156,7 @@ describe('POST /super-admins', () => {
       expect(response.body.error).toBe(true);
     });
 
-    test('Response should return undefined data', async () => {
+    test('Response should return undefined data(email already in database)', async () => {
       const response = await request(app).post('/super-admin').send({
         firstName: 'Risotto',
         lastName: 'Nero',
@@ -168,7 +168,7 @@ describe('POST /super-admins', () => {
       expect(response.body.data).toBe(undefined);
     });
 
-    test('Response message should be the same as in controller', async () => {
+    test('Response message should be the same as in controller(email already in database)', async () => {
       const response = await request(app).post('/super-admin').send({
         firstName: 'Risotto',
         lastName: 'Nero',
@@ -180,7 +180,7 @@ describe('POST /super-admins', () => {
       expect(response.body.message).toBe('Super admin with this email already exists');
     });
 
-    test('Response should return error true', async () => {
+    test('Response should return error true(no firstName field sent)', async () => {
       const response = await request(app).post('/super-admin').send({
         lastName: 'Nero',
         password: 'M3t4ll1c4',
@@ -191,7 +191,7 @@ describe('POST /super-admins', () => {
       expect(response.body.error).toBe(true);
     });
 
-    test('Response should return a 400 status', async () => {
+    test('Response should return a 400 status(no firstName field sent)', async () => {
       const response = await request(app).post('/super-admin').send({
         lastName: 'Nero',
         password: 'M3t4ll1c4',
@@ -202,7 +202,7 @@ describe('POST /super-admins', () => {
       expect(response.status).toBe(400);
     });
 
-    test('Response should return undefined data', async () => {
+    test('Response should return undefined data(no firstName field sent)', async () => {
       const response = await request(app).post('/super-admin').send({
         lastName: 'Nero',
         password: 'M3t4ll1c4',
@@ -213,7 +213,7 @@ describe('POST /super-admins', () => {
       expect(response.body.data).toBe(undefined);
     });
 
-    test('Response should return error true', async () => {
+    test('Response should return error true(no lastName field sent)', async () => {
       const response = await request(app).post('/super-admin').send({
         firstName: 'Risotto',
         password: 'M3t4ll1c4',
@@ -224,7 +224,7 @@ describe('POST /super-admins', () => {
       expect(response.body.error).toBe(true);
     });
 
-    test('Response should return error true', async () => {
+    test('Response should return error true(no password field sent)', async () => {
       const response = await request(app).post('/super-admin').send({
         firstName: 'Risotto',
         lastName: 'Nero',
@@ -235,7 +235,7 @@ describe('POST /super-admins', () => {
       expect(response.body.error).toBe(true);
     });
 
-    test('Response should return error true', async () => {
+    test('Response should return error true(no role field sent)', async () => {
       const response = await request(app).post('/super-admin').send({
         firstName: 'Risotto',
         lastName: 'Nero',
@@ -246,7 +246,7 @@ describe('POST /super-admins', () => {
       expect(response.body.error).toBe(true);
     });
 
-    test('Response should return error true', async () => {
+    test('Response should return error true(no email field sent)', async () => {
       const response = await request(app).post('/super-admin').send({
         firstName: 'Risotto',
         lastName: 'Nero',
@@ -257,7 +257,7 @@ describe('POST /super-admins', () => {
       expect(response.body.error).toBe(true);
     });
 
-    test('Response should return error true', async () => {
+    test('Response should return error true(no active field sent)', async () => {
       const response = await request(app).post('/super-admin').send({
         firstName: 'Risotto',
         lastName: 'Nero',
@@ -299,32 +299,32 @@ describe('GET /super-admins/:id', () => {
   });
 
   describe('Failure', () => {
-    test('Response should return a 404 status', async () => {
+    test('Response should return a 404 status(id not in database)', async () => {
       const response = await request(app).get('/super-admin/628c086f48e6f9779ae82eac').send();
       expect(response.status).toBe(404);
     });
 
-    test('Response should return error true', async () => {
+    test('Response should return error true(id not in database)', async () => {
       const response = await request(app).get('/super-admin/628c086f48e6f9779ae82eac').send();
       expect(response.body.error).toBe(true);
     });
 
-    test('Response should return undefined data', async () => {
+    test('Response should return undefined data(id not in database)', async () => {
       const response = await request(app).get('/super-admin/628c086f48e6f9779ae82eac').send();
       expect(response.body.data).toBe(undefined);
     });
 
-    test('Response message should be the same as in controller', async () => {
+    test('Response message should be the same as in controller(id not in database)', async () => {
       const response = await request(app).get('/super-admin/628c086f48e6f9779ae82eac').send();
       expect(response.body.message).toBe('The superadmin with id 628c086f48e6f9779ae82eac has not been found');
     });
 
-    test('Response should return a 400 status', async () => {
+    test('Response should return a 400 status(invalid id)', async () => {
       const response = await request(app).get('/super-admin/notid').send();
       expect(response.status).toBe(400);
     });
 
-    test('Response message should be the same as in validation', async () => {
+    test('Response message should be the same as in validation(invalid id)', async () => {
       const response = await request(app).get('/super-admin/notid').send();
       expect(response.body.message).toBe('The value notid is not a valid id.');
     });
@@ -387,17 +387,17 @@ describe('PUT /super-admins/:id', () => {
 
 describe('DELETE /super-admins/:id', () => {
   describe('Success', () => {
-    test('Response should return a 200 status(success)', async () => {
+    test('Response should return a 200 status', async () => {
       const response = await request(app).delete(`/super-admin/${superAdminId1}`).send();
       expect(response.status).toBe(200);
     });
 
-    test('Response should return error false(success)', async () => {
+    test('Response should return error false', async () => {
       const response = await request(app).delete(`/super-admin/${superAdminId2}`).send();
       expect(response.error).toBe(false);
     });
 
-    test('Response message should be the same as in controller(success)', async () => {
+    test('Response message should be the same as in controller', async () => {
       const response = await request(app).delete(`/super-admin/${superAdminId3}`).send();
       expect(response.body.message).toBe('The Super admin has been susccessfully deleted');
     });
@@ -424,7 +424,7 @@ describe('DELETE /super-admins/:id', () => {
       expect(response.body.data).toBe(undefined);
     });
 
-    test('Response should return error true', async () => {
+    test('Response should return error true(id not in database)', async () => {
       const response = await request(app).delete('/super-admin/628bcfc73699c2ac94a02a8c').send();
       expect(response.body.error).toBe(true);
     });
