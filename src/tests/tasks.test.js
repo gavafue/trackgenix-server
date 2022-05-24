@@ -48,6 +48,11 @@ describe('POST /tasks', () => {
     });
     expect(response.status).toBe(404);
   });
+
+  test('response should return false error', async () => {
+    const response = await request(app).get('/tasks').send();
+    expect(response.error).toBe(false);
+  });
 });
 
 describe('GET by ID /tasks/:id', () => {
@@ -62,6 +67,10 @@ describe('GET by ID /tasks/:id', () => {
   test('Return at least one task', async () => {
     const response = await request(app).get(`/tasks/${taskId}`).send();
     expect(response.body.data).toBeDefined();
+  });
+  test('response should return false error', async () => {
+    const response = await request(app).get('/tasks').send();
+    expect(response.error).toBe(false);
   });
 });
 
@@ -83,5 +92,9 @@ describe('PUT /tasks', () => {
   test('The added value is not a valid id.', async () => {
     const response = await request(app).put('/tasks/628bb52bc5505d956f41a109').send();
     expect(response.status).toBe(404);
+  });
+  test('response should return false error', async () => {
+    const response = await request(app).get('/tasks').send();
+    expect(response.error).toBe(false);
   });
 });
