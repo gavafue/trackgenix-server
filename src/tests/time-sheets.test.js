@@ -85,17 +85,17 @@ describe('GET /timeSheets', () => {
   });
 });
 
-const createTimeSheet = {
-  project: mongoose.Types.ObjectId('628bb53a8667fb09f64dd9fd'),
-  employee: mongoose.Types.ObjectId('6282ca7cf9ae0f95595c6a68'),
-  weekSprint: 7,
-  date: '2021-10-21T03:00:00.000Z',
-  hoursWorked: 5,
-  hoursProject: 15,
-  workDescription: 'Created server',
-};
-
 describe('POST /timeSheets', () => {
+  const createTimeSheet = {
+    project: mongoose.Types.ObjectId('628bb53a8667fb09f64dd9fd'),
+    employee: mongoose.Types.ObjectId('6282ca7cf9ae0f95595c6a68'),
+    weekSprint: 7,
+    date: '2021-10-21T03:00:00.000Z',
+    hoursWorked: 5,
+    hoursProject: 15,
+    workDescription: 'Created server',
+  };
+
   test('response should return a 201 status', async () => {
     const response = await request(app).post('/timeSheets').send(createTimeSheet);
     expect(response.status).toBe(201);
@@ -119,6 +119,40 @@ describe('POST /timeSheets', () => {
     expect(response.error).toBe(false);
     timeSheetId4 = response.body.data._id;
   });
+
+  // NOT FOUND
+  const NewTS = {
+    project: mongoose.Types.ObjectId('628bb53a8667fb09f64dd9fa'),
+    employee: mongoose.Types.ObjectId('6282ca7cf9ae0f95595c6a68'),
+    weekSprint: 7,
+    date: '2021-10-21T03:00:00.000Z',
+    hoursWorked: 5,
+    hoursProject: 15,
+    workDescription: 'Created server',
+  };
+
+  test('response should return a 404 status', async () => {
+    const response = await request(app).post('/timeSheets').send(NewTS);
+    expect(response.status).toBe(404);
+  });
+
+  test('response should return a not found message', async () => {
+    const response = await request(app).post('/timeSheets').send(NewTS);
+    expect(response.body.message)
+      .toBe(`There is no project with id ${NewTS.project} or employee with the id: ${NewTS.employee}`);
+  });
+
+  test('response should return undefined', async () => {
+    const response = await request(app).post('/timeSheets').send(NewTS);
+    expect(response.body.data).toBeUndefined();
+  });
+
+  test('response should return true error', async () => {
+    const response = await request(app).post('/timeSheets').send(NewTS);
+    expect(response.error).toBeTruthy();
+  });
+
+  // DOESN´T PASS THE VALIDATIONS
 });
 
 describe('GET /timeSheets/:id', () => {
