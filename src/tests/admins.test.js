@@ -12,7 +12,6 @@ let newAdmin;
 let adminID;
 let randomID;
 let invalidID;
-// let updateAdmin;
 
 describe('GET /admins', () => {
   describe('when the user wants the full list of admins', () => {
