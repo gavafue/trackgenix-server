@@ -7,20 +7,20 @@ const getAllEmployee = async (req, res) => {
       employeeAll = await EmployeeModel.find(req.query);
       if (employeeAll.length === 0) {
         return res.status(404).json({
-          msg: 'You must enter a correct query',
+          message: 'You must enter a correct query',
           data: undefined,
           error: true,
         });
       }
     } else { employeeAll = EmployeeModel.find({}); }
     return res.status(200).json({
-      msg: 'The list has been successfully retrieved',
+      message: 'The list has been successfully retrieved',
       data: employeeAll,
       error: false,
     });
   } catch (error) {
-    return res.status(400).json({
-      msg: 'Error',
+    return res.json({
+      message: 'Error',
       data: undefined,
       error: true,
     });
