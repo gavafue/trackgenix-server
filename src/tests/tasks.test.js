@@ -12,6 +12,8 @@ beforeAll(async () => {
   await Projects.collection.insertMany(projectsSeed);
 });
 
+let taskId;
+
 describe('POST /tasks', () => {
   test('Should create a task', async () => {
     const response = await request(app).post('/tasks/').send({
@@ -22,6 +24,7 @@ describe('POST /tasks', () => {
       hours: 77,
     });
     expect(response.status).toBe(201);
+    taskId = response.body.data._id;
   });
 
   test('Message should indicate the creation of the task', async () => {
@@ -44,5 +47,20 @@ describe('POST /tasks', () => {
       hours: 77,
     });
     expect(response.status).toBe(404);
+  });
+});
+
+describe('GET by ID /tasks/:id', () => {
+  test('A success message should be displayed', async () => {
+    const response = await request(app).get(`/tasks/${taskId}`).send();
+    expect(response.status).toBe(200);
+  });
+  test('It should show that the task with the id was not found', async () => {
+    const response = await request(app).get('/tasks/628bb52bc5505d956f41a109').send();
+    expect(response.status).toBe(404);
+  });
+  test('Return at least one task', async () => {
+    const response = await request(app).get(`/tasks/${taskId}`).send();
+    expect(response.body.data).toBeDefined();
   });
 });
