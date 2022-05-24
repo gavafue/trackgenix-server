@@ -11,7 +11,8 @@ beforeAll(async () => {
 let newAdmin;
 let adminID;
 let randomID;
-let updateAdmin;
+let invalidID;
+// let updateAdmin;
 
 describe('GET /admins', () => {
   describe('when the user wants the full list of admins', () => {
@@ -38,7 +39,7 @@ describe('GET /admins', () => {
       expect(response.status).toBe(200);
     });
     test('response should return false error', async () => {
-      const response = await request(app).get('/admins').send();
+      const response = await request(app).get('/admins?active=true').send();
       expect(response.body.error).toBeFalsy();
     });
     test('response should return a successful message', async () => {
@@ -130,6 +131,26 @@ describe('POST /admins', () => {
 });
 
 describe('GET /admins/:id', () => {
+  describe('when the id entered is not valid', () => {
+    test('response should return a 400 status', async () => {
+      invalidID = '62892220fc13ae316700009';
+      const response = await request(app).get(`/admins/${invalidID}`).send();
+      expect(response.status).toBe(400);
+    });
+    test('response should return true error', async () => {
+      const response = await request(app).get(`/admins/${invalidID}`).send();
+      expect(response.body.error).toBeTruthy();
+    });
+    test('response should return a not valid message', async () => {
+      const response = await request(app).get(`/admins/${invalidID}`).send();
+      expect(response.body.message).toEqual(`The id: ${invalidID} is not valid`);
+    });
+    test('response should return an undefined data', async () => {
+      const response = await request(app).get(`/admins/${invalidID}`).send();
+      expect(response.body.data).toBeUndefined();
+    });
+  });
+
   describe('when the admin with id entered is found', () => {
     test('response should return a 200 status', async () => {
       const response = await request(app).get(`/admins/${adminID}`).send();
@@ -171,10 +192,28 @@ describe('GET /admins/:id', () => {
 });
 
 describe('PUT /admins/:id', () => {
-  updateAdmin = {
+  const updateAdmin = {
     phone: '1111111111',
     active: true,
   };
+  describe('when the id entered is not valid', () => {
+    test('response should return a 400 status', async () => {
+      const response = await request(app).put(`/admins/${invalidID}`).send(updateAdmin);
+      expect(response.status).toBe(400);
+    });
+    test('response should return true error', async () => {
+      const response = await request(app).put(`/admins/${invalidID}`).send(updateAdmin);
+      expect(response.body.error).toBeTruthy();
+    });
+    test('response should return a not valid message', async () => {
+      const response = await request(app).put(`/admins/${invalidID}`).send(updateAdmin);
+      expect(response.body.message).toEqual(`The id: ${invalidID} is not valid`);
+    });
+    test('response should return an undefined data', async () => {
+      const response = await request(app).put(`/admins/${invalidID}`).send(updateAdmin);
+      expect(response.body.data).toBeUndefined();
+    });
+  });
   describe('when the admin with id entered is found and updated', () => {
     test('response should return a 200 status', async () => {
       const response = await request(app).put(`/admins/${adminID}`).send(updateAdmin);
@@ -197,25 +236,43 @@ describe('PUT /admins/:id', () => {
   describe('when the admin with id entered is not found', () => {
     test('response should return a 404 status', async () => {
       randomID = '62892220fc13ae316700009e';
-      const response = await request(app).put(`/admins/${randomID}`).send();
+      const response = await request(app).put(`/admins/${randomID}`).send(updateAdmin);
       expect(response.status).toBe(404);
     });
     test('response should return true error', async () => {
-      const response = await request(app).put(`/admins/${randomID}`).send();
+      const response = await request(app).put(`/admins/${randomID}`).send(updateAdmin);
       expect(response.body.error).toBeTruthy();
     });
     test('response should return a not found message', async () => {
-      const response = await request(app).put(`/admins/${randomID}`).send();
+      const response = await request(app).put(`/admins/${randomID}`).send(updateAdmin);
       expect(response.body.message).toEqual(`The admin with id: ${randomID} was not found`);
     });
     test('response should return an undefined data', async () => {
-      const response = await request(app).put(`/admins/${randomID}`).send();
+      const response = await request(app).put(`/admins/${randomID}`).send(updateAdmin);
       expect(response.body.data).toBeUndefined();
     });
   });
 });
 
 describe('DELETE /admins/:id', () => {
+  describe('when the id entered is not valid', () => {
+    test('response should return a 400 status', async () => {
+      const response = await request(app).delete(`/admins/${invalidID}`).send();
+      expect(response.status).toBe(400);
+    });
+    test('response should return true error', async () => {
+      const response = await request(app).delete(`/admins/${invalidID}`).send();
+      expect(response.body.error).toBeTruthy();
+    });
+    test('response should return a not valid message', async () => {
+      const response = await request(app).delete(`/admins/${invalidID}`).send();
+      expect(response.body.message).toEqual(`The id: ${invalidID} is not valid`);
+    });
+    test('response should return an undefined data', async () => {
+      const response = await request(app).delete(`/admins/${invalidID}`).send();
+      expect(response.body.data).toBeUndefined();
+    });
+  });
   describe('when the admin with id entered is found and deleted', () => {
     test('response should return a 200 status', async () => {
       adminID = adminsSeed[0]._id;
