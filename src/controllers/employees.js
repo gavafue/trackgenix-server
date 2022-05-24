@@ -61,7 +61,7 @@ const deleteEmployee = async (req, res) => {
         error: false,
       });
     }
-    return res.status(404).json({
+    return res.status(400).json({
       message: `This employee with ID ${req.params.id} was not deleted`,
       data: undefined,
       error: true,
