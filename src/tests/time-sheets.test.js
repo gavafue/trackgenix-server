@@ -346,23 +346,69 @@ describe('PUT /timeSheets/:id', () => {
 });
 
 describe('DELETE /timeSheets/:id', () => {
-  test('response should return a 200 status', async () => {
-    const response = await request(app).delete(`/timeSheets/${timeSheetId1}`).send();
-    expect(response.status).toBe(200);
+  describe('time sheet is deleted successfully with DELETE', () => {
+    test('response should return a 200 status', async () => {
+      const response = await request(app).delete(`/timeSheets/${timeSheetId1}`).send();
+      expect(response.status).toBe(200);
+    });
+
+    test('response should return a successful message', async () => {
+      const response = await request(app).delete(`/timeSheets/${timeSheetId2}`).send();
+      expect(response.body.message).toBe(`The time sheet with ${timeSheetId2} has been successfully deleted`);
+    });
+
+    test('response should return the deleted time sheet', async () => {
+      const response = await request(app).delete(`/timeSheets/${timeSheetId3}`).send();
+      expect(response.body.data).toBeDefined();
+    });
+
+    test('response should return false error', async () => {
+      const response = await request(app).delete(`/timeSheets/${timeSheetId4}`).send();
+      expect(response.error).toBe(false);
+    });
   });
 
-  test('response should return a successful message', async () => {
-    const response = await request(app).delete(`/timeSheets/${timeSheetId2}`).send();
-    expect(response.body.message).toBe(`The time sheet with ${timeSheetId2} has been successfully deleted`);
+  describe('time sheet is not found with DELETE', () => {
+    test('response should return a 404 status', async () => {
+      const response = await request(app).delete('/timeSheets/62897cab226713c9db1bfc50').send();
+      expect(response.status).toBe(404);
+    });
+
+    test('response should return a not found message', async () => {
+      const response = await request(app).delete('/timeSheets/62897cab226713c9db1bfc50').send();
+      expect(response.body.message).toBe('The time sheet with id 62897cab226713c9db1bfc50 has not been found');
+    });
+
+    test('response should return undefined', async () => {
+      const response = await request(app).delete('/timeSheets/62897cab226713c9db1bfc50').send();
+      expect(response.body.data).toBeUndefined();
+    });
+
+    test('response should return true error', async () => {
+      const response = await request(app).delete('/timeSheets/62897cab226713c9db1bfc50').send();
+      expect(response.error).toBeTruthy();
+    });
   });
 
-  test('response should return the deleted time sheet', async () => {
-    const response = await request(app).delete(`/timeSheets/${timeSheetId3}`).send();
-    expect(response.body.data).toBeDefined();
-  });
+  describe('id is not valid with DELETE', () => {
+    test('response should return a 400 status', async () => {
+      const response = await request(app).delete('/timeSheets/62897cab226713c9db1bfc').send();
+      expect(response.status).toBe(400);
+    });
 
-  test('response should return false error', async () => {
-    const response = await request(app).delete(`/timeSheets/${timeSheetId4}`).send();
-    expect(response.error).toBe(false);
+    // test('response should return an error message', async () => {
+    //   const response = await request(app).delete('/timeSheets/62897cab226713c9db1bfc').send();
+    //   expect(response.body.message).toBe(`There was an error: ${error}`);
+    // });
+
+    test('response should return undefined', async () => {
+      const response = await request(app).delete('/timeSheets/62897cab226713c9db1bfc').send();
+      expect(response.body.data).toBeUndefined();
+    });
+
+    test('response should return true error', async () => {
+      const response = await request(app).delete('/timeSheets/62897cab226713c9db1bfc').send();
+      expect(response.error).toBeTruthy();
+    });
   });
 });
