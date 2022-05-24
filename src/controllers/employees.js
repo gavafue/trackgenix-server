@@ -32,19 +32,19 @@ const getEmployeeById = async (req, res) => {
     if (req.params.id) {
       const employeesId = await EmployeeModel.findById(req.params.id);
       return res.status(200).json({
-        msg: `This employee with ID ${req.params.id} has been found`,
+        message: `This employee with ID ${req.params.id} has been found`,
         data: employeesId,
         error: false,
       });
     }
     return res.status(404).json({
-      msg: `This time Sheet with ID ${req.params.id} does not exist`,
+      message: `This time Sheet with ID ${req.params.id} does not exist`,
       data: undefined,
       error: true,
     });
   } catch (error) {
     return res.json({
-      msg: 'Error',
+      message: 'Error',
       data: undefined,
       error: true,
     });
@@ -56,19 +56,19 @@ const deleteEmployee = async (req, res) => {
     if (req.params.id) {
       const employeeDelete = await EmployeeModel.findByIdAndDelete(req.params.id);
       return res.status(200).json({
-        msg: `This employee with ID ${req.params.id} has been eliminated`,
+        message: `This employee with ID ${req.params.id} has been eliminated`,
         data: employeeDelete,
         error: false,
       });
     }
     return res.status(404).json({
-      msg: `This employee with ID ${req.params.id} was not deleted`,
+      message: `This employee with ID ${req.params.id} was not deleted`,
       data: undefined,
       error: true,
     });
   } catch (error) {
     return res.json({
-      msg: 'Error',
+      message: 'Error',
       data: undefined,
       error: true,
     });
