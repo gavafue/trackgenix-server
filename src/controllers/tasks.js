@@ -19,13 +19,13 @@ const createTask = async (req, res) => {
       });
     }
     const result = await task.save();
-    return res.status(200).json({
-      message: 'The request was successful',
+    return res.status(201).json({
+      message: 'The task has been created successfully',
       data: result,
       error: false,
     });
   } catch (error) {
-    return res.status(500).json({
+    return res.json({
       message: `There was an error: ${error}`,
       data: undefined,
       error: true,
@@ -60,7 +60,7 @@ const editTask = async (req, res) => {
       error: true,
     });
   } catch (error) {
-    return res.status(500).json({
+    return res.json({
       message: `There was an error: ${error}`,
       data: undefined,
       error: true,
@@ -84,7 +84,7 @@ const getTaskById = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    return res.status(500).json({
+    return res.json({
       message: `There was an error: ${error}`,
       data: undefined,
       error: true,
@@ -109,7 +109,7 @@ const deleteTask = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    return res.status(500).json({
+    return res.json({
       message: `There was an error: ${error}`,
       data: undefined,
       error: true,
@@ -133,7 +133,7 @@ const getAllTask = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    return res.status(500).json({
+    return res.json({
       message: `There was an error: ${error}`,
       data: undefined,
       error: true,
