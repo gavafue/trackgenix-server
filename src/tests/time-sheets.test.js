@@ -88,9 +88,9 @@ describe('GET /timeSheets', () => {
   });
 
   describe('filtered time sheets are not valid with GET', () => {
-    test('response should return a 400 status', async () => {
+    test('response should return a 500 status', async () => {
       const response = await request(app).get('/timeSheets/?hoursWorked=cinco').send();
-      expect(response.status).toBe(400);
+      expect(response.status).toBe(500);
     });
 
     test('response should return undefined', async () => {
@@ -327,11 +327,11 @@ describe('PUT /timeSheets/:id', () => {
   });
 
   describe('id is not valid with PUT', () => {
-    test('response should return a 400 status', async () => {
+    test('response should return a 500 status', async () => {
       const response = await request(app).put('/timeSheets/62897cab226713c9db1bfc').send({
         workDescription: 'Created server correction',
       });
-      expect(response.status).toBe(400);
+      expect(response.status).toBe(500);
     });
 
     test('response should return undefined', async () => {
