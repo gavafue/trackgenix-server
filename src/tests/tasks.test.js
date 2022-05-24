@@ -64,3 +64,25 @@ describe('GET by ID /tasks/:id', () => {
     expect(response.body.data).toBeDefined();
   });
 });
+
+describe('PUT /tasks', () => {
+  test('This should be status 200', async () => {
+    const response = await request(app).put(`/tasks/${taskId}`).send({
+      nameProject: mongoose.Types.ObjectId(),
+      week: 3,
+      day: 6,
+      description: 'edited edited edited',
+      hours: 11,
+    });
+    expect(response.status).toBe(200);
+  });
+  test('The added value is not a valid id.', async () => {
+    const response = await request(app).put('/tasks/').send();
+    console.log(response.body);
+    expect(response.status).toBe(404);
+  });
+  test('The added value is not a valid id.', async () => {
+    const response = await request(app).put('/tasks/628bb52bc5505d956f41a109').send();
+    expect(response.status).toBe(404);
+  });
+});
