@@ -72,7 +72,6 @@ describe('GetAll - Employees', () => {
 });
 
 const idEmployee = '6282ca7cf9ae0f95595c6a68';
-/* const idEmployeeIncorrect = '6282ca75c6a68'; */
 describe('GetById - Employees', () => {
   test('This should be status 200', async () => {
     const response = await request(app).get('/employees/6282ca7cf9ae0f95595c6a68').send();
@@ -90,11 +89,17 @@ describe('GetById - Employees', () => {
     const response = await request(app).get('/employees/6282ca7cf9ae0f95595c6a68').send();
     expect(response.body.data).toBeDefined();
   });
-  // FALTA TESTEAR 404/MJE/DATA
+  test('Returns 400 when by id incorrect', async () => {
+    const response = await request(app).get('/employees/6282ca75c6a68').send();
+    expect(response.status).toBe(400);
+  });
+  test('Return undefined with data in error', async () => {
+    const response = await request(app).get('/employees/6282ca75c6a68').send();
+    expect(response.body.data).toBeUndefined();
+  });
 });
 
 const idEmployeeDelete = '6283a60fe570d6df244f64aa';
-/* const idEmployeeIncorrect = '6282ca75c6a68'; */
 describe('Delete - Employees', () => {
   test('This should be status 200', async () => {
     const response = await request(app).delete('/employees/6283a60fe570d6df244f64aa').send();
@@ -109,8 +114,15 @@ describe('Delete - Employees', () => {
     expect(response.error).toBe(false);
   });
   test('Return content with data', async () => {
-    const response = await request(app).get('/employees/6283a60fe570d6df244f64aa').send();
+    const response = await request(app).delete('/employees/6283a60fe570d6df244f64aa').send();
     expect(response.body.data).toBeDefined();
   });
-  // FALTA TESTEAR 404/MJE/DATA
+  test('Returns 400 when employee  was not deleted', async () => {
+    const response = await request(app).delete('/employees/6282ca75c6a68').send();
+    expect(response.status).toBe(400);
+  });
+  test('Return undefined with data in error', async () => {
+    const response = await request(app).delete('/employees/6282ca75c6a68').send();
+    expect(response.body.data).toBeUndefined();
+  });
 });
