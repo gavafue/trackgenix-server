@@ -62,8 +62,8 @@ const validateCreateEmp = (req, res, next) => {
       .min(1000)
       .max(99999)
       .messages({
-        'string.min': 'Invalid phone, it must not contain less than 4 numbers',
-        'string.max': 'Invalid phone, it must not contain more than 5 numbers',
+        'string.min': 'Invalid zip, it must not contain less than 4 numbers',
+        'string.max': 'Invalid zip, it must not contain more than 5 numbers',
       })
       .required(),
     phone: Joi.string()
@@ -144,8 +144,8 @@ const validateUpdateEmp = (req, res, next) => {
       .min(1000)
       .max(99999)
       .messages({
-        'string.min': 'Invalid phone, it must not contain less than 4 numbers',
-        'string.max': 'Invalid phone, it must not contain more than 5 numbers',
+        'string.min': 'Invalid zip, it must not contain less than 4 numbers',
+        'string.max': 'Invalid zip, it must not contain more than 5 numbers',
       }),
     phone: Joi.string()
       .pattern(/^[0-9]{10}$/)
