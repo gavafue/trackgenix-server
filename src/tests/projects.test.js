@@ -137,7 +137,7 @@ describe('PUT /projects', () => {
       });
     expect(response.status).toBe(200);
   });
-  test('Edit the project', async () => {
+  test('Edit the project get error by controller', async () => {
     const response = await request(app)
       .put(`/projects/${projectsId}`)
       .send({
