@@ -122,6 +122,60 @@ describe('GET /timeSheets/:id', () => {
   });
 });
 
+describe('PUT /timeSheets/:id', () => {
+  test('response should return a 200 status', async () => {
+    const response = await request(app).put(`/timeSheets/${timeSheetId1}`).send({
+      //   project: mongoose.Types.ObjectId('628bb53a8667fb09f64dd9fd'),
+      //   employee: mongoose.Types.ObjectId('6282ca7cf9ae0f95595c6a68'),
+      //   weekSprint: 7,
+      //   date: '2021-10-21T03:00:00.000Z',
+      //   hoursWorked: 5,
+      //   hoursProject: 15,
+      workDescription: 'Created server correction',
+    });
+    expect(response.status).toBe(200);
+  });
+
+  test('response should return a successful message', async () => {
+    const response = await request(app).put(`/timeSheets/${timeSheetId2}`).send({
+      //   project: mongoose.Types.ObjectId('628bb53a8667fb09f64dd9fd'),
+      //   employee: mongoose.Types.ObjectId('6282ca7cf9ae0f95595c6a68'),
+      //   weekSprint: 7,
+      //   date: '2021-10-21T03:00:00.000Z',
+      //   hoursWorked: 5,
+      //   hoursProject: 15,
+      workDescription: 'Created server correction',
+    });
+    expect(response.body.message).toBe('The time-sheet updated successfully');
+  });
+
+  test('response should return the updated time sheet', async () => {
+    const response = await request(app).put(`/timeSheets/${timeSheetId3}`).send({
+      //   project: mongoose.Types.ObjectId('628bb53a8667fb09f64dd9fd'),
+      //   employee: mongoose.Types.ObjectId('6282ca7cf9ae0f95595c6a68'),
+      //   weekSprint: 7,
+      //   date: '2021-10-21T03:00:00.000Z',
+      //   hoursWorked: 5,
+      //   hoursProject: 15,
+      workDescription: 'Created server correction',
+    });
+    expect(response.body.data).toBeDefined();
+  });
+
+  test('response should return false error', async () => {
+    const response = await request(app).put(`/timeSheets/${timeSheetId4}`).send({
+      //   project: mongoose.Types.ObjectId('628bb53a8667fb09f64dd9fd'),
+      //   employee: mongoose.Types.ObjectId('6282ca7cf9ae0f95595c6a68'),
+      //   weekSprint: 7,
+      //   date: '2021-10-21T03:00:00.000Z',
+      //   hoursWorked: 5,
+      //   hoursProject: 15,
+      workDescription: 'Created server correction',
+    });
+    expect(response.error).toBe(false);
+  });
+});
+
 describe('DELETE /timeSheets/:id', () => {
   test('response should return a 200 status', async () => {
     const response = await request(app).delete(`/timeSheets/${timeSheetId1}`).send();
