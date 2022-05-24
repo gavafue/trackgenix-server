@@ -78,7 +78,6 @@ describe('PUT /tasks', () => {
   });
   test('The added value is not a valid id.', async () => {
     const response = await request(app).put('/tasks/').send();
-    console.log(response.body);
     expect(response.status).toBe(404);
   });
   test('The added value is not a valid id.', async () => {
