@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import request from 'supertest';
 import app from '../app';
 import Tasks from '../models/Tasks';
@@ -9,10 +10,7 @@ beforeAll(async () => {
   await Tasks.collection.insertMany(projectsSeed);
 });
 
-let taskId1;
-let taskId2;
-let taskId3;
-let taskId4;
+let taskId;
 
 describe('GET /tasks', () => {
   test('response should return a 200 status', async () => {
@@ -20,9 +18,14 @@ describe('GET /tasks', () => {
     expect(response.status).toBe(200);
   });
 
-  test('response should return false error', async () => {
+  test('response should not return a 404 status', async () => {
     const response = await request(app).get('/tasks').send();
-    expect(response.error).toBe(false);
+    expect(response.status).not.toBe(404);
+  });
+
+  test('response should not return error', async () => {
+    const response = await request(app).get('/tasks').send();
+    expect(response.error).toBeFalsy();
   });
 
   test('response should return message for succes', async () => {
@@ -30,38 +33,90 @@ describe('GET /tasks', () => {
     expect(response.body.message).toEqual('Tasks lists fetched successfully');
   });
 
-  test('response should return message for succes', async () => {
+  test('response should not return message for error', async () => {
     const response = await request(app).get('/tasks').send();
     expect(response.body.message).not.toEqual('Tasks was not found');
+  });
+
+  test('response should not return data undefined', async () => {
+    const response = await request(app).get('/tasks').send();
+    expect(response.body.data).toBeDefined();
   });
 });
 
 describe('DELETE /task:id', () => {
-  test('response should return a 200 status', async () => {
-    // eslint-disable-next-line no-underscore-dangle
-    taskId1 = tasksSeed[0]._id;
-    const response = await request(app).delete(`/tasks/${taskId1}`).send();
-    expect(response.status).toBe(200);
+  describe('in case an id is valid', () => {
+    test('response should return a 200 status', async () => {
+      taskId = tasksSeed[0]._id;
+      const response = await request(app).delete(`/tasks/${taskId}`).send();
+      expect(response.status).toBe(200);
+    });
+
+    test('response should not return error', async () => {
+      taskId = tasksSeed[1]._id;
+      const response = await request(app).delete(`/tasks/${taskId}`).send();
+      expect(response.error).toBeFalsy();
+    });
+
+    test('response should return message for succes', async () => {
+      taskId = tasksSeed[2]._id;
+      const response = await request(app).delete(`/tasks/${taskId}`).send();
+      expect(response.body.message).toEqual(`Task with ID ${taskId} deleted.`);
+    });
+
+    test('response should not return message for error', async () => {
+      taskId = tasksSeed[3]._id;
+      const response = await request(app).delete(`/tasks/${taskId}`).send();
+      expect(response.body.message).not.toEqual(`The task with ID ${taskId} can't be found.`);
+    });
+
+    test('response should not return a 404 status', async () => {
+      taskId = tasksSeed[4]._id;
+      const response = await request(app).delete(`/tasks/${taskId}`).send();
+      expect(response.status).not.toBe(404);
+    });
+
+    test('response should not return data undefinded', async () => {
+      taskId = tasksSeed[5]._id;
+      const response = await request(app).delete(`/tasks/${taskId}`).send();
+      expect(response.body.data).toBeDefined();
+    });
   });
 
-  test('response should return false error', async () => {
-    // eslint-disable-next-line no-underscore-dangle
-    taskId2 = tasksSeed[1]._id;
-    const response = await request(app).delete(`/tasks/${taskId2}`).send();
-    expect(response.error).toBe(false);
-  });
+  describe('in case an id does not exist', () => {
+    test('response should return data undefinded', async () => {
+      const response = await request(app).delete('/tasks/6289ab61fc13ae770a100000').send();
+      expect(response.body.data).toBeUndefined();
+    });
 
-  test('response should return message for succes', async () => {
-    // eslint-disable-next-line no-underscore-dangle
-    taskId3 = tasksSeed[2]._id;
-    const response = await request(app).delete(`/tasks/${taskId3}`).send();
-    expect(response.body.message).toEqual(`Task with ID ${taskId3} deleted.`);
-  });
+    test('response should not return a 200 status', async () => {
+      const response = await request(app).delete('/tasks/6289ab61fc13ae770a100000').send();
+      expect(response.status).not.toBe(200);
+    });
 
-  test('response should return message for succes', async () => {
-    // eslint-disable-next-line no-underscore-dangle
-    taskId4 = tasksSeed[3]._id;
-    const response = await request(app).delete(`/tasks/${taskId4}`).send();
-    expect(response.body.message).not.toEqual(`The task with ID ${taskId4} can't be found.`);
+    test('response should return error', async () => {
+      const response = await request(app).delete('/tasks/6289ab61fc13ae770a100000').send();
+      expect(response.error).toBeTruthy();
+    });
+
+    test('response should not return message for succes', async () => {
+      const response = await request(app).delete('/tasks/6289ab61fc13ae770a100000').send();
+      expect(response.body.message).not.toEqual('Task with ID 6289ab61fc13ae770a100000 deleted.');
+    });
+
+    test('response should return message for error', async () => {
+      const response = await request(app).delete('/tasks/6289ab61fc13ae770a100000').send();
+      expect(response.body.message).toEqual('The task with ID 6289ab61fc13ae770a100000 can\'t be found.');
+    });
+
+    test('response should return a 404 status', async () => {
+      const response = await request(app).delete('/tasks/6289ab61fc13ae770a100000').send();
+      expect(response.status).toBe(404);
+    });
+
+    test('response should return data undefinded', async () => {
+      const response = await request(app).delete('/tasks/6289ab61fc13ae770a100000').send();
+      expect(response.body.data).toBeUndefined();
+    });
   });
 });
