@@ -29,7 +29,7 @@ const addAdmin = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    return res.status(400).json({
+    return res.status(500).json({
       message: `There was an error: ${error}`,
       data: undefined,
       error: true,
@@ -77,7 +77,7 @@ const getAdminById = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    return res.status(404).json({
+    return res.status(500).json({
       message: `There was an error: ${error}`,
       data: undefined,
       error: true,
@@ -101,7 +101,7 @@ const deleteAdmin = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    return res.status(404).json({
+    return res.status(500).json({
       message: `There was an error: ${error}`,
       data: undefined,
       error: true,
@@ -126,7 +126,7 @@ const updateAdmin = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    return res.status(404).json({
+    return res.status(500).json({
       message: `There was an error: ${error}`,
       data: undefined,
       error: true,
