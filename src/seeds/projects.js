@@ -49,7 +49,7 @@ export default [
   {
     _id: mongoose.Types.ObjectId('628bb536f2b799b689f80ef4'),
     members: [{
-      name:mongoose.Types.ObjectId ('628bcd1090c84c5f3b2ad3fa'),
+      name: mongoose.Types.ObjectId('628bcd1090c84c5f3b2ad3fa'),
       role: 'DEV',
       rate: '1500',
     }],
