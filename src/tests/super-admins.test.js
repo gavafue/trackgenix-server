@@ -48,6 +48,26 @@ describe('GET /super-admins', () => {
     const response = await request(app).get('/super-admin?firstName=Diavolo').send();
     expect(response.body.error).toBe(true);
   });
+
+  test('Response should return more than one super admin', async () => {
+    const response = await request(app).get('/super-admin?active=true').send();
+    expect(response.body.data.length).toBeGreaterThan(1);
+  });
+
+  test('Response should return more than one super admin', async () => {
+    const response = await request(app).get('/super-admin?active=false').send();
+    expect(response.body.data.length).toBeGreaterThan(1);
+  });
+
+  test('Response should return the requested employee', async () => {
+    const response = await request(app).get('/super-admin?firstName=Dio').send();
+    expect(response.body.data[0].firstName).toBe('Dio');
+  });
+
+  test('Response should return the requested employee', async () => {
+    const response = await request(app).get('/super-admin?email=dio.muda@konodda.com').send();
+    expect(response.body.data[0].firstName).toBe('Dio');
+  });
 });
 
 let superAdminId1;
@@ -307,11 +327,35 @@ describe('PUT /super-admins/:id', () => {
   });
 
   test('Response should return edited super admin', async () => {
-    const response = await request(app).get(`/super-admin/${superAdminId3}`).send({
+    const response = await request(app).put(`/super-admin/${superAdminId3}`).send({
       lastName: 'Speedwagon',
       email: 'pesci@squadra.com',
     });
     expect(response.body.data).not.toBe(undefined);
+  });
+
+  test('Response message should be the same as in controller', async () => {
+    const response = await request(app).put(`/super-admin/${superAdminId3}`).send({
+      firstName: 'Luke',
+      active: false,
+    });
+    expect(response.body.message).toBe('Super admin updated successfully');
+  });
+
+  test('Response should return a 404 status(id not in database)', async () => {
+    const response = await request(app).put('/super-admin/628bcfc73699c2ac94a02a8c').send({
+      lastName: 'Evans',
+      email: 'valderrama@squadra.com',
+    });
+    expect(response.status).toBe(404);
+  });
+
+  test('Response should return a 404 status(no id sent)', async () => {
+    const response = await request(app).put('/super-admin/').send({
+      lastName: 'Evans',
+      email: 'valderrama@squadra.com',
+    });
+    expect(response.status).toBe(404);
   });
 });
 
