@@ -14,7 +14,7 @@ beforeAll(async () => {
 });
 
 describe('POST /employees', () => {
-  test('Should return a 201 status when yout create an employee', async () => {
+  test('Should return a 201 status when an employee are created', async () => {
     const response = await request(app).post('/employees').send({
       firstName: 'Tadeo',
       lastName: 'Cherry',
