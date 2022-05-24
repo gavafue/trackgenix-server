@@ -75,7 +75,7 @@ describe('GET by ID /tasks/:id', () => {
 });
 
 describe('PUT /tasks', () => {
-  test('This should be status 200', async () => {
+  test('It should return a message that it has been edited successfully', async () => {
     const response = await request(app).put(`/tasks/${taskId}`).send({
       nameProject: mongoose.Types.ObjectId(),
       week: 3,
