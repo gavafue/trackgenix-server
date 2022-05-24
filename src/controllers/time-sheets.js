@@ -80,7 +80,7 @@ const getTimeSheetById = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    return res.json({
+    return res.status(400).json({
       message: `There was an error: ${error}`,
       data: undefined,
       error: true,
@@ -108,7 +108,7 @@ const updateTimesheet = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    return res.json({
+    return res.status(400).json({
       message: `There was an error: ${error}`,
       data: undefined,
       error: true,
@@ -132,7 +132,7 @@ const deleteTimeSheet = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    return res.json({
+    return res.status(400).json({
       message: `There was an error: ${error}`,
       data: undefined,
       error: true,

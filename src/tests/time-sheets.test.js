@@ -152,28 +152,104 @@ describe('POST /timeSheets', () => {
     expect(response.error).toBeTruthy();
   });
 
-  // DOESN´T PASS THE VALIDATIONS
+  // DOESN´T PASS THE VALIDATIONS (no tiene alguno de los campos requeridos)
+
+  const NewTS2 = {
+    employee: mongoose.Types.ObjectId('6282ca7cf9ae0f95595c6a68'),
+    weekSprint: 7,
+    date: '2021-10-21T03:00:00.000Z',
+    hoursWorked: 5,
+    hoursProject: 15,
+    workDescription: 'Created server',
+  };
+
+  test('response should return a 400 status', async () => {
+    const response = await request(app).post('/timeSheets').send(NewTS2);
+    expect(response.status).toBe(400);
+  });
+
+  //   test.only('response should return an error message', async () => {
+  //     const response = await request(app).post('/timeSheets').send(NewTS2);
+  //     expect(response.body.message).toBe(`Error: ${body.message}`);
+  //     console.log(response)
+  //   });
+
+  test('response should return undefined', async () => {
+    const response = await request(app).post('/timeSheets').send(NewTS2);
+    expect(response.body.data).toBeUndefined();
+  });
+
+  test('response should return true error', async () => {
+    const response = await request(app).post('/timeSheets').send(NewTS2);
+    expect(response.error).toBeTruthy();
+  });
 });
 
 describe('GET /timeSheets/:id', () => {
-  test('response should return a 200 status', async () => {
-    const response = await request(app).get(`/timeSheets/${timeSheetId1}`).send();
-    expect(response.status).toBe(200);
+  describe('time sheet is found with GET by id', () => {
+    test('response should return a 200 status', async () => {
+      const response = await request(app).get(`/timeSheets/${timeSheetId1}`).send();
+      expect(response.status).toBe(200);
+    });
+
+    test('response should return a successful message', async () => {
+      const response = await request(app).get(`/timeSheets/${timeSheetId1}`).send();
+      expect(response.body.message).toBe('The request was successful');
+    });
+
+    test('response should return at least one time sheet', async () => {
+      const response = await request(app).get(`/timeSheets/${timeSheetId1}`).send();
+      expect(response.body.data).toBeDefined();
+    });
+
+    test('response should return false error', async () => {
+      const response = await request(app).get(`/timeSheets/${timeSheetId1}`).send();
+      expect(response.error).toBe(false);
+    });
   });
 
-  test('response should return a successful message', async () => {
-    const response = await request(app).get(`/timeSheets/${timeSheetId1}`).send();
-    expect(response.body.message).toBe('The request was successful');
+  describe('time sheet is not found with GET by id', () => {
+    test('response should return a 404 status', async () => {
+      const response = await request(app).get('/timeSheets/62897cab226713c9db1bfc50').send();
+      expect(response.status).toBe(404);
+    });
+
+    test('response should return a not found message', async () => {
+      const response = await request(app).get('/timeSheets/62897cab226713c9db1bfc50').send();
+      expect(response.body.message).toBe('The time sheet with id 62897cab226713c9db1bfc50 has not been found');
+    });
+
+    test('response should return undefined', async () => {
+      const response = await request(app).get('/timeSheets/62897cab226713c9db1bfc50').send();
+      expect(response.body.data).toBeUndefined();
+    });
+
+    test('response should return true error', async () => {
+      const response = await request(app).get('/timeSheets/62897cab226713c9db1bfc50').send();
+      expect(response.error).toBeTruthy();
+    });
   });
 
-  test('response should return at least one time sheet', async () => {
-    const response = await request(app).get(`/timeSheets/${timeSheetId1}`).send();
-    expect(response.body.data).toBeDefined();
-  });
+  describe('id is not valid with GET by id', () => {
+    test('response should return a 400 status', async () => {
+      const response = await request(app).get('/timeSheets/1').send();
+      expect(response.status).toBe(400);
+    });
 
-  test('response should return false error', async () => {
-    const response = await request(app).get(`/timeSheets/${timeSheetId1}`).send();
-    expect(response.error).toBe(false);
+    // test('response should return an error message', async () => {
+    //   const response = await request(app).get('/timeSheets/1').send();
+    //   expect(response.body.message).toBe(`There was an error: ${error}`);
+    // });
+
+    test('response should return undefined', async () => {
+      const response = await request(app).get('/timeSheets/1').send();
+      expect(response.body.data).toBeUndefined();
+    });
+
+    test('response should return true error', async () => {
+      const response = await request(app).get('/timeSheets/1').send();
+      expect(response.error).toBeTruthy();
+    });
   });
 });
 
