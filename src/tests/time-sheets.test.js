@@ -21,6 +21,7 @@ let timeSheetId3;
 let timeSheetId4;
 
 describe('GET /timeSheets', () => {
+  // SUCCESS
   test('response should return a 200 status', async () => {
     const response = await request(app).get('/timeSheets').send();
     expect(response.status).toBe(200);
@@ -40,61 +41,81 @@ describe('GET /timeSheets', () => {
     const response = await request(app).get('/timeSheets').send();
     expect(response.error).toBe(false);
   });
+
+  // SUCCESS WITH FILTERS
+  test('response should return a 200 status', async () => {
+    const response = await request(app).get('/timeSheets/?weekSprint=7').send();
+    expect(response.status).toBe(200);
+  });
+
+  test('response should return a successful message', async () => {
+    const response = await request(app).get('/timeSheets/?weekSprint=7').send();
+    expect(response.body.message).toBe('The time-sheet was found');
+  });
+
+  test('response should return at least one time sheet', async () => {
+    const response = await request(app).get('/timeSheets/?weekSprint=7').send();
+    expect(response.body.data.length).toBeGreaterThan(0);
+  });
+
+  test('response should return false error', async () => {
+    const response = await request(app).get('/timeSheets/?weekSprint=7').send();
+    expect(response.error).toBe(false);
+  });
+
+  // NOT FOUND
+  test('response should return a 404 status', async () => {
+    const response = await request(app).get('/timeSheets/?date=').send();
+    expect(response.status).toBe(404);
+  });
+
+  test('response should return a not found message', async () => {
+    const response = await request(app).get('/timeSheets/?date=').send();
+    expect(response.body.message).toBe('Time-sheet was not found');
+  });
+
+  test('response should return undefined', async () => {
+    const response = await request(app).get('/timeSheets/?date=').send();
+    expect(response.body.data).toBeUndefined();
+  });
+
+  test('response should return true error', async () => {
+    const response = await request(app).get('/timeSheets/?date=').send();
+    expect(response.error).toBeTruthy();
+  });
 });
+
+const createTimeSheet = {
+  project: mongoose.Types.ObjectId('628bb53a8667fb09f64dd9fd'),
+  employee: mongoose.Types.ObjectId('6282ca7cf9ae0f95595c6a68'),
+  weekSprint: 7,
+  date: '2021-10-21T03:00:00.000Z',
+  hoursWorked: 5,
+  hoursProject: 15,
+  workDescription: 'Created server',
+};
 
 describe('POST /timeSheets', () => {
   test('response should return a 201 status', async () => {
-    const response = await request(app).post('/timeSheets').send({
-      project: mongoose.Types.ObjectId('628bb53a8667fb09f64dd9fd'),
-      employee: mongoose.Types.ObjectId('6282ca7cf9ae0f95595c6a68'),
-      weekSprint: 7,
-      date: '2021-10-21T03:00:00.000Z',
-      hoursWorked: 5,
-      hoursProject: 15,
-      workDescription: 'Created server',
-    });
+    const response = await request(app).post('/timeSheets').send(createTimeSheet);
     expect(response.status).toBe(201);
     timeSheetId1 = response.body.data._id;
   });
 
   test('response should return a successful message', async () => {
-    const response = await request(app).post('/timeSheets').send({
-      project: mongoose.Types.ObjectId('628bb53a8667fb09f64dd9fd'),
-      employee: mongoose.Types.ObjectId('6282ca7cf9ae0f95595c6a68'),
-      weekSprint: 7,
-      date: '2021-10-21T03:00:00.000Z',
-      hoursWorked: 5,
-      hoursProject: 15,
-      workDescription: 'Created server',
-    });
+    const response = await request(app).post('/timeSheets').send(createTimeSheet);
     expect(response.body.message).toBe('Time-Sheet created successfully');
     timeSheetId2 = response.body.data._id;
   });
 
   test('response should return the created time sheet', async () => {
-    const response = await request(app).post('/timeSheets').send({
-      project: mongoose.Types.ObjectId('628bb53a8667fb09f64dd9fd'),
-      employee: mongoose.Types.ObjectId('6282ca7cf9ae0f95595c6a68'),
-      weekSprint: 7,
-      date: '2021-10-21T03:00:00.000Z',
-      hoursWorked: 5,
-      hoursProject: 15,
-      workDescription: 'Created server',
-    });
+    const response = await request(app).post('/timeSheets').send(createTimeSheet);
     expect(response.body.data).toBeDefined();
     timeSheetId3 = response.body.data._id;
   });
 
   test('response should return false error', async () => {
-    const response = await request(app).post('/timeSheets').send({
-      project: mongoose.Types.ObjectId('628bb53a8667fb09f64dd9fd'),
-      employee: mongoose.Types.ObjectId('6282ca7cf9ae0f95595c6a68'),
-      weekSprint: 7,
-      date: '2021-10-21T03:00:00.000Z',
-      hoursWorked: 5,
-      hoursProject: 15,
-      workDescription: 'Created server',
-    });
+    const response = await request(app).post('/timeSheets').send(createTimeSheet);
     expect(response.error).toBe(false);
     timeSheetId4 = response.body.data._id;
   });

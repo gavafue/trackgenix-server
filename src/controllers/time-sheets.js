@@ -42,7 +42,7 @@ const getTimeSheets = async (req, res) => {
     let getAllTS = 0;
     getAllTS = await TimeSheetModel.find(req.query).populate('employee', ['firstName', 'lastName'])
       .populate('project', 'name');
-    if (getAllTS === 0) {
+    if (getAllTS.length === 0) {
       return res.status(404).json({
         message: 'Time-sheet was not found',
         data: undefined,
