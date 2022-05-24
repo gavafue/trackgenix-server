@@ -4,7 +4,7 @@ export default [
   {
     _id: mongoose.Types.ObjectId('628bb53a8667fb09f64dd9fd'),
     members: [{
-      name: '628bcd2fd05eabe5ce419d78',
+      name: mongoose.Types.ObjectId('628bcd2fd05eabe5ce419d78'),
       role: 'DEV',
       rate: '1500',
     }],
@@ -19,7 +19,7 @@ export default [
   {
     _id: mongoose.Types.ObjectId('6287f93beee9276577d60c1f'),
     members: [{
-      name: '628bcd23effec38bd2785b2d',
+      name: mongoose.Types.ObjectId('628bcd23effec38bd2785b2d'),
       role: 'DEV',
       rate: '1500',
     }],
@@ -34,7 +34,7 @@ export default [
   {
     _id: mongoose.Types.ObjectId('628bb52bc5505d956f41a108'),
     members: [{
-      name: '628bcd1a5e77fd5a9175d7e7',
+      name: mongoose.Types.ObjectId('628bcd1a5e77fd5a9175d7e7'),
       role: 'DEV',
       rate: '1500',
     }],
@@ -49,7 +49,7 @@ export default [
   {
     _id: mongoose.Types.ObjectId('628bb536f2b799b689f80ef4'),
     members: [{
-      name: '628bcd1090c84c5f3b2ad3fa',
+      name: mongoose.Types.ObjectId('628bcd1090c84c5f3b2ad3fa'),
       role: 'DEV',
       rate: '1500',
     }],
