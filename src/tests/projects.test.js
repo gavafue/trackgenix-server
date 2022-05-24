@@ -1,8 +1,9 @@
-/* eslint-disable no-underscore-dangle */
 import request from 'supertest';
 import app from '../app';
 import Projects from '../models/Projects';
 import projectsSeeds from '../seeds/projects';
+
+let projectsId;
 
 beforeAll(async () => {
   await Projects.collection.insertMany(projectsSeeds);
@@ -39,45 +40,63 @@ describe('GET ALL /projects', () => {
   });
 });
 
-describe ('POST /projects', () => {
-    test ('Create a project', async () => {
-        const response = await request(app).post('/projects/').send({
-        members:[{
-         name:'60d4a32f257e066e8495ce12',
-         role: 'DEV',
-         rate:'1500'
-        }],
-        name:"Trackgenix",
-        startDate:'2021-06-04T03:00:00.000+00:00',
-        endDate:'2022-06-05T03:00:00.000+00:00',
-        description:"Lorem ipsum dolor sit amet, consectetur adipisicing elit",
-        active:true,
-        client:"Diego Armando",
-        })
-        expect (response.status).toBe(201);
-    })
-    test ('message in correct sentence', async () => {
-        const response = await request(app).post('/projects/').send({
-        members:[{
-         name:'60d4a32f257e066e8495ce12',
-         role: 'DEV',
-         rate:'1500'
-        }],
-        name:"Trackgenix",
-        startDate:'2021-06-04T03:00:00.000+00:00',
-        endDate:'2022-06-05T03:00:00.000+00:00',
-        description:"Lorem ipsum dolor sit amet, consectetur adipisicing elit",
-        active:true,
-        client:"Diego Armando",
-        })
-        expect (response.body.message).toEqual('Project created successfully.');
-    })
-    test ('Error in creation of project', async () => {
-        const response = await request(app).post('/projects/').send();
-        expect (response.status).toBe(400);
-    })
-    test('Return false in project create', async () => {
-        const response = await request(app).post('/projects').send();
-        expect(response.error).not.toBe(true);
+describe('POST /projects', () => {
+  test('Create a project', async () => {
+    const response = await request(app).post('/projects/').send({
+      members: [{
+        name: '60d4a32f257e066e8495ce12',
+        role: 'DEV',
+        rate: '1500',
+      }],
+      name: 'Trackgenix',
+      startDate: '2021-06-04T03:00:00.000+00:00',
+      endDate: '2022-06-05T03:00:00.000+00:00',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit',
+      active: true,
+      client: 'Diego Armando',
     });
+    expect(response.status).toBe(201);
+    // eslint-disable-next-line no-underscore-dangle
+    projectsId = response.body.data._id;
+  });
+  test('message in correct sentence', async () => {
+    const response = await request(app).post('/projects/').send({
+      members: [{
+        name: '60d4a32f257e066e8495ce12',
+        role: 'DEV',
+        rate: '1500',
+      }],
+      name: 'Trackgenix',
+      startDate: '2021-06-04T03:00:00.000+00:00',
+      endDate: '2022-06-05T03:00:00.000+00:00',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit',
+      active: true,
+      client: 'Diego Armando',
+    });
+    expect(response.body.message).toEqual('Project created successfully.');
+  });
+  test('Error in creation of project', async () => {
+    const response = await request(app).post('/projects/').send();
+    expect(response.status).toBe(400);
+  });
+  test('Return false in project create', async () => {
+    const response = await request(app).post('/projects').send();
+    expect(response.error).not.toBe(true);
+  });
 });
+
+describe('GET by ID /projects', () => {
+    test('Get project by ID', async () => {
+      const response = await request(app).get(`/projects/${projectsId}`).send();
+      expect(response.status).toBe(200);
+      expect(response.error).toBe(false);
+      expect(response.body.message).toEqual('Project found succesfull');
+    });
+    test('Get project by ID', async () => {
+        const response = await request(app).get(`/projects/123123`).send();
+        expect(response.status).toBe(400);
+        expect(response.body.error).toBe(true);
+      });
+
+});
+
