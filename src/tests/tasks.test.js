@@ -42,6 +42,70 @@ describe('GET /tasks', () => {
     const response = await request(app).get('/tasks').send();
     expect(response.body.data).toBeDefined();
   });
+
+  describe('in case of query params', () => {
+    // for week
+    test('response should return a 200 status (query params: week)', async () => {
+      const response = await request(app).get('/tasks?week=').send();
+      expect(response.status).toBe(200);
+    });
+
+    test('response should not return a 404 status (query params: week)', async () => {
+      const response = await request(app).get('/tasks?week=').send();
+      expect(response.status).not.toBe(404);
+    });
+
+    test('response should not return error (query params: week)', async () => {
+      const response = await request(app).get('/tasks?week=').send();
+      expect(response.error).toBeFalsy();
+    });
+
+    test('response should return message for succes (query params: week)', async () => {
+      const response = await request(app).get('/tasks?week=').send();
+      expect(response.body.message).toEqual('Tasks lists fetched successfully');
+    });
+
+    test('response should not return message for error (query params: week)', async () => {
+      const response = await request(app).get('/tasks?week=').send();
+      expect(response.body.message).not.toEqual('Tasks was not found');
+    });
+
+    test('response should not return data undefined (query params: week)', async () => {
+      const response = await request(app).get('/tasks?week=').send();
+      expect(response.body.data).toBeDefined();
+    });
+
+    // for day
+    test('response should return a 200 status (query params: )', async () => {
+      const response = await request(app).get('/tasks?day=').send();
+      expect(response.status).toBe(200);
+    });
+
+    test('response should not return a 404 status (query params: )', async () => {
+      const response = await request(app).get('/tasks?day=').send();
+      expect(response.status).not.toBe(404);
+    });
+
+    test('response should not return error (query params: )', async () => {
+      const response = await request(app).get('/tasks?day=').send();
+      expect(response.error).toBeFalsy();
+    });
+
+    test('response should return message for succes (query params: )', async () => {
+      const response = await request(app).get('/tasks?day=').send();
+      expect(response.body.message).toEqual('Tasks lists fetched successfully');
+    });
+
+    test('response should not return message for error (query params: )', async () => {
+      const response = await request(app).get('/tasks?day=').send();
+      expect(response.body.message).not.toEqual('Tasks was not found');
+    });
+
+    test('response should not return data undefined (query params: )', async () => {
+      const response = await request(app).get('/tasks?day=').send();
+      expect(response.body.data).toBeDefined();
+    });
+  });
 });
 
 describe('DELETE /task:id', () => {
