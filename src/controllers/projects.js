@@ -22,7 +22,7 @@ const getAllProjects = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    return res.status(400).json({
+    return res.json({
       message: 'An error occurred',
       data: undefined,
       error: true,
@@ -43,7 +43,7 @@ const getProjectById = async (req, res) => {
         });
       }
       return res.status(200).json({
-        message: undefined,
+        message: 'Project found succesfull',
         data: project,
         error: false,
       });
