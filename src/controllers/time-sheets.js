@@ -1,4 +1,5 @@
 import TimeSheetModel from '../models/Time-sheets';
+import ProjectModel from '../models/Projects';
 import EmployeeModel from '../models/Employees';
 
 const createTimeSheet = async (req, res) => {
@@ -12,10 +13,11 @@ const createTimeSheet = async (req, res) => {
       hoursProject: req.body.hoursProject,
       workDescription: req.body.workDescription,
     });
+    const resultProject = await ProjectModel.findById(req.body.project);
     const resultEmployee = await EmployeeModel.findById(req.body.employee);
-    if (!resultEmployee) {
+    if (!resultProject || !resultEmployee) {
       return res.status(404).json({
-        message: `There is no employee with the id: ${req.body.employee}`,
+        message: `There is no project with id ${req.body.project} or employee with the id: ${req.body.employee}`,
         data: undefined,
         error: true,
       });
@@ -27,7 +29,7 @@ const createTimeSheet = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    return res.status(400).json({
+    return res.status(500).json({
       message: `There was an error: ${error}`,
       data: undefined,
       error: true,
@@ -40,7 +42,7 @@ const getTimeSheets = async (req, res) => {
     let getAllTS = 0;
     getAllTS = await TimeSheetModel.find(req.query).populate('employee', ['firstName', 'lastName'])
       .populate('project', 'name');
-    if (getAllTS === 0) {
+    if (getAllTS.length === 0) {
       return res.status(404).json({
         message: 'Time-sheet was not found',
         data: undefined,
@@ -53,7 +55,7 @@ const getTimeSheets = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    return res.status(400).json({
+    return res.status(500).json({
       message: `There was an error: ${error}`,
       data: undefined,
       error: true,
@@ -78,7 +80,7 @@ const getTimeSheetById = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    return res.json({
+    return res.status(500).json({
       message: `There was an error: ${error}`,
       data: undefined,
       error: true,
@@ -106,7 +108,7 @@ const updateTimesheet = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    return res.json({
+    return res.status(500).json({
       message: `There was an error: ${error}`,
       data: undefined,
       error: true,
@@ -130,7 +132,7 @@ const deleteTimeSheet = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    return res.json({
+    return res.status(500).json({
       message: `There was an error: ${error}`,
       data: undefined,
       error: true,

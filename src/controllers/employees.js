@@ -79,7 +79,7 @@ const createEmployee = async (req, res) => {
   try {
     const itExist = await EmployeeModel.findOne({ email: req.body.email });
     if (itExist) {
-      return res.status(200).json({
+      return res.status(400).json({
         message: 'Employee account with this email already exists',
         data: undefined,
         error: true,
@@ -116,13 +116,6 @@ const createEmployee = async (req, res) => {
 const updateEmployee = async (req, res) => {
   try {
     const employeeId = req.params.id;
-    if (!req.params) {
-      return res.status(400).json({
-        msg: 'Missing id parameter in request.',
-        data: undefined,
-        error: true,
-      });
-    }
     const succes = await EmployeeModel.findByIdAndUpdate(
       employeeId,
       req.body,
@@ -130,19 +123,19 @@ const updateEmployee = async (req, res) => {
     );
     if (!succes) {
       return res.status(404).json({
-        msg: `Employee account with this id "${req.params.id}" can't be found.`,
+        message: `Employee account with ID "${req.params.id}" can not be found.`,
         data: undefined,
         error: true,
       });
     }
     return res.status(200).json({
-      msg: `Employee account with this id "${req.params.id}" edited with next info:`,
+      message: `Employee account with ID "${req.params.id}" updated succesfully`,
       data: req.body,
       error: false,
     });
   } catch (error) {
     return res.status(400).json({
-      msg: `An error has ocurred: ${error}`,
+      message: `An error has ocurred: ${error}`,
       data: undefined,
       error: true,
     });
