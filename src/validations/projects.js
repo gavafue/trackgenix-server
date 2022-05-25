@@ -35,7 +35,7 @@ const validateId = (req, res, next) => {
   const validation = mongoose.isValidObjectId(req.params.id);
   if (!validation) {
     return res.status(400).json({
-      message: `The value ${req.param.id} is not a valid id.`,
+      message: `The value ${req.params.id} is not a valid id.`,
       data: undefined,
       error: true,
     });
