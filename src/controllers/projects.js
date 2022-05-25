@@ -37,25 +37,25 @@ const getProjectById = async (req, res) => {
         'lastName', 'email']);
       if (!project) {
         return res.status(404).json({
-          msg: `The ${req.params.id} is not valid`,
+          message: `The ${req.params.id} is not valid`,
           data: undefined,
           error: true,
         });
       }
       return res.status(200).json({
-        msg: undefined,
+        message: undefined,
         data: project,
         error: false,
       });
     }
     return res.status(400).json({
-      msg: `The ${req.params.id} is not valid`,
+      message: `The ${req.params.id} is not valid`,
       data: undefined,
       error: true,
     });
   } catch (error) {
     return res.json({
-      msg: `The ${req.params.id} is not valid`,
+      message: `The ${req.params.id} is not valid`,
       data: undefined,
       error: true,
     });
@@ -76,13 +76,13 @@ const createProject = async (req, res) => {
 
     const result = await project.save();
     return res.status(201).json({
-      msg: 'Project created successfully.',
+      message: 'Project created successfully.',
       data: result,
       error: false,
     });
   } catch (error) {
     return res.status(400).json({
-      msg: `There was an error: ${error}`,
+      message: `There was an error: ${error}`,
       data: undefined,
       error: true,
     });
@@ -93,7 +93,7 @@ const deleteProject = async (req, res) => {
   try {
     if (!req.params.id) {
       return res.status(400).json({
-        msg: 'Missing id parameter in request.',
+        message: 'Missing id parameter in request.',
         data: undefined,
         error: true,
       });
@@ -102,19 +102,19 @@ const deleteProject = async (req, res) => {
       'lastName', 'email']);
     if (!result) {
       return res.status(404).json({
-        msg: `The project with id ${req.params.id} can't be found.`,
+        message: `The project with id ${req.params.id} can't be found.`,
         data: undefined,
         error: true,
       });
     }
     return res.status(200).json({
-      msg: `Project with id ${req.params.id} deleted.`,
+      message: `Project with id ${req.params.id} deleted.`,
       data: undefined,
       error: false,
     });
   } catch (error) {
     return res.json({
-      msg: `There was an error: ${error}`,
+      message: `There was an error: ${error}`,
       data: undefined,
       error: true,
     });
@@ -125,7 +125,7 @@ const editProject = async (req, res) => {
   try {
     if (!req.params) {
       return res.status(400).json({
-        msg: 'Missing id parameter in request.',
+        message: 'Missing id parameter in request.',
         data: undefined,
         error: true,
       });
@@ -139,19 +139,19 @@ const editProject = async (req, res) => {
 
     if (!result) {
       return res.status(404).json({
-        msg: `The project with id ${req.params.id} can't be found.`,
+        message: `The project with id ${req.params.id} can't be found.`,
         data: undefined,
         error: true,
       });
     }
     return res.status(200).json({
-      msg: `Project with id ${req.params.id} edited.`,
+      message: `Project with id ${req.params.id} edited.`,
       data: result,
       error: false,
     });
   } catch (error) {
     return res.json({
-      msg: `There was an error: ${error}`,
+      message: `There was an error: ${error}`,
       data: undefined,
       error: true,
     });
