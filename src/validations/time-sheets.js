@@ -4,14 +4,14 @@ import mongoose from 'mongoose';
 const validateAddTS = (req, res, next) => {
   const validateTS = Joi.object({
     project: Joi.string().required(),
-    employee: Joi.required(),
+    employee: Joi.string().required(),
     weekSprint: Joi.number().min(2).required(),
     date: Joi.date().required(),
     hoursWorked: Joi.number().required(),
-    workDescription: Joi.string().min(20)
+    hoursProject: Joi.number().required(),
+    workDescription: Joi.string().min(5)
       .max(2000)
       .required(),
-    hoursProject: Joi.number().required(),
   });
   const isValid = validateTS.validate(req.body);
   if (isValid.error) {
@@ -31,9 +31,9 @@ const validateUpdate = (req, res, next) => {
     weekSprint: Joi.number().min(2),
     date: Joi.date(),
     hoursWorked: Joi.number(),
-    workDescription: Joi.string().min(20)
-      .max(2000),
     hoursProject: Joi.number(),
+    workDescription: Joi.string().min(5)
+      .max(2000),
   });
 
   const validate = timesheetValidation.validate(req.body);
