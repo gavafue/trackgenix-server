@@ -19,7 +19,7 @@ const getAllEmployee = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    return res.status(400).json({
+    return res.json({
       message: 'Error',
       data: undefined,
       error: true,
@@ -37,8 +37,8 @@ const getEmployeeById = async (req, res) => {
         error: false,
       });
     }
-    return res.status(404).json({
-      message: `This employee with ID ${req.params.id} does not exist`,
+    return res.status(400).json({
+      message: `This employee with ID ${req.params.id} is incorrect`,
       data: undefined,
       error: true,
     });
@@ -61,7 +61,7 @@ const deleteEmployee = async (req, res) => {
         error: false,
       });
     }
-    return res.status(404).json({
+    return res.status(400).json({
       message: `This employee with ID ${req.params.id} was not deleted`,
       data: undefined,
       error: true,
