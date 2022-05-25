@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 export default [
   {
-    id: mongoose.Types.ObjectId('6289ab61fc13ae770a000000'),
+    _id: mongoose.Types.ObjectId('6289ab61fc13ae770a000000'),
     nameProject: mongoose.Types.ObjectId('628bb53a8667fb09f64dd9fd'),
     week: 38,
     day: 1,
@@ -10,7 +10,7 @@ export default [
     hours: 78,
   },
   {
-    id: mongoose.Types.ObjectId('6289ab61fc13ae770a000001'),
+    _id: mongoose.Types.ObjectId('6289ab61fc13ae770a000001'),
     nameProject: mongoose.Types.ObjectId('6287f93beee9276577d60c1f'),
     week: 34,
     day: 2,
@@ -18,7 +18,7 @@ export default [
     hours: 19,
   },
   {
-    id: mongoose.Types.ObjectId('6289ab61fc13ae770a000002'),
+    _id: mongoose.Types.ObjectId('6289ab61fc13ae770a000002'),
     nameProject: mongoose.Types.ObjectId('628bb52bc5505d956f41a108'),
     week: 45,
     day: 3,
@@ -26,7 +26,7 @@ export default [
     hours: 46,
   },
   {
-    id: mongoose.Types.ObjectId('6289ab61fc13ae770a000003'),
+    _id: mongoose.Types.ObjectId('6289ab61fc13ae770a000003'),
     nameProject: mongoose.Types.ObjectId('628bb536f2b799b689f80ef4'),
     week: 11,
     day: 4,
@@ -34,7 +34,7 @@ export default [
     hours: 15,
   },
   {
-    id: mongoose.Types.ObjectId('6289ab61fc13ae770a000004'),
+    _id: mongoose.Types.ObjectId('6289ab61fc13ae770a000004'),
     nameProject: mongoose.Types.ObjectId('628bb52bc5505d956f41a108'),
     week: 45,
     day: 3,
@@ -42,7 +42,7 @@ export default [
     hours: 46,
   },
   {
-    id: mongoose.Types.ObjectId('6289ab61fc13ae770a000005'),
+    _id: mongoose.Types.ObjectId('6289ab61fc13ae770a000005'),
     nameProject: mongoose.Types.ObjectId('628bb536f2b799b689f80ef4'),
     week: 11,
     day: 4,
