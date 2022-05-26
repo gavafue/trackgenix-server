@@ -375,12 +375,12 @@ describe('PUT /super-admins/:id', () => {
       expect(response.status).toBe(404);
     });
 
-    test('Response should return a 404 status(no id sent)', async () => {
-      const response = await request(app).put('/super-admin/').send({
+    test('Response should return a 400 status(no id sent)', async () => {
+      const response = await request(app).put(`/super-admin/${null}`).send({
         lastName: 'Evans',
         email: 'valderrama@squadra.com',
       });
-      expect(response.status).toBe(404);
+      expect(response.status).toBe(400);
     });
   });
 });
@@ -404,9 +404,9 @@ describe('DELETE /super-admins/:id', () => {
   });
 
   describe('Failure', () => {
-    test('Response should return a 404 status(no id sent)', async () => {
-      const response = await request(app).delete('/super-admin/').send();
-      expect(response.status).toBe(404);
+    test('Response should return a 400 status(no id sent)', async () => {
+      const response = await request(app).delete(`/super-admin/${null}`).send();
+      expect(response.status).toBe(400);
     });
 
     test('Response should return a 404 status(id not in database)', async () => {

@@ -95,13 +95,6 @@ const createSAdmin = async (req, res) => {
 
 const updateSa = async (req, res) => {
   try {
-    if (!req.params) {
-      return res.status(400).json({
-        message: `Id ${req.params.id} does not exist`,
-        data: undefined,
-        error: true,
-      });
-    }
     const result = await SuperAdminModels.findByIdAndUpdate(
       req.params.id,
       req.body,
@@ -120,7 +113,7 @@ const updateSa = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    return res.status(400).json({
+    return res.json({
       message: `There was an error: ${error}`,
       data: undefined,
       error: true,
@@ -130,13 +123,6 @@ const updateSa = async (req, res) => {
 
 const deleteSa = async (req, res) => {
   try {
-    if (!req.params.id) {
-      return res.status(400).json({
-        message: 'missing id paraneter',
-        data: undefined,
-        error: true,
-      });
-    }
     const result = await SuperAdminModels.findByIdAndDelete(req.params.id);
     if (!result) {
       return res.status(404).json({
@@ -151,7 +137,7 @@ const deleteSa = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    return res.status(400).json({
+    return res.json({
       message: `There was an error: ${error}`,
       data: undefined,
       error: true,
