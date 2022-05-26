@@ -375,7 +375,7 @@ describe('PUT /super-admins/:id', () => {
       expect(response.status).toBe(404);
     });
 
-    test('Response should return a 404 status(no id sent)', async () => {
+    test('Response should return a 400 status(no id sent)', async () => {
       const response = await request(app).put(`/super-admin/${null}`).send({
         lastName: 'Evans',
         email: 'valderrama@squadra.com',

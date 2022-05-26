@@ -100,14 +100,6 @@ const updateSa = async (req, res) => {
       req.body,
       { new: true },
     );
-
-    if (req.params === '') {
-      return res.status(400).json({
-        message: `Id ${req.params.id} does not exist`,
-        data: undefined,
-        error: true,
-      });
-    }
     if (!result) {
       return res.status(404).json({
         message: 'The Super admin has not been found',
@@ -121,7 +113,7 @@ const updateSa = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    return res.status(400).json({
+    return res.json({
       message: `There was an error: ${error}`,
       data: undefined,
       error: true,
@@ -131,13 +123,6 @@ const updateSa = async (req, res) => {
 
 const deleteSa = async (req, res) => {
   try {
-    if (req.params === '') {
-      return res.status(400).json({
-        message: 'missing id paraneter',
-        data: undefined,
-        error: true,
-      });
-    }
     const result = await SuperAdminModels.findByIdAndDelete(req.params.id);
     if (!result) {
       return res.status(404).json({
@@ -152,7 +137,7 @@ const deleteSa = async (req, res) => {
       error: false,
     });
   } catch (error) {
-    return res.status(400).json({
+    return res.json({
       message: `There was an error: ${error}`,
       data: undefined,
       error: true,
