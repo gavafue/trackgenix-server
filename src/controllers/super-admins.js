@@ -95,18 +95,19 @@ const createSAdmin = async (req, res) => {
 
 const updateSa = async (req, res) => {
   try {
-    if (!req.params) {
+    const result = await SuperAdminModels.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true },
+    );
+
+    if (req.params === '') {
       return res.status(400).json({
         message: `Id ${req.params.id} does not exist`,
         data: undefined,
         error: true,
       });
     }
-    const result = await SuperAdminModels.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      { new: true },
-    );
     if (!result) {
       return res.status(404).json({
         message: 'The Super admin has not been found',
@@ -130,7 +131,7 @@ const updateSa = async (req, res) => {
 
 const deleteSa = async (req, res) => {
   try {
-    if (!req.params.id) {
+    if (req.params === '') {
       return res.status(400).json({
         message: 'missing id paraneter',
         data: undefined,
