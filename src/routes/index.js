@@ -9,12 +9,12 @@ import projectsRoutes from './projects';
 const router = express.Router();
 
 router
-  .use('/', (req, res) => res.send('Welcome to Samuel Trackgenix API'))
   .use('/employees', employeesRoutes)
   .use('/admins', adminRoutes)
   .use('/projects', projectsRoutes)
   .use('/super-admin', superAdminsRoutes)
   .use('/tasks', tasksRoutes)
-  .use('/timeSheets', timeSheetRoutes);
+  .use('/timeSheets', timeSheetRoutes)
+  .use('/', (req, res) => res.send('Welcome to Samuel Trackgenix API'));
 
 export default router;
