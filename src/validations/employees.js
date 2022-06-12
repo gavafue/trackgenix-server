@@ -66,10 +66,10 @@ const validateCreateEmp = (req, res, next) => {
         'string.max': 'Invalid zip, it must not contain more than 5 numbers',
       })
       .required(),
-    phone: Joi.string()
-      .pattern(/^[0-9]{10}$/)
+    phone: Joi.string().length(10)
       .messages({
-        'string.pattern': 'Phonenomber must contain 10 numbers, only integers',
+        'string.length': 'Invalid phone number, it must contain 10 digits',
+        'string.base': 'Invalid phone number, it must be a string',
       })
       .required(),
     email: Joi.string()
