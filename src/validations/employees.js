@@ -67,10 +67,7 @@ const validateCreateEmp = (req, res, next) => {
       })
       .required(),
     phone: Joi.string().regex(/^[0-9]{10}$/)
-      .messages({
-        'string.length': 'Invalid phone number, it must contain 10 digits',
-        'string.base': 'Invalid phone number, it must be a string',
-      })
+      .message('Invalid phone. Phone number should be a 10 digits value')
       .required(),
     email: Joi.string()
       .email()
