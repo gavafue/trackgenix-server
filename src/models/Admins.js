@@ -26,7 +26,7 @@ const adminSchema = new Schema(
       enum: ['female', 'male', 'other'],
     },
     phone: {
-      type: Number,
+      type: String,
       required: true,
     },
     dateBirth: {
