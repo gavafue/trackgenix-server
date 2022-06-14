@@ -30,11 +30,8 @@ const validateCreation = (req, res, next) => {
     gender: Joi.string().lowercase().valid('female', 'male', 'other')
       .messages({ 'any.only': 'Invalid gender, it must be one of "Female", "Male" or "Other"' })
       .required(),
-    phone: Joi.string().length(10)
-      .messages({
-        'string.length': 'Invalid phone number, it must contain 10 digits',
-        'string.base': 'Invalid phone number, it must be a string',
-      })
+    phone: Joi.string().regex(/^[0-9]{10}$/)
+      .message('Invalid phone. Phone number should be a 10 digits value')
       .required(),
     dateBirth: Joi.date().less('now')
       .message('Invalid date, it must be before the current date')
