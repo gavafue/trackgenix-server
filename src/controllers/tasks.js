@@ -57,7 +57,7 @@ const editTask = async (req, res) => {
     return res.status(200).json({
       message: `Task with ID ${req.params.id} edited.`,
       data: resultEdited,
-      error: true,
+      error: false,
     });
   } catch (error) {
     return res.json({
