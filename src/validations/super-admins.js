@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 
 const validateCreation = (req, res, next) => {
   const superAdminValidation = Joi.object({
+    firebaseUid: Joi.string().required(),
     firstName: Joi.string().min(3).max(50).required(),
     lastName: Joi.string().min(3).max(50).required(),
     email: Joi.string().email().required(),
@@ -25,6 +26,7 @@ const validateCreation = (req, res, next) => {
 
 const validateUpdate = (req, res, next) => {
   const superAdminValidation = Joi.object({
+    firebaseUid: Joi.string(),
     firstName: Joi.string().min(3).max(50),
     lastName: Joi.string().min(3).max(50),
     email: Joi.string().email(),
