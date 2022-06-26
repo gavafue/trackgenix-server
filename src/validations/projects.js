@@ -9,6 +9,7 @@ const validateCreation = (req, res, next) => {
   });
 
   const projectJoiSch = Joi.object({
+    firebaseUid: Joi.string().required(),
     members: Joi.array().items(membersJoiSch).required(),
     name: Joi.string().min(3).required(),
     startDate: Joi.date().required(),
@@ -52,6 +53,7 @@ const validateEdit = (req, res, next) => {
   });
 
   const projectJoiSch = Joi.object({
+    firebaseUid: Joi.string(),
     members: Joi.array().items(membersJoiSch),
     name: Joi.string().min(3),
     startDate: Joi.date(),
