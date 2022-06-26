@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 
 export default [
   {
+    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId('62897cab226713c9db1bfc38'),
     project: mongoose.Types.ObjectId('628bb53a8667fb09f64dd9fd'),
     employee: mongoose.Types.ObjectId('6282ca7cf9ae0f95595c6a68'),
@@ -12,6 +13,7 @@ export default [
     workDescription: 'Created server',
   },
   {
+    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId('628ba8924413b59d3cfa99b7'),
     project: mongoose.Types.ObjectId('628bb53a8667fb09f64dd9fd'),
     employee: mongoose.Types.ObjectId('6283a643e570d6df244f64ad'),
@@ -22,6 +24,7 @@ export default [
     workDescription: 'Created html file',
   },
   {
+    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId('628ba89648f8be0c8d022243'),
     project: mongoose.Types.ObjectId('628bb53a8667fb09f64dd9fd'),
     employee: mongoose.Types.ObjectId('6283a60fe570d6df244f64aa'),
@@ -32,6 +35,7 @@ export default [
     workDescription: 'Created css file',
   },
   {
+    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId('628ba89ab3129d0420e3c009'),
     project: mongoose.Types.ObjectId('6287f93beee9276577d60c1f'),
     employee: mongoose.Types.ObjectId('6282ca7cf9ae0f95595c6a68'),
@@ -42,6 +46,7 @@ export default [
     workDescription: 'Created js file',
   },
   {
+    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId('628ba89fb15a038e966edf2c'),
     project: mongoose.Types.ObjectId('6287f93beee9276577d60c1f'),
     employee: mongoose.Types.ObjectId('6282cbaef9ae0f95595c6a71'),
@@ -52,6 +57,7 @@ export default [
     workDescription: 'Created data base',
   },
   {
+    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId('628ba8a8a642d632ab09c186'),
     project: mongoose.Types.ObjectId('628bb52bc5505d956f41a108'),
     employee: mongoose.Types.ObjectId('6282cbaef9ae0f95595c6a71'),
@@ -62,6 +68,7 @@ export default [
     workDescription: 'Fixed general errors',
   },
   {
+    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId('628ba8a438c804ff2c60f990'),
     project: mongoose.Types.ObjectId('628bb52bc5505d956f41a108'),
     employee: mongoose.Types.ObjectId('6283a5eee570d6df244f64a7'),

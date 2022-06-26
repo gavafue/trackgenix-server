@@ -12,6 +12,7 @@ const createTimeSheet = async (req, res) => {
       hoursWorked: req.body.hoursWorked,
       hoursProject: req.body.hoursProject,
       workDescription: req.body.workDescription,
+      firebaseUid: req.body.firebaseUid,
     });
     const resultProject = await ProjectModel.findById(req.body.project);
     const resultEmployee = await EmployeeModel.findById(req.body.employee);
