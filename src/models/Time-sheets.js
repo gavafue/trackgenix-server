@@ -3,6 +3,10 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const timeSheetSchema = new Schema({
+  firebaseUid: {
+    type: String,
+    required: true,
+  },
   project: {
     type: Schema.Types.ObjectId,
     ref: 'Project',
