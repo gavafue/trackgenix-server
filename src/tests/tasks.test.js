@@ -195,6 +195,7 @@ describe('POST /tasks', () => {
       day: 7,
       description: 'ut massa volutpat convallis morbi odio odio elementum eu interdum eu tincidunt in leo',
       hours: 77,
+      firebaseUid: '6282ca7cf9ae0f95595c6a68',
     });
     expect(response.status).toBe(201);
     taskId = response.body.data._id;
@@ -207,6 +208,7 @@ describe('POST /tasks', () => {
       day: 7,
       description: 'ut massa volutpat convallis morbi odio odio elementum eu interdum eu tincidunt in leo',
       hours: 77,
+      firebaseUid: '6282ca7cf9ae0f95595c6a68',
     });
     expect(response.body.message).toEqual('The task has been created successfully');
   });
@@ -218,6 +220,7 @@ describe('POST /tasks', () => {
       day: 7,
       description: 'ut massa volutpat convallis morbi odio odio elementum eu interdum eu tincidunt in leo',
       hours: 77,
+      firebaseUid: '6282ca7cf9ae0f95595c6a68',
     });
     expect(response.status).toBe(404);
   });

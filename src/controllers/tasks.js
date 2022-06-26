@@ -9,6 +9,7 @@ const createTask = async (req, res) => {
       day: req.body.day,
       description: req.body.description,
       hours: req.body.hours,
+      firebaseUid: req.body.firebaseUid,
     });
     const resultProjectId = await ModelsProjects.findById(req.body.nameProject);
     if (!resultProjectId) {
