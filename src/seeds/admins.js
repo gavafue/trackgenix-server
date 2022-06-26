@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 
 export default [
   {
+    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId(),
     name: 'Libbie',
     lastName: 'Blanchet',
@@ -15,6 +16,7 @@ export default [
     dateBirth: '06/02/1934',
   },
   {
+    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId(),
     name: 'Latashia',
     lastName: 'Kless',
@@ -28,6 +30,7 @@ export default [
     dateBirth: '09/08/1986',
   },
   {
+    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId(),
     name: 'Sharlene',
     lastName: 'Moncaster',
@@ -41,6 +44,7 @@ export default [
     dateBirth: '04/05/1984',
   },
   {
+    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId(),
     name: 'Bradly',
     lastName: 'Wemes',
@@ -54,6 +58,7 @@ export default [
     dateBirth: '03/27/1912',
   },
   {
+    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId(),
     name: 'Dunn',
     lastName: 'Garvagh',
@@ -67,6 +72,7 @@ export default [
     dateBirth: '04/11/2005',
   },
   {
+    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId(),
     name: 'Carey',
     lastName: 'Lade',
@@ -80,6 +86,7 @@ export default [
     dateBirth: '03/03/1927',
   },
   {
+    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId(),
     name: 'Carolynn',
     lastName: 'Nickless',
@@ -93,6 +100,7 @@ export default [
     dateBirth: '08/17/1968',
   },
   {
+    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId(),
     name: 'Eddie',
     lastName: 'Pllu',
@@ -106,6 +114,7 @@ export default [
     dateBirth: '04/05/2002',
   },
   {
+    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId(),
     name: 'Calhoun',
     lastName: 'Kuhndel',
@@ -119,6 +128,7 @@ export default [
     dateBirth: '09/16/1969',
   },
   {
+    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId(),
     name: 'Erma',
     lastName: 'Banfill',
@@ -132,6 +142,7 @@ export default [
     dateBirth: '03/10/1978',
   },
   {
+    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId(),
     name: 'Babara',
     lastName: 'Dahlberg',
@@ -145,6 +156,7 @@ export default [
     dateBirth: '06/04/1996',
   },
   {
+    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId(),
     name: 'Nita',
     lastName: 'Kynge',
@@ -158,6 +170,7 @@ export default [
     dateBirth: '01/17/1985',
   },
   {
+    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId(),
     name: 'Neila',
     lastName: 'Kalkofer',
@@ -171,6 +184,7 @@ export default [
     dateBirth: '05/19/1986',
   },
   {
+    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId(),
     name: 'Barbabra',
     lastName: 'Knaggs',
@@ -184,6 +198,7 @@ export default [
     dateBirth: '08/17/1938',
   },
   {
+    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId(),
     name: 'Laraine',
     lastName: 'Covert',
@@ -197,6 +212,7 @@ export default [
     dateBirth: '11/11/2013',
   },
   {
+    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId(),
     name: 'Konstantin',
     lastName: 'Caldow',
@@ -210,6 +226,7 @@ export default [
     dateBirth: '10/24/1989',
   },
   {
+    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId(),
     name: 'Jayme',
     lastName: 'Frascone',
@@ -223,6 +240,7 @@ export default [
     dateBirth: '10/23/1917',
   },
   {
+    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId(),
     name: 'Bud',
     lastName: 'Carriage',
@@ -236,6 +254,7 @@ export default [
     dateBirth: '03/28/1926',
   },
   {
+    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId(),
     name: 'Stefania',
     lastName: 'Tickner',
@@ -249,6 +268,7 @@ export default [
     dateBirth: '12/03/1947',
   },
   {
+    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId(),
     name: 'Pearla',
     lastName: 'Gurg',
@@ -262,6 +282,7 @@ export default [
     dateBirth: '05/02/2008',
   },
   {
+    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId(),
     name: 'Camel',
     lastName: 'Le Friec',
@@ -275,6 +296,7 @@ export default [
     dateBirth: '03/18/1988',
   },
   {
+    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId(),
     name: 'Estrella',
     lastName: 'Caze',
@@ -288,6 +310,7 @@ export default [
     dateBirth: '05/06/1929',
   },
   {
+    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId(),
     name: 'Morty',
     lastName: 'Zarfati',
@@ -301,6 +324,7 @@ export default [
     dateBirth: '04/15/1927',
   },
   {
+    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId(),
     name: 'Jobye',
     lastName: 'MacCathay',
@@ -314,6 +338,7 @@ export default [
     dateBirth: '03/13/2003',
   },
   {
+    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId(),
     name: 'Elvera',
     lastName: 'Bhar',
@@ -327,6 +352,7 @@ export default [
     dateBirth: '03/12/1912',
   },
   {
+    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId(),
     name: 'Noby',
     lastName: 'Cammock',
@@ -335,11 +361,12 @@ export default [
     gender: 'Male',
     phone: '5359300977',
     zip: '1597',
-    city: 'Wangge’ertang',
+    city: 'Wanggeertang',
     active: true,
     dateBirth: '06/21/1992',
   },
   {
+    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId(),
     name: 'Basilius',
     lastName: 'Avramovsky',
@@ -353,6 +380,7 @@ export default [
     dateBirth: '04/29/1900',
   },
   {
+    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId(),
     name: 'Erny',
     lastName: 'Michelet',
@@ -366,6 +394,7 @@ export default [
     dateBirth: '08/31/1961',
   },
   {
+    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId(),
     name: 'Nikaniki',
     lastName: 'Terbruggen',
@@ -379,6 +408,7 @@ export default [
     dateBirth: '04/17/1906',
   },
   {
+    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId(),
     name: 'Hillary',
     lastName: 'Smithin',

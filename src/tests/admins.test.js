@@ -75,6 +75,7 @@ describe('GET /admins', () => {
 
 describe('POST /admins', () => {
   newAdmin = {
+    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     name: 'Thomas',
     lastName: 'Shelby',
     email: 'thomasshel@aol.com',
