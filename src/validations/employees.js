@@ -16,6 +16,7 @@ const idValidation = (req, res, next) => {
 
 const validateCreateEmp = (req, res, next) => {
   const employeeCreateSchema = Joi.object({
+    firebaseUid: Joi.string().required(),
     firstName: Joi.string()
       .min(3)
       .max(40)
@@ -101,6 +102,7 @@ const validateCreateEmp = (req, res, next) => {
 
 const validateUpdateEmp = (req, res, next) => {
   const employeeUpdateSchema = Joi.object({
+    firebaseUid: Joi.string(),
     firstName: Joi.string()
       .min(3)
       .max(40)
