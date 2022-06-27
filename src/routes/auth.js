@@ -1,10 +1,10 @@
 import express from 'express';
 import controller from '../controllers/auth';
-import validations from '../validations/auth';
+import authMiddleware from '../middleware/authMiddleware';
 
 const router = express.Router();
-const { register } = controller;
+const { employeeSignUp } = controller;
 
-router.post('/register', validations.required, register);
+router.post('/register', authMiddleware, employeeSignUp);
 
 export default router;
