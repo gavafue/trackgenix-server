@@ -1,6 +1,7 @@
 import firebase from '../helper/firebase/index';
 import Employees from '../models/Employees';
 import Admins from '../models/Admins';
+import Superadmins from '../models/Super-admins';
 
 const employeeSignUp = async (req, res) => {
   try {
@@ -63,7 +64,7 @@ const superadminSignUp = async (req, res) => {
 
     await firebase.auth().setCustomUserClaims(newFirebaseUser.uid, { role: 'ADMIN' });
 
-    const userCreated = new Admins({
+    const userCreated = new Superadmins({
       email: req.body.email,
       firebaseUid: newFirebaseUser.uid,
     });
