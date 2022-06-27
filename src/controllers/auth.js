@@ -62,7 +62,7 @@ const superadminSignUp = async (req, res) => {
       password: req.body.password,
     });
 
-    await firebase.auth().setCustomUserClaims(newFirebaseUser.uid, { role: 'ADMIN' });
+    await firebase.auth().setCustomUserClaims(newFirebaseUser.uid, { role: 'SUPERADMIN' });
 
     const userCreated = new Superadmins({
       email: req.body.email,
