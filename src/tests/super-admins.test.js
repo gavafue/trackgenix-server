@@ -87,6 +87,7 @@ describe('POST /super-admins', () => {
         role: 'SA',
         email: 'jo.jo@swmarine.com',
         active: true,
+        firebaseUid: '6282ca7cf9ae0f95595c6a68',
       });
       expect(response.status).toBe(201);
       superAdminId1 = response.body.data._id;
@@ -100,6 +101,7 @@ describe('POST /super-admins', () => {
         role: 'SA',
         email: 'jo.j0@swmarine.com',
         active: true,
+        firebaseUid: '6282ca7cf9ae0f95595c6a68',
       });
       expect(response.error).toBe(false);
       superAdminId2 = response.body.data._id;
@@ -113,6 +115,7 @@ describe('POST /super-admins', () => {
         role: 'SA',
         email: 'risotto.n@squadra.com',
         active: false,
+        firebaseUid: '6282ca7cf9ae0f95595c6a68',
       });
       expect(response.body.data).not.toBe(undefined);
       superAdminId3 = response.body.data._id;
@@ -128,6 +131,7 @@ describe('POST /super-admins', () => {
         role: 'QA',
         email: 'risotto.nero@squadra.com',
         active: false,
+        firebaseUid: '6282ca7cf9ae0f95595c6a68',
       });
       expect(response.body.error).toBe(true);
     });
@@ -140,6 +144,7 @@ describe('POST /super-admins', () => {
         role: 'SA',
         email: 'risotto.n@squadra.com',
         active: false,
+        firebaseUid: '6282ca7cf9ae0f95595c6a68',
       });
       expect(response.status).toBe(200);
     });
@@ -152,6 +157,7 @@ describe('POST /super-admins', () => {
         role: 'SA',
         email: 'risotto.n@squadra.com',
         active: false,
+        firebaseUid: '6282ca7cf9ae0f95595c6a68',
       });
       expect(response.body.error).toBe(true);
     });
@@ -164,6 +170,7 @@ describe('POST /super-admins', () => {
         role: 'SA',
         email: 'risotto.n@squadra.com',
         active: false,
+        firebaseUid: '6282ca7cf9ae0f95595c6a68',
       });
       expect(response.body.data).toBe(undefined);
     });
@@ -176,6 +183,7 @@ describe('POST /super-admins', () => {
         role: 'SA',
         email: 'risotto.n@squadra.com',
         active: false,
+        firebaseUid: '6282ca7cf9ae0f95595c6a68',
       });
       expect(response.body.message).toBe('Super admin with this email already exists');
     });
@@ -187,6 +195,7 @@ describe('POST /super-admins', () => {
         role: 'SA',
         email: 'risotto.nero@squadra.com',
         active: false,
+        firebaseUid: '6282ca7cf9ae0f95595c6a68',
       });
       expect(response.body.error).toBe(true);
     });
@@ -198,6 +207,7 @@ describe('POST /super-admins', () => {
         role: 'SA',
         email: 'risotto.nero@squadra.com',
         active: false,
+        firebaseUid: '6282ca7cf9ae0f95595c6a68',
       });
       expect(response.status).toBe(400);
     });
@@ -209,6 +219,7 @@ describe('POST /super-admins', () => {
         role: 'SA',
         email: 'risotto.nero@squadra.com',
         active: false,
+        firebaseUid: '6282ca7cf9ae0f95595c6a68',
       });
       expect(response.body.data).toBe(undefined);
     });
@@ -220,6 +231,7 @@ describe('POST /super-admins', () => {
         role: 'SA',
         email: 'risotto.n@squadra.com',
         active: false,
+        firebaseUid: '6282ca7cf9ae0f95595c6a68',
       });
       expect(response.body.error).toBe(true);
     });
@@ -231,6 +243,7 @@ describe('POST /super-admins', () => {
         role: 'SA',
         email: 'risotto.n@squadra.com',
         active: false,
+        firebaseUid: '6282ca7cf9ae0f95595c6a68',
       });
       expect(response.body.error).toBe(true);
     });
@@ -242,6 +255,7 @@ describe('POST /super-admins', () => {
         password: 'M3t4ll1c4',
         email: 'risotto.n@squadra.com',
         active: false,
+        firebaseUid: '6282ca7cf9ae0f95595c6a68',
       });
       expect(response.body.error).toBe(true);
     });
@@ -253,6 +267,7 @@ describe('POST /super-admins', () => {
         password: 'M3t4ll1c4',
         role: 'SA',
         active: false,
+        firebaseUid: '6282ca7cf9ae0f95595c6a68',
       });
       expect(response.body.error).toBe(true);
     });
@@ -264,6 +279,7 @@ describe('POST /super-admins', () => {
         password: 'M3t4ll1c4',
         role: 'SA',
         email: 'risotto.n@squadra.com',
+        firebaseUid: '6282ca7cf9ae0f95595c6a68',
       });
       expect(response.body.error).toBe(true);
     });

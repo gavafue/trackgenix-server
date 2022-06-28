@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 
 const validateCreation = (req, res, next) => {
   const adminValidation = Joi.object({
+    firebaseUid: Joi.string().required(),
     name: Joi.string().min(3).max(50)
       .messages({
         'string.min': 'Invalid name, it must not contain less than 3 letters',
@@ -65,6 +66,7 @@ const validateCreation = (req, res, next) => {
 
 const validateUpdate = (req, res, next) => {
   const adminValidation = Joi.object({
+    firebaseUid: Joi.string(),
     name: Joi.string().min(3).max(50)
       .messages({
         'string.min': 'Invalid name, it must not contain less than 3 letters',

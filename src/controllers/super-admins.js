@@ -77,6 +77,7 @@ const createSAdmin = async (req, res) => {
       email: req.body.email,
       role: req.body.role,
       active: req.body.active,
+      firebaseUid: req.body.firebaseUid,
     });
     const result = await superAdmin.save();
     return res.status(201).json({

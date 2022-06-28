@@ -3,6 +3,10 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const superAdminSchema = new Schema({
+  firebaseUid: {
+    type: String,
+    required: true,
+  },
   firstName: {
     type: String,
     required: true,

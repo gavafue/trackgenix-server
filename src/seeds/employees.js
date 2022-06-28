@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 
 export default [
   {
+    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId('6282ca7cf9ae0f95595c6a68'),
     firstName: 'German',
     lastName: 'Borges',
@@ -16,6 +17,7 @@ export default [
     active: true,
   },
   {
+    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId('6282cbaef9ae0f95595c6a71'),
     firstName: 'Mel',
     lastName: 'McAllan',
@@ -30,6 +32,7 @@ export default [
     active: false,
   },
   {
+    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId('6283a5eee570d6df244f64a7'),
     firstName: 'Mel',
     lastName: 'McAllan',
@@ -44,6 +47,7 @@ export default [
     active: false,
   },
   {
+    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId('6283a60fe570d6df244f64aa'),
     firstName: 'Mel',
     lastName: 'McAllan',
@@ -58,6 +62,7 @@ export default [
     active: false,
   },
   {
+    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId('6283a643e570d6df244f64ad'),
     firstName: 'Mel',
     lastName: 'McAllan',

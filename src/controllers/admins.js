@@ -21,6 +21,7 @@ const addAdmin = async (req, res) => {
       city: req.body.city,
       zip: req.body.zip,
       active: req.body.active,
+      firebaseUid: req.body.firebaseUid,
     });
     const result = await admin.save();
     return res.status(201).json({

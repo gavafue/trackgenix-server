@@ -97,6 +97,7 @@ const createEmployee = async (req, res) => {
       password: req.body.password,
       photo: req.body.photo,
       active: req.body.active,
+      firebaseUid: req.body.firebaseUid,
     });
     const succes = await employee.save();
     return res.status(201).json({
