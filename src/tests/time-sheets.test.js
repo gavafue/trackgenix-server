@@ -115,7 +115,6 @@ describe('POST /timeSheets', () => {
       hoursWorked: 5,
       hoursProject: 15,
       workDescription: 'Created server',
-      firebaseUid: '6282ca7cf9ae0f95595c6a68',
     };
 
     test('response should return a 201 status', async () => {
@@ -152,7 +151,6 @@ describe('POST /timeSheets', () => {
       hoursWorked: 5,
       hoursProject: 15,
       workDescription: 'Created server',
-      firebaseUid: '6282ca7cf9ae0f95595c6a68',
     };
 
     test('response should return a 404 status', async () => {
@@ -185,7 +183,6 @@ describe('POST /timeSheets', () => {
       hoursWorked: 5,
       hoursProject: 15,
       workDescription: 'Created server',
-      firebaseUid: '6282ca7cf9ae0f95595c6a68',
     };
 
     test('response should return a 400 status', async () => {

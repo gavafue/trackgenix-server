@@ -1,10 +1,6 @@
 import mongoose from 'mongoose';
 
 const tasksSchema = new mongoose.Schema({
-  firebaseUid: {
-    type: String,
-    required: true,
-  },
   nameProject: {
     type: mongoose.Schema.Types.ObjectId,
     require: true,

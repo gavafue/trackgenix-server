@@ -3,7 +3,6 @@ import mongoose from 'mongoose';
 
 const validateAddTS = (req, res, next) => {
   const validateTS = Joi.object({
-    firebaseUid: Joi.string().required(),
     project: Joi.string().required(),
     employee: Joi.string().required(),
     weekSprint: Joi.number().min(2).required(),
@@ -27,7 +26,6 @@ const validateAddTS = (req, res, next) => {
 
 const validateUpdate = (req, res, next) => {
   const timesheetValidation = Joi.object({
-    firebaseUid: Joi.string(),
     project: Joi.string(),
     employee: Joi.string(),
     weekSprint: Joi.number().min(2),

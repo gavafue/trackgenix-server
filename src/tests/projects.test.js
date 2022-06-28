@@ -45,7 +45,6 @@ describe('POST /projects', () => {
     const response = await request(app)
       .post('/projects/')
       .send({
-        firebaseUid: '6282ca7cf9ae0f95595c6a68',
         members: [
           {
             name: '60d4a32f257e066e8495ce12',
@@ -68,7 +67,6 @@ describe('POST /projects', () => {
     const response = await request(app)
       .post('/projects/')
       .send({
-        firebaseUid: '6282ca7cf9ae0f95595c6a68',
         members: [
           {
             name: '60d4a32f257e066e8495ce12',

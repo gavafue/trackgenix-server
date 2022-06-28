@@ -3,7 +3,6 @@ import mongoose from 'mongoose';
 
 const validateCreate = (req, res, next) => {
   const taskJoiSchema = Joi.object({
-    firebaseUid: Joi.string().required(),
     nameProject: Joi.string().required(),
     week: Joi.number().required(),
     day: Joi.number().required(),
@@ -26,7 +25,6 @@ const validateCreate = (req, res, next) => {
 
 const validateEdit = (req, res, next) => {
   const taskJoiSchema = Joi.object({
-    firebaseUid: Joi.string(),
     nameProject: Joi.string(),
     week: Joi.number(),
     day: Joi.number(),

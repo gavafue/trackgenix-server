@@ -2,7 +2,6 @@ import mongoose from 'mongoose';
 
 export default [
   {
-    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId('628bb53a8667fb09f64dd9fd'),
     members: [{
       name: mongoose.Types.ObjectId('628bcd2fd05eabe5ce419d78'),
@@ -18,7 +17,6 @@ export default [
     __v: 0,
   },
   {
-    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId('6287f93beee9276577d60c1f'),
     members: [{
       name: mongoose.Types.ObjectId('628bcd23effec38bd2785b2d'),
@@ -34,7 +32,6 @@ export default [
     __v: 0,
   },
   {
-    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId('628bb52bc5505d956f41a108'),
     members: [{
       name: mongoose.Types.ObjectId('628bcd1a5e77fd5a9175d7e7'),
@@ -50,7 +47,6 @@ export default [
     __v: 0,
   },
   {
-    firebaseUid: '6282ca7cf9ae0f95595c6a68',
     _id: mongoose.Types.ObjectId('628bb536f2b799b689f80ef4'),
     members: [{
       name: mongoose.Types.ObjectId('628bcd1090c84c5f3b2ad3fa'),

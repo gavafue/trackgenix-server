@@ -72,7 +72,6 @@ const createProject = async (req, res) => {
       description: req.body.description,
       active: req.body.active,
       client: req.body.client,
-      firebaseUid: req.body.firebaseUid,
     });
 
     const result = await project.save();
