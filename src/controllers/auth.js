@@ -31,9 +31,6 @@ const employeeSignUp = async (req, res) => {
       data: userSaved,
     });
   } catch (error) {
-    if (firebaseUid) {
-      await firebase.auth().deleteUser(firebaseUid);
-    }
     return res.status(400).json({ message: error.toString() });
   }
 };
@@ -65,9 +62,6 @@ const adminSignUp = async (req, res) => {
       data: userSaved,
     });
   } catch (error) {
-    if (firebaseUid) {
-      await firebase.auth().deleteUser(firebaseUid);
-    }
     return res.status(400).json({ message: error.toString() });
   }
 };
@@ -95,9 +89,6 @@ const superadminSignUp = async (req, res) => {
       data: userSaved,
     });
   } catch (error) {
-    if (firebaseUid) {
-      await firebase.auth().deleteUser(firebaseUid);
-    }
     return res.status(400).json({ message: error.toString() });
   }
 };
