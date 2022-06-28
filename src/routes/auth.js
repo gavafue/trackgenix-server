@@ -3,8 +3,10 @@ import controller from '../controllers/auth';
 import authMiddleware from '../middleware/authMiddleware';
 
 const router = express.Router();
-const { employeeSignUp } = controller;
+const { employeeSignUp, adminSignUp, superadminSignUp } = controller;
 
 router.post('/register', authMiddleware, employeeSignUp);
+router.post('/register-admin', authMiddleware, adminSignUp);
+router.post('/register-superadmin', authMiddleware, superadminSignUp);
 
 export default router;

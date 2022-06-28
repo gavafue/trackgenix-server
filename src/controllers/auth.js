@@ -13,7 +13,17 @@ const employeeSignUp = async (req, res) => {
     await firebase.auth().setCustomUserClaims(newFirebaseUser.uid, { role: 'EMPLOYEE' });
 
     const userCreated = new Employees({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      birthDate: req.body.birthDate,
+      country: req.body.country,
+      city: req.body.city,
+      zip: req.body.zip,
+      phone: req.body.phone,
       email: req.body.email,
+      password: req.body.password,
+      photo: req.body.photo,
+      active: req.body.active,
       firebaseUid: newFirebaseUser.uid,
     });
     const userSaved = await userCreated.save();
@@ -39,7 +49,16 @@ const adminSignUp = async (req, res) => {
     await firebase.auth().setCustomUserClaims(newFirebaseUser.uid, { role: 'ADMIN' });
 
     const userCreated = new Admins({
+      name: req.body.name,
+      lastName: req.body.lastName,
       email: req.body.email,
+      password: req.body.password,
+      gender: req.body.gender,
+      phone: req.body.phone,
+      dateBirth: req.body.dateBirth,
+      city: req.body.city,
+      zip: req.body.zip,
+      active: req.body.active,
       firebaseUid: newFirebaseUser.uid,
     });
     const userSaved = await userCreated.save();
@@ -65,7 +84,12 @@ const superadminSignUp = async (req, res) => {
     await firebase.auth().setCustomUserClaims(newFirebaseUser.uid, { role: 'SUPERADMIN' });
 
     const userCreated = new Superadmins({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      password: req.body.password,
       email: req.body.email,
+      role: req.body.role,
+      active: req.body.active,
       firebaseUid: newFirebaseUser.uid,
     });
     const userSaved = await userCreated.save();
