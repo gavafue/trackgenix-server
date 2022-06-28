@@ -21,7 +21,6 @@ const employeeSignUp = async (req, res) => {
       zip: req.body.zip,
       phone: req.body.phone,
       email: req.body.email,
-      password: req.body.password,
       photo: req.body.photo,
       active: req.body.active,
       firebaseUid: newFirebaseUser.uid,
@@ -52,7 +51,6 @@ const adminSignUp = async (req, res) => {
       name: req.body.name,
       lastName: req.body.lastName,
       email: req.body.email,
-      password: req.body.password,
       gender: req.body.gender,
       phone: req.body.phone,
       dateBirth: req.body.dateBirth,
@@ -86,7 +84,6 @@ const superadminSignUp = async (req, res) => {
     const userCreated = new Superadmins({
       firstName: req.body.firstName,
       lastName: req.body.lastName,
-      password: req.body.password,
       email: req.body.email,
       role: req.body.role,
       active: req.body.active,
