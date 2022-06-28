@@ -5,6 +5,7 @@ import timeSheetRoutes from './time-sheets';
 import employeesRoutes from './employees';
 import adminRoutes from './admins';
 import projectsRoutes from './projects';
+import authRoutes from './auth';
 
 const router = express.Router();
 
@@ -15,6 +16,7 @@ router
   .use('/super-admin', superAdminsRoutes)
   .use('/tasks', tasksRoutes)
   .use('/timeSheets', timeSheetRoutes)
+  .use('/register', authRoutes)
   .use('/', (req, res) => res.send('Welcome to Samuel Trackgenix API'));
 
 export default router;
