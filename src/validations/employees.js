@@ -77,7 +77,7 @@ const validateCreateEmp = (req, res, next) => {
         'string.email': 'Invalid email format. Try again.',
       })
       .required(),
-      password: Joi.string()
+    password: Joi.string()
       .min(8)
       .regex(/^(?=.*?[a-zA-Z])(?=.*?[0-9])/)
       .messages({
