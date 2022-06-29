@@ -7,8 +7,14 @@ const validateCreation = (req, res, next) => {
     firstName: Joi.string().min(3).max(50).required(),
     lastName: Joi.string().min(3).max(50).required(),
     email: Joi.string().email().required(),
-    password: Joi.string().min(8).required().regex(/^(?=.*?[a-zA-Z])(?=.*?[0-9])/)
-      .message('Invalid password, it must contain letters and numbers'),
+    password: Joi.string()
+      .min(8)
+      .regex(/^(?=.*?[a-zA-Z])(?=.*?[0-9])/)
+      .messages({
+        'string.min': 'Invalid password, it must contain at least 8 characters',
+        'string.pattern.base': 'Invalid password, it must contain both letters and numbers',
+      })
+      .required(),
     role: Joi.string().uppercase().valid('SA').required(),
     active: Joi.boolean().required(),
   });

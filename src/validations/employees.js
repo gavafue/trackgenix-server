@@ -77,10 +77,12 @@ const validateCreateEmp = (req, res, next) => {
         'string.email': 'Invalid email format. Try again.',
       })
       .required(),
-    password: Joi.string()
-      .pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/)
+      password: Joi.string()
+      .min(8)
+      .regex(/^(?=.*?[a-zA-Z])(?=.*?[0-9])/)
       .messages({
-        'string.pattern': 'Password must be more than 6 char, at least 1 letter and 1 number. Without any symbols.',
+        'string.min': 'Invalid password, it must contain at least 8 characters',
+        'string.pattern.base': 'Invalid password, it must contain both letters and numbers',
       })
       .required(),
     photo: Joi.string()

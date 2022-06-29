@@ -68,10 +68,6 @@ describe('GetAll - Employees', () => {
     const response = await request(app).get('/employees?email=').send();
     expect(response.status).toBe(404);
   });
-  test('Returns error if the password is empty', async () => {
-    const response = await request(app).get('/employees?password=').send();
-    expect(response.status).toBe(404);
-  });
   test('Returns error if the photo is empty', async () => {
     const response = await request(app).get('/employees?photo=').send();
     expect(response.status).toBe(404);
@@ -222,7 +218,6 @@ describe('POST /employees', () => {
       zip: 37470,
       phone: '4152354251',
       email: 'acordeau5s@jigsy.com',
-      password: 'U0y8aLihaW',
       photo: 'http://dummyimage.com/100x100.png/dddddd/000000',
       active: true,
     });
@@ -344,7 +339,7 @@ describe('PUT /employees', () => {
       lastName: 'Heisenberg',
       country: 'Argentina',
       city: 'Rosario',
-      zip: '2005',
+      zip: 2005,
       email: 'tuturrito@hotmail.com',
       active: false,
     });
