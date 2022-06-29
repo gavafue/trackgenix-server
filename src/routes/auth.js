@@ -6,7 +6,7 @@ const router = express.Router();
 const { employeeSignUp, adminSignUp, superadminSignUp } = controller;
 
 router.post('/employee', employeeSignUp);
-router.post('/admin', adminSignUp);
+router.post('/admin', authMiddleware, adminSignUp);
 router.post('/superadmin', authMiddleware, superadminSignUp);
 
 export default router;
