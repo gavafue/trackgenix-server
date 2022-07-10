@@ -9,7 +9,7 @@ router
   .get('/', adminsControllers.getAllAdmins)
   .get('/:id', adminsValidation.validateID, adminsControllers.getAdminById)
   .delete('/:id', adminsValidation.validateID, adminsControllers.deleteAdmin)
-  .delete('/lowlogic/:id', adminsValidation.validateID, adminsValidation.validateUpdate, adminsControllers.updateAdmin)
+  .delete('/lowlogic/:id', adminsValidation.validateUpdate, adminsControllers.updateAdminStatus)
   .put('/:id', adminsValidation.validateID, adminsValidation.validateUpdate, adminsControllers.updateAdmin);
 
 export default router;

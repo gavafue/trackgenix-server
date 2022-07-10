@@ -135,10 +135,36 @@ const updateAdmin = async (req, res) => {
   }
 };
 
+const updateAdminStatus = async (req, res) => {
+  try {
+    const adminById = await AdminModel.findByIdAndUpdate(req.params.id, req.body);
+    if (!adminById) {
+      return res.status(404).json({
+        message: `The admin with id: ${req.params.id} was not found`,
+        data: undefined,
+        error: true,
+      });
+    }
+    const adminUpdated = await AdminModel.findById(req.params.id);
+    return res.status(200).json({
+      message: `The admin with id: ${req.params.id} was deleted`,
+      data: adminUpdated,
+      error: false,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: `There was an error: ${error}`,
+      data: undefined,
+      error: true,
+    });
+  }
+};
+
 export default {
   addAdmin,
   getAllAdmins,
   getAdminById,
   deleteAdmin,
   updateAdmin,
+  updateAdminStatus,
 };
