@@ -72,6 +72,7 @@ const createProject = async (req, res) => {
       description: req.body.description,
       active: req.body.active,
       client: req.body.client,
+      pm: req.body.pm,
     });
 
     const result = await project.save();

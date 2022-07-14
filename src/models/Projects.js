@@ -10,7 +10,7 @@ const projectSchema = new Schema({
         required: true,
         ref: 'Employee',
       },
-      role: { type: String, required: true, enum: ['DEV', 'QA', 'PM', 'TL'] },
+      role: { type: String, required: true, enum: ['DEV', 'QA', 'TL'] },
       rate: { type: Number, required: true },
     },
   ],
@@ -20,6 +20,11 @@ const projectSchema = new Schema({
   description: { type: String, required: true },
   active: { type: Boolean, required: true },
   client: { type: String, required: true },
+  pm: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: 'Employee',
+  },
 });
 
 export default mongoose.model('Project', projectSchema);
