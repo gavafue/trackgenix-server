@@ -58,6 +58,7 @@ describe('POST /projects', () => {
         description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit',
         active: true,
         client: 'Diego Armando',
+        pm: '629e5ce65563b28ee91a89f9',
       });
     expect(response.status).toBe(201);
     // eslint-disable-next-line no-underscore-dangle
@@ -80,6 +81,7 @@ describe('POST /projects', () => {
         description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit',
         active: true,
         client: 'Diego Armando',
+        pm: '629e5ce65563b28ee91a89f9',
       });
     expect(response.body.message).toEqual('Project created successfully.');
   });
@@ -134,6 +136,7 @@ describe('PUT /projects', () => {
         description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit',
         active: true,
         client: 'Diego Armando',
+        pm: '629e5ce65563b28ee91a89f9',
       });
     expect(response.status).toBe(200);
   });
@@ -154,6 +157,7 @@ describe('PUT /projects', () => {
         description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit',
         active: true,
         client: 'Diego Armando',
+        pm: '629e5ce65563b28ee91a89f9',
       });
     expect(response.error).toBe(false);
   });
@@ -174,6 +178,7 @@ describe('PUT /projects', () => {
         description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit',
         active: true,
         client: 'Diego Armando',
+        pm: '629e5ce65563b28ee91a89f9',
       });
     expect(response.body.message).toEqual(
       `Project with id ${projectsId} edited.`,
