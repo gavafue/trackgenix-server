@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 const validateCreation = (req, res, next) => {
   const membersJoiSch = Joi.object({
     name: Joi.string().required(),
-    role: Joi.string().uppercase().valid('DEV', 'QA', 'PM', 'TL').required(),
+    role: Joi.string().uppercase().valid('DEV', 'QA', 'TL').required(),
     rate: Joi.number().required(),
   });
 
@@ -16,6 +16,7 @@ const validateCreation = (req, res, next) => {
     description: Joi.string().min(6).required(),
     active: Joi.boolean().required(),
     client: Joi.string().min(3).required(),
+    pm: Joi.string().required(),
   });
 
   const validation = projectJoiSch.validate(req.body);
@@ -47,7 +48,7 @@ const validateId = (req, res, next) => {
 const validateEdit = (req, res, next) => {
   const membersJoiSch = Joi.object({
     name: Joi.string().min(3).max(30),
-    role: Joi.string().uppercase().valid('DEV', 'QA', 'PM', 'TL'),
+    role: Joi.string().uppercase().valid('DEV', 'QA', 'TL'),
     rate: Joi.number(),
   });
 
@@ -59,6 +60,7 @@ const validateEdit = (req, res, next) => {
     description: Joi.string().min(6),
     active: Joi.boolean(),
     client: Joi.string().min(3),
+    pm: Joi.string(),
   });
 
   const validationId = mongoose.isValidObjectId(req.params.id);
