@@ -15,7 +15,6 @@ const timeSheetSchema = new Schema({
   },
   weekSprint: {
     type: Number,
-    required: true,
   },
   date: {
     type: Date,
@@ -27,7 +26,6 @@ const timeSheetSchema = new Schema({
   },
   hoursProject: {
     type: Number,
-    required: true,
   },
   workDescription: {
     type: String,
