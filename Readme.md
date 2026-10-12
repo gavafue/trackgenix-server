@@ -6,13 +6,43 @@
 [![Jest](https://img.shields.io/badge/Testing-Jest%20%26%20Supertest-C21325?style=for-the-badge&logo=jest&logoColor=white)](https://jestjs.io/)
 [![Joi](https://img.shields.io/badge/Validation-Joi-orange?style=for-the-badge)]()
 [![Postman](https://img.shields.io/badge/API-Postman%20Collection-FF6C37?style=for-the-badge&logo=postman&logoColor=white)](https://www.postman.com/)
+[![Teamwork](https://img.shields.io/badge/Team-Agile%20%2F%20Scrum-blue?style=for-the-badge)]()
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)]()
 
-Backend API REST robusto y escalable desarrollado para la plataforma de gestión de recursos humanos y seguimiento de horas trabajadas **Trackgenix** (desarrollado en el bootcamp intensivo **Radium Rocket**).
+Backend API REST robusto y escalable desarrollado para la plataforma de gestión de recursos humanos y seguimiento de horas trabajadas **Trackgenix**, construida en equipo durante el bootcamp intensivo **Radium Rocket (Become a Software Professional - BaSP 2022)**.
 
 Provee servicios backend completos para autenticación, gestión jerárquica de usuarios (Super Admins, Admins, Project Managers y Empleados), asignación de proyectos, catalogación de tareas y registro cronológico de partes de horas (*time-sheets*).
 
 Frontend asociado: [trackgenix-app](https://github.com/gavafue/trackgenix-app).
+
+---
+
+## 👥 Equipo de Desarrollo & Colaboradores
+
+Desarrollado de forma colaborativa simulando un entorno de ingeniería corporativo con metodologías ágiles (**Scrum**), integración continua y revisión de código:
+
+### Equipo Core
+| Desarrollador / Colaborador | Perfil GitHub | Responsabilidades Principales |
+| :--- | :--- | :--- |
+| **Gabriel Vázquez** | [@gavafue](https://github.com/gavafue) | Endpoints REST, esquemas de Mongoose, middlewares de autenticación y tests de integración |
+| **Octavio Rodríguez Paseyro** | [@OctavioRodriguezPaseyro](https://github.com/OctavioRodriguezPaseyro) | Controladores, validaciones con Joi y lógica de negocio de recursos |
+| **Paula Rinaldi** | [@paurinaldi](https://github.com/paurinaldi) | Modelado de datos, configuración de rutas y documentación técnica |
+| **Marcia Berón** | [@MarciaBeron](https://github.com/MarciaBeron) | Endpoints de proyectos, empleados y contratos |
+| **Pablo Nicolás Correa** | [@pcorreadev](https://github.com/pcorreadev) | Lógica de partes de horas (*time-sheets*) y catálogo de tareas |
+
+### Colaboradores de Células de Backend & Cohorte
+* **Alexis Ezequiel Suárez** ([@SuarezAlexisEzequiel](https://github.com/SuarezAlexisEzequiel))
+* **Iara Criscenti** ([@iaracriscenti](https://github.com/iaracriscenti))
+* **Marco Migliaro** ([@marcomigliaro](https://github.com/marcomigliaro))
+* **Alejandro Santini** ([@AlejandroSantini](https://github.com/AlejandroSantini))
+* **Nicolás Lalicata** ([@nicolaslalicata](https://github.com/nicolaslalicata))
+* **Alan Acosta (DeepFreq)** ([@DeepFreq](https://github.com/DeepFreq))
+* **Johsua Nowak** ([@Johsua30](https://github.com/Johsua30))
+* **Shirley Seaton** ([@Shirley1702](https://github.com/Shirley1702))
+* **Cristian (cristulian)** ([@cristulian](https://github.com/cristulian))
+
+### 🎓 Tech Lead & Mentor
+* **Samuel Trillo** ([@samueltrilloRR](https://github.com/samueltrilloRR)) - Tutor técnico, diseño de arquitectura y Code Reviewer (Radium Rocket).
 
 ---
 
@@ -78,9 +108,6 @@ npm test
 
 ---
 
-## 👤 Autor
+## 📄 Licencia
 
-**Gabriel Vázquez**  
-*Docente de Informática & Full Stack Developer*  
-* [GitHub Profile](https://github.com/gavafue)  
-* [LinkedIn](https://www.linkedin.com/in/gavafue/)
+Distribuido bajo la licencia MIT.
